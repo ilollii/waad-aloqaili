@@ -1403,6 +1403,156 @@
         backdrop.classList.add('active');
       }
     },
+    openPolicyModal: function (policyType) {
+      closeDrawers();
+      const modal = document.getElementById('policyModal');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const titleEl = document.getElementById('policyModalTitle');
+      const badgeEl = document.getElementById('policyModalBadge');
+      const bodyEl = document.getElementById('policyModalBody');
+
+      const policiesData = {
+        'privacy': {
+          title_ar: 'سياسة الخصوصية وحماية بيانات العميلات',
+          title_en: 'Privacy & Client Data Protection Policy',
+          badge_ar: 'حماية معتمدة 100%',
+          badge_en: 'GDPR & PDPL Compliant',
+          sections: [
+            {
+              heading_ar: '1. الالتزام بحماية البيانات والخصوصية',
+              heading_en: '1. Privacy Commitment & PDPL Compliance',
+              text_ar: 'نلتزم في دار وعد العقيلي بأعلى معايير حماية البيانات الشخصية وفقاً لنظام حماية البيانات الشخصية في المملكة العربية السعودية. تُستخدم بياناتكِ حصراً لمعالجة طلبات الكوتور والقياسات والتسليم الفاخر.',
+              text_en: 'Waad Aloqaili is committed to the highest standards of data privacy in accordance with Saudi PDPL regulations. Your information is strictly used for bespoke order processing, atelier appointments, and white-glove delivery.'
+            },
+            {
+              heading_ar: '2. سرية ملفات المقاسات والاستشارات',
+              heading_en: '2. Confidentiality of Bespoke Sizing & Styling',
+              text_ar: 'كافة سجلات القياسات الدقيقة واستشارات خبيرة المظهر تُحفظ في بيئة سحابية مشفرة وخاصة بالدار ولا تتم مشاركتها أو بيعها لأي جهة خارجية إطلاقاً.',
+              text_en: 'All bespoke sizing profiles and personal styling consultation records are stored in high-security encrypted environments and will never be shared with third parties.'
+            },
+            {
+              heading_ar: '3. أمان المدفوعات والتعاملات المالية',
+              heading_en: '3. Financial & Payment Security',
+              text_ar: 'تتم كافة المعاملات المالية عبر بوابات دفع بنكية معتمدة من البنك المركزي السعودي (SAMA) ومتوافقة مع أعلى معايير الأمان الدولية PCI-DSS.',
+              text_en: 'All payment transactions are processed through certified Saudi Central Bank (SAMA) gateways adhering to strict global PCI-DSS security protocols.'
+            }
+          ]
+        },
+        'returns': {
+          title_ar: 'سياسة الاستبدال والاسترجاع والتفصيل الخاص',
+          title_en: 'Returns, Exchanges & Bespoke Tailoring Policy',
+          badge_ar: 'ضمان الجودة الملكية',
+          badge_en: 'Royal Quality Assurance',
+          sections: [
+            {
+              heading_ar: '1. فساتين الهوت كوتور والطلب الخاص',
+              heading_en: '1. Haute Couture & Made-to-Measure Pieces',
+              text_ar: 'نظراً لأن فساتين الهوت كوتور تصنع وتطرز يدوياً بحسب مقاسات العميله الفردية، فإن القطع المفصلة حسب الطلب لا تخضع للاسترجاع النقدي، مع تقديم جلسات تعديل وملاءمة مجانية بالأتيليه لضمان رضاكِ التام بنسبة 100%.',
+              text_en: 'As Haute Couture gowns are handcrafted to individual client measurements and specifications, bespoke orders are non-refundable. We provide complimentary fitting adjustments at our atelier to ensure a flawless silhouette.'
+            },
+            {
+              heading_ar: '2. القطع الجاهزة من الكبسولات الحصرية',
+              heading_en: '2. Ready-to-Wear Capsule Collections',
+              text_ar: 'يحق للعميلة طلب استبدال المقاس للقطع الجاهزة خلال 3 أيام من تاريخ الاستلام، بشرط أن تكون القطعة بحالتها الأصلية غير ملبوسة وفي حقيبة الحفظ الملكية وبكافة بطاقاتها التعريفية.',
+              text_en: 'Size exchange requests for ready-to-wear pieces may be placed within 3 days of delivery, provided the item is in its pristine, unworn condition with original tags and luxury garment case intact.'
+            },
+            {
+              heading_ar: '3. فحص الجودة المزدوج قبل الشحن',
+              heading_en: '3. Dual Quality Control Inspection',
+              text_ar: 'تخضع كل قطعة لفحص دقيق ومزدوج من قبل خبيرات الجودة بالدار قبل التسليم لضمان خلوها التام من أي عيوب مصنعية.',
+              text_en: 'Every single gown undergoes rigorous double-tier inspection by our master artisans before packaging and dispatch.'
+            }
+          ]
+        },
+        'terms': {
+          title_ar: 'الشروط والأحكام العامة لدار وعد العقيلي',
+          title_en: 'General Terms & Conditions of Service',
+          badge_ar: 'توثيق رسمي معتمد',
+          badge_en: 'Official Terms',
+          sections: [
+            {
+              heading_ar: '1. حقوق الملكية الفكرية والعلامة التجارية',
+              heading_en: '1. Intellectual Property & Trademark Protection',
+              text_ar: 'جميع التصاميم، الباترونات، النقوش الحرفية، الصور، ومقاطع الفيديو المعروضة هي ملكية فكرية حصرية لدار وعد العقيلي ومحمية بموجب أنظمة حماية حقوق المؤلف والعلامات التجارية في المملكة والدول الموقعة على اتفاقية برن.',
+              text_en: 'All gown designs, silhouettes, embroidery motifs, visual assets, and videos are the exclusive intellectual property of Waad Aloqaili and protected under Saudi and international IP treaties.'
+            },
+            {
+              heading_ar: '2. مواعيد الأتيليه وجلسات القياس الخاصة',
+              heading_en: '2. Atelier Appointments & VIP Fitting Sessions',
+              text_ar: 'تتطلب زيارات الأتيليه وجلسات القياس حجزاً مسبقاً مؤكداً عبر الموقع أو واتساب كبار الشخصيات لضمان الخصوصية التامة والاهتمام المكرس لكل عميلة.',
+              text_en: 'Private fitting sessions at our Riyadh atelier require advance booking confirmation to ensure total privacy and dedicated concierge attention for each client.'
+            },
+            {
+              heading_ar: '3. مدة التنفيذ والتسليم الفاخر',
+              heading_en: '3. Production Timeline & White-Glove Dispatch',
+              text_ar: 'تستغرق قطع الهوت كوتور ما بين 14 إلى 28 يوم عمل للتطريز والشك اليدوي الدقيق، ويتم إشعار العميلة بمراحل إنجاز الفستان أولاً بأول.',
+              text_en: 'Haute couture pieces require 14 to 28 business days of intricate hand-embroidery and artisanal craftsmanship. Regular progress updates are provided to the client.'
+            }
+          ]
+        },
+        'vat': {
+          title_ar: 'الامتثال الضريبي والفواتير الرسمية',
+          title_en: 'Tax Compliance & Official Invoicing',
+          badge_ar: 'ضريبة القيمة المضافة 15%',
+          badge_en: 'ZATCA VAT Compliant (15%)',
+          sections: [
+            {
+              heading_ar: '1. ضريبة القيمة المضافة (VAT 15%)',
+              heading_en: '1. Value Added Tax (VAT)',
+              text_ar: 'كافة الأسعار المعروضة على المنصة وبطاقات المنتجات شاملة لضريبة القيمة المضافة المقررة نظاماً بنسبة 15% وفقاً لأنظمة هيئة الزكاة والضريبة والجمارك (ZATCA).',
+              text_en: 'All displayed boutique prices are fully inclusive of the statutory 15% Value Added Tax (VAT) regulated by the Zakat, Tax and Customs Authority (ZATCA).'
+            },
+            {
+              heading_ar: '2. الفوترة الإلكترونية المعتمدة (فاتورة)',
+              heading_en: '2. Certified Electronic Invoicing (FATOORAH)',
+              text_ar: 'تصدر الدار فواتير إلكترونية ضريبية معتمدة ومتوافقة مع متطلبات المرحلة الثانية من الفوترة الإلكترونية مزودة برمز الاستجابة السريع (QR Code).',
+              text_en: 'Every completed purchase receives an official electronic tax invoice compliant with ZATCA Phase 2 (FATOORAH) standards featuring verified QR verification codes.'
+            },
+            {
+              heading_ar: '3. السجل التجاري والتوثيق المؤسسي',
+              heading_en: '3. Commercial Registration & Government Verification',
+              text_ar: 'تعمل الدار بموجب السجل التجاري الرسمي رقم 7006113000، وهي موثقة رسمياً في المركز السعودي للأعمال تحت شهادة رقم 0000007788 سارية المفعول حتى 16/09/2026.',
+              text_en: 'The house operates under Commercial Registration No. 7006113000 and is officially verified with the Saudi Business Center under Certificate No. 0000007788 (valid through 16/09/2026).'
+            }
+          ]
+        }
+      };
+
+      const data = policiesData[policyType] || policiesData['privacy'];
+      const isAr = state.lang === 'ar';
+
+      if (titleEl) {
+        titleEl.innerHTML = `<span class="txt-ar">${data.title_ar}</span><span class="txt-en">${data.title_en}</span>`;
+      }
+      if (badgeEl) {
+        badgeEl.innerHTML = `<span class="txt-ar">${data.badge_ar}</span><span class="txt-en">${data.badge_en}</span>`;
+      }
+      if (bodyEl) {
+        bodyEl.innerHTML = data.sections.map(sec => `
+          <div class="policy-section-item">
+            <h4 class="policy-section-heading">
+              <span class="txt-ar">${sec.heading_ar}</span>
+              <span class="txt-en">${sec.heading_en}</span>
+            </h4>
+            <p>
+              <span class="txt-ar">${sec.text_ar}</span>
+              <span class="txt-en">${sec.text_en}</span>
+            </p>
+          </div>
+        `).join('');
+      }
+
+      if (modal && backdrop) {
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+      }
+    },
+    closePolicyModal: function () {
+      const modal = document.getElementById('policyModal');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (modal) modal.classList.remove('active');
+      if (backdrop) backdrop.classList.remove('active');
+    },
     toggleVelvetTheme: function () {
       const isDark = document.body.classList.toggle('theme-velvet-night');
       const icon = document.getElementById('themeIcon');
