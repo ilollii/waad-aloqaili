@@ -2080,6 +2080,206 @@ img {
   letter-spacing: 0.08em;
   line-height: 1.4;
   overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Quick Action Pills inside Drawer */
+.drawer-quick-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.drawer-quick-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-brand-purple);
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.drawer-quick-btn:hover {
+  background: var(--color-brand-purple);
+  color: #FFFFFF;
+  border-color: var(--color-brand-purple);
+}
+
+.drawer-quick-btn .quick-badge {
+  background: var(--color-brand-purple);
+  color: #FFF;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  font-weight: 900;
+}
+
+.drawer-quick-btn:hover .quick-badge {
+  background: var(--color-accent-gold);
+  color: var(--color-brand-purple);
+}
+
+/* Collections Pill Grid for fast browsing */
+.drawer-collections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 2.2rem;
+}
+
+.drawer-col-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.drawer-col-pill:hover {
+  border-color: var(--color-brand-purple);
+  color: var(--color-brand-purple);
+  background: var(--color-brand-purple-tint);
+}
+
+.drawer-col-pill .col-badge {
+  font-size: 0.7rem;
+  color: #888;
+  font-weight: 600;
+}
+
+/* Concierge Card */
+.drawer-concierge-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.drawer-concierge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--color-brand-purple);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.88rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+.drawer-concierge-btn:hover {
+  background: #120820;
+}
+
+.drawer-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.88rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.drawer-whatsapp-btn:hover {
+  opacity: 0.9;
+}
+
+/* Dark Mode Velvet Night support for Drawers */
+body.theme-velvet-night .slide-drawer {
+  background: #140A22 !important;
+  color: #F9F8F6 !important;
+  border-left: 1px solid #2C1647;
+}
+
+body.theme-velvet-night .drawer-header {
+  border-bottom-color: #2C1647 !important;
+}
+
+body.theme-velvet-night .drawer-title {
+  color: #FFFFFF !important;
+}
+
+body.theme-velvet-night .drawer-close-btn {
+  background: #231238 !important;
+  color: #FFFFFF !important;
+}
+
+body.theme-velvet-night .drawer-close-btn:hover {
+  background: var(--color-accent-gold) !important;
+  color: #120820 !important;
+}
+
+body.theme-velvet-night .drawer-quick-btn {
+  background: #231238 !important;
+  border-color: #381E59 !important;
+  color: #FFFFFF !important;
+}
+
+body.theme-velvet-night .drawer-quick-btn:hover {
+  background: var(--color-accent-gold) !important;
+  color: #120820 !important;
+  border-color: var(--color-accent-gold) !important;
+}
+
+body.theme-velvet-night .drawer-nav-item {
+  border-bottom-color: #2C1647 !important;
+}
+
+body.theme-velvet-night .drawer-nav-link {
+  color: #ECE8E1 !important;
+}
+
+body.theme-velvet-night .drawer-nav-link:hover {
+  color: var(--color-accent-gold) !important;
+}
+
+body.theme-velvet-night .drawer-col-pill {
+  background: #1E0F32 !important;
+  border-color: #381E59 !important;
+  color: #ECE8E1 !important;
+}
+
+body.theme-velvet-night .drawer-col-pill:hover {
+  background: #2D174A !important;
+  border-color: var(--color-accent-gold) !important;
+  color: var(--color-accent-gold) !important;
+}
+
+body.theme-velvet-night .drawer-concierge-card {
+  background: #1E0F32 !important;
+  border-color: #381E59 !important;
 }
 
 /* Free Shipping Meter */

@@ -1553,6 +1553,26 @@
       if (modal) modal.classList.remove('active');
       if (backdrop) backdrop.classList.remove('active');
     },
+    openBookingModal: function () {
+      closeDrawers();
+      const modal = document.getElementById('atelierBookingModal') || document.getElementById('bookingModal');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (modal && backdrop) {
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    },
+    openAiStylistModal: function () {
+      closeDrawers();
+      const modal = document.getElementById('aiStylistModal');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (modal && backdrop) {
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    },
     toggleVelvetTheme: function () {
       const isDark = document.body.classList.toggle('theme-velvet-night');
       const icon = document.getElementById('themeIcon');
