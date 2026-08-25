@@ -251,11 +251,6 @@
 
     <!-- Header Actions -->
     <div class="header-right">
-      <a href="#about" class="header-link" onclick="window.app.openBookingModal()" style="font-size:0.85rem; font-weight:800; text-decoration:none; color:var(--color-brand-purple); display:none; @media(min-width:768px){display:block;}">
-        <span class="txt-ar">حجز موعد قياس</span>
-        <span class="txt-en">Log in</span>
-      </a>
-
       <button class="header-icon-btn" id="searchTriggerBtn" onclick="window.app.openSearch()" aria-label="Search" title="Search">
         <i data-feather="search"></i>
       </button>
@@ -288,10 +283,6 @@
         <span class="txt-ar">تسوقي فساتين السجادة الحمراء &larr;</span>
         <span class="txt-en">Shop Red Carpet Gowns &rarr;</span>
       </a>
-      <button class="btn-secondary" onclick="window.app.openBookingModal()" style="background:rgba(255,255,255,0.15); color:#FFF; border-color:rgba(255,255,255,0.4); padding:1rem 2rem; backdrop-filter:blur(8px);">
-        <span class="txt-ar">حجز موعد قياس كوتور خاص</span>
-        <span class="txt-en">Book Private Fitting</span>
-      </button>
     </div>
   </section>
 
@@ -929,30 +920,11 @@
         <ul class="footer-links-list">
           <li><a href="index.html" class="footer-link"><span class="txt-ar">الرئيسية</span><span class="txt-en">Home</span></a></li>
           <li><a href="collections.html" class="footer-link"><span class="txt-ar">جميع فساتين البوتيك (105)</span><span class="txt-en">All Boutique Gowns (105)</span></a></li>
-          <li><a href="under-the-spotlight.html" class="footer-link"><span class="txt-ar">تحت الأضواء - مهرجان كان</span><span class="txt-en">Under The Spotlight</span></a></li>
-          <li><a href="about-us.html" class="footer-link"><span class="txt-ar">عن الدار والحرفية</span><span class="txt-en">The House & Heritage</span></a></li>
-          <li><a href="javascript:void(0)" onclick="window.app.openBookingModal()" class="footer-link"><span class="txt-ar">حجز موعد قياس في الأتيليه</span><span class="txt-en">Private Atelier Fitting</span></a></li>
           <li><a href="javascript:void(0)" onclick="window.app.openAiStylistModal()" class="footer-link"><span class="txt-ar">مستشارة المظهر الذكية AI</span><span class="txt-en">AI Couture Stylist</span></a></li>
         </ul>
       </div>
 
-      <!-- 3. Haute Couture Collections -->
-      <div class="footer-col">
-        <h4 class="footer-col-title">
-          <span class="txt-ar">مجموعات الكوتور</span>
-          <span class="txt-en">Couture Collections</span>
-        </h4>
-        <ul class="footer-links-list">
-        <li><a href="collections.html?cat=yamal" class="footer-link"><span class="txt-ar">مجموعة يمال (Yamal SS26)</span><span class="txt-en">Yamal SS26 Collection</span></a></li>
-          <li><a href="collections.html?cat=veil-of-renewal" class="footer-link"><span class="txt-ar">حجاب التجدد (Veil of Renewal)</span><span class="txt-en">Veil of Renewal</span></a></li>
-          <li><a href="collections.html?cat=elan-vital" class="footer-link"><span class="txt-ar">إيلان فيتال (Élan Vital)</span><span class="txt-en">Élan Vital Capsule</span></a></li>
-          <li><a href="collections.html?cat=celestia" class="footer-link"><span class="txt-ar">سيليستيا الملكية (Celestia)</span><span class="txt-en">Celestia Collection</span></a></li>
-          <li><a href="collections.html?cat=bridal" class="footer-link"><span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Royal Bridal Gowns</span></a></li>
-          <li><a href="collections.html?cat=soiree" class="footer-link"><span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span></a></li>
-        </ul>
-      </div>
-
-      <!-- 4. Legal & Compliance -->
+      <!-- 3. Legal & Compliance -->
       <div class="footer-col">
         <h4 class="footer-col-title">
           <span class="txt-ar">السياسات والامتثال</span>
@@ -1061,50 +1033,7 @@
             <span class="drawer-nav-badge">105 GOWNS</span>
           </a>
         </li>
-        <li class="drawer-nav-item">
-          <a href="under-the-spotlight.html" class="drawer-nav-link active" style="color:var(--color-accent-gold); font-weight:900;">
-            <span><span class="txt-ar">تحت الأضواء - السجادة الحمراء</span><span class="txt-en">Under The Spotlight</span></span>
-            <span class="drawer-nav-badge">20 EVENTS</span>
-          </a>
-        </li>
-        <li class="drawer-nav-item">
-          <a href="about-us.html" class="drawer-nav-link">
-            <span><span class="txt-ar">عن الدار والحرفية</span><span class="txt-en">The House & Heritage</span></span>
-            <i data-feather="chevron-left" style="width:16px;height:16px;"></i>
-          </a>
-        </li>
       </ul>
-
-      <!-- Couture Collections Category -->
-      <div style="margin-top:1.8rem; padding-top:1.4rem; border-top:1px solid var(--color-border);">
-        <span style="font-size:0.78rem; font-weight:900; letter-spacing:0.2em; color:var(--color-brand-purple); display:block; margin-bottom:0.8rem; text-transform:uppercase;">
-          <span class="txt-ar">👑 كوتور (HAUTE COUTURE)</span>
-          <span class="txt-en">👑 COUTURE COLLECTIONS</span>
-        </span>
-        <div class="drawer-quick-grid">
-          <a href="collections.html?cat=yamal" class="drawer-collection-pill">
-            <span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span>
-          </a>
-          <a href="collections.html?cat=veil-of-renewal" class="drawer-collection-pill">
-            <span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span>
-          </a>
-          <a href="collections.html?cat=into-the-dawn" class="drawer-collection-pill">
-            <span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span>
-          </a>
-          <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-collection-pill">
-            <span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span>
-          </a>
-          <a href="collections.html?cat=elan-vital" class="drawer-collection-pill">
-            <span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span>
-          </a>
-          <a href="collections.html?cat=celestia" class="drawer-collection-pill">
-            <span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span>
-          </a>
-          <a href="collections.html?cat=joy" class="drawer-collection-pill">
-            <span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span>
-          </a>
-        </div>
-      </div>
 
       <!-- Ready-to-Wear Category -->
       <div style="margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--color-border);">
@@ -1123,17 +1052,6 @@
             <span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement Gowns</span>
           </a>
         </div>
-      </div>
-
-      <div style="margin-top:2rem; padding:1.2rem; background:var(--color-bg-alt); border:1px solid var(--color-border); text-align:center;">
-        <span style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.4rem;">
-          <span class="txt-ar">حجز موعد قياس خاص</span>
-          <span class="txt-en">Private Atelier Fitting</span>
-        </span>
-        <button class="btn-primary shimmer-gold-effect" onclick="window.app.openBookingModal()" style="width:100%; padding:0.75rem 1rem; font-size:0.85rem;">
-          <span class="txt-ar">حجز موعد الأتيليه الآن</span>
-          <span class="txt-en">Book Private Session</span>
-        </button>
       </div>
     </div>
   </aside>
