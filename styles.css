@@ -3092,49 +3092,80 @@ img {
   
   /* Site Header: Perfectly Centered Logo & High-Contrast Hamburger Icon */
   .site-header {
-    height: 64px;
-    padding: 0 1rem;
-    position: sticky;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    height: 64px !important;
+    padding: 0 1rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    z-index: 90 !important;
   }
   .header-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    z-index: 20;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    z-index: 25 !important;
+    flex-shrink: 0 !important;
   }
   .menu-toggle-btn {
-    padding: 0;
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-brand-purple-tint);
-    border: 1.5px solid var(--color-brand-purple-border);
-    color: var(--color-brand-purple);
-    box-shadow: 0 2px 10px rgba(44, 26, 72, 0.08);
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 50% !important;
+    background: var(--color-brand-purple-tint) !important;
+    border: 1.5px solid var(--color-brand-purple-border) !important;
+    color: var(--color-brand-purple) !important;
+    box-shadow: 0 2px 10px rgba(44, 26, 72, 0.1) !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   .menu-toggle-btn:active {
     transform: scale(0.94);
   }
-  .menu-toggle-btn span:not(.hamburger-lines) {
+  .menu-btn-label,
+  .menu-toggle-btn > span:not(.hamburger-lines) {
     display: none !important;
   }
-  .menu-toggle-btn .hamburger-lines {
-    width: 20px;
-    height: 14px;
+  .menu-toggle-btn .hamburger-lines,
+  .hamburger-lines {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 20px !important;
+    height: 14px !important;
+    min-width: 20px !important;
+    min-height: 14px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-  .menu-toggle-btn .hamburger-lines span {
-    height: 2.5px;
-    background-color: var(--color-brand-purple);
+  .menu-toggle-btn .hamburger-lines span,
+  .menu-toggle-btn .hamburger-lines .hamburger-bar,
+  .hamburger-lines span,
+  .hamburger-lines .hamburger-bar {
+    display: block !important;
+    height: 2.5px !important;
+    width: 100% !important;
+    background-color: var(--color-brand-purple) !important;
+    border-radius: 2px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
+
+  body.theme-velvet-night .menu-toggle-btn .hamburger-lines span,
+  body.theme-velvet-night .menu-toggle-btn .hamburger-lines .hamburger-bar,
+  body.theme-velvet-night .hamburger-lines span,
+  body.theme-velvet-night .hamburger-lines .hamburger-bar {
+    background-color: #FFFFFF !important;
+  }
+
   .brand-logo-container {
     position: absolute !important;
     left: 50% !important;
@@ -3145,10 +3176,11 @@ img {
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    z-index: 10;
-    max-width: calc(100% - 175px);
-    pointer-events: auto;
+    z-index: 15 !important;
+    max-width: calc(100% - 175px) !important;
+    pointer-events: auto !important;
     width: max-content;
+    margin: 0 !important;
   }
   .brand-logo-link {
     display: flex !important;
