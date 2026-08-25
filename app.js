@@ -1013,17 +1013,17 @@
       // Category titles map
       const titlesMap = {
         'all': { ar: 'كافة تصاميم البوتيك (105 فستان)', en: 'All Boutique Designs (105)' },
-        'yamal': { ar: 'مجموعة يمال SS26 (29 فستان)', en: 'Yamal SS26 Collection (29)' },
-        'veil-of-renewal': { ar: 'حجاب التجدد Veil of Renewal (22)', en: 'Veil of Renewal Collection (22)' },
-        'elan-vital': { ar: 'إيلان فيتال Élan vital (14)', en: 'Élan vital Capsule (14)' },
-        'out-of-the-chrysalis': { ar: 'مجموعة كريساليث Chrysalis (11)', en: 'Out of the Chrysalis (11)' },
-        'joy': { ar: 'مجموعة جوي Joy (10)', en: 'Joy Collection (10)' },
-        'celestia': { ar: 'سيليستيا الملكية Celestia (7)', en: 'Celestia Royal (7)' },
-        'into-the-dawn': { ar: 'إنتو ذا دون Into the Dawn (6)', en: 'Into the Dawn (6)' },
-        'bridal': { ar: 'فساتين الزفاف الملكية (32)', en: 'Royal Bridal Gowns (32)' },
-        'soiree': { ar: 'فساتين السهرة والمناسبات (37)', en: 'Soirée & Evening (37)' },
-        'engagement': { ar: 'فساتين الخطوبة والملكة (38)', en: 'Engagement & Melka (38)' },
-        'couture': { ar: 'إصدارات الهوت كوتور (105)', en: 'Haute Couture Editions (105)' }
+        'yamal': { ar: 'يَمال ربيع وصيف (29 فستان)', en: 'Yamal Spring Summer (29)' },
+        'veil-of-renewal': { ar: 'VEIL OF RENEWAL ربيع وصيف (22 فستان)', en: 'Veil of Renewal Spring Summer (22)' },
+        'into-the-dawn': { ar: 'الى الشروق خريف (6 فساتين)', en: 'Into the Dawn Fall (6)' },
+        'out-of-the-chrysalis': { ar: 'خارِج الشرنقة ربيع وصيف (11 فستان)', en: 'Out of the Chrysalis Spring Summer (11)' },
+        'elan-vital': { ar: 'إيلان فيتال قبل خريف (14 فستان)', en: 'Élan Vital Pre-Fall (14)' },
+        'celestia': { ar: 'سيليستيا ربيع وصيف (7 فساتين)', en: 'Celestia Spring Summer (7)' },
+        'joy': { ar: 'مجموعة جوي (10 فساتين)', en: 'Joy Collection (10)' },
+        'bridal': { ar: 'جاهز للارتداء: فساتين الزفاف الملكية (32)', en: 'RTW: Royal Bridal Gowns (32)' },
+        'soiree': { ar: 'جاهز للارتداء: فساتين السهرة والمناسبات (37)', en: 'RTW: Soirée & Evening (37)' },
+        'engagement': { ar: 'جاهز للارتداء: فساتين الخطوبة والملكة (38)', en: 'RTW: Engagement & Melka (38)' },
+        'couture': { ar: 'كوتور: كافة إصدارات الهوت كوتور (105)', en: 'Couture: Haute Couture Editions (105)' }
       };
 
       const titleObj = titlesMap[cat] || { ar: 'كافة تصاميم البوتيك', en: 'All Boutique Designs' };

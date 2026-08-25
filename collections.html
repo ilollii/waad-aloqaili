@@ -194,54 +194,60 @@
             <i data-feather="chevron-down" id="dropdownChevronIcon" style="width:16px;height:16px; margin-inline-start:0.5rem; transition:transform 0.2s;"></i>
           </button>
 
-          <div class="luxury-dropdown-menu" id="luxuryDropdownMenu" style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:300px; max-width:340px; background:#FFFFFF; border:1.5px solid var(--color-brand-purple); box-shadow:0 20px 50px rgba(44, 26, 72, 0.22); z-index:1000; max-height:420px; overflow-y:auto; padding:0.5rem 0;">
-            <a href="javascript:void(0)" class="dropdown-collection-item active" onclick="window.app.selectCategoryFromDropdown('all', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+          <div class="luxury-dropdown-menu" id="luxuryDropdownMenu" style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:320px; max-width:360px; background:#FFFFFF; border:1.5px solid var(--color-brand-purple); box-shadow:0 20px 50px rgba(44, 26, 72, 0.22); z-index:1000; max-height:460px; overflow-y:auto; padding:0.5rem 0;">
+            <a href="javascript:void(0)" class="dropdown-collection-item active" onclick="window.app.selectCategoryFromDropdown('all', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:800; border-bottom:1px solid var(--color-border);">
               <span class="txt-ar">كافة تصاميم البوتيك (105 فستان)</span>
               <span class="txt-en">All Boutique Designs (105)</span>
             </a>
+
+            <!-- Section 1: Couture -->
+            <div style="padding:0.55rem 1.4rem; background:rgba(44,26,72,0.06); font-size:0.75rem; font-weight:900; color:var(--color-brand-purple); letter-spacing:0.08em; display:flex; justify-content:space-between; border-bottom:1px solid var(--color-border);">
+              <span><span class="txt-ar">كوتور (HAUTE COUTURE)</span><span class="txt-en">HAUTE COUTURE</span></span>
+            </div>
             <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('yamal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">مجموعة يمال SS26 (29 فستان)</span>
-              <span class="txt-en">Yamal SS26 Collection (29)</span>
+              <span class="txt-ar">يَمال ربيع وصيف (29 فستان)</span>
+              <span class="txt-en">Yamal Spring Summer (29)</span>
             </a>
             <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('veil-of-renewal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">حجاب التجدد Veil of Renewal (22)</span>
-              <span class="txt-en">Veil of Renewal Collection (22)</span>
+              <span class="txt-ar">VEIL OF RENEWAL ربيع وصيف (22)</span>
+              <span class="txt-en">Veil of Renewal Spring Summer (22)</span>
             </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('elan-vital', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">إيلان فيتال Élan vital (14)</span>
-              <span class="txt-en">Élan vital Capsule (14)</span>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('into-the-dawn', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">الى الشروق خريف (6 فساتين)</span>
+              <span class="txt-en">Into the Dawn Fall (6)</span>
             </a>
             <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('out-of-the-chrysalis', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">مجموعة كريساليث Chrysalis (11)</span>
+              <span class="txt-ar">خارِج الشرنقة ربيع وصيف (11)</span>
               <span class="txt-en">Out of the Chrysalis (11)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('elan-vital', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">إيلان فيتال قبل خريف (14)</span>
+              <span class="txt-en">Élan Vital Pre-Fall (14)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('celestia', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">سيليستيا ربيع وصيف (7)</span>
+              <span class="txt-en">Celestia Spring Summer (7)</span>
             </a>
             <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('joy', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
               <span class="txt-ar">مجموعة جوي Joy (10)</span>
               <span class="txt-en">Joy Collection (10)</span>
             </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('celestia', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">سيليستيا الملكية Celestia (7)</span>
-              <span class="txt-en">Celestia Royal (7)</span>
-            </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('into-the-dawn', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">إنتو ذا دون Into the Dawn (6)</span>
-              <span class="txt-en">Into the Dawn (6)</span>
+
+            <!-- Section 2: Ready-to-Wear -->
+            <div style="padding:0.55rem 1.4rem; background:rgba(44,26,72,0.06); font-size:0.75rem; font-weight:900; color:var(--color-brand-purple); letter-spacing:0.08em; display:flex; justify-content:space-between; border-bottom:1px solid var(--color-border); border-top:1px solid var(--color-border);">
+              <span><span class="txt-ar">جاهز للارتداء (READY-TO-WEAR)</span><span class="txt-en">READY-TO-WEAR</span></span>
+            </div>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('soiree', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">فساتين السهرة والمناسبات (37)</span>
+              <span class="txt-en">Soirée & Evening Gowns (37)</span>
             </a>
             <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('bridal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
               <span class="txt-ar">فساتين الزفاف الملكية (32)</span>
               <span class="txt-en">Royal Bridal Gowns (32)</span>
             </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('soiree', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
-              <span class="txt-ar">فساتين السهرة والمناسبات (37)</span>
-              <span class="txt-en">Soirée & Evening (37)</span>
-            </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('engagement', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('engagement', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700;">
               <span class="txt-ar">فساتين الخطوبة والملكة (38)</span>
-              <span class="txt-en">Engagement & Melka (38)</span>
-            </a>
-            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('couture', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700;">
-              <span class="txt-ar">إصدارات الهوت كوتور (105)</span>
-              <span class="txt-en">Haute Couture Editions (105)</span>
+              <span class="txt-en">Engagement & Melka Gowns (38)</span>
             </a>
           </div>
         </div>
