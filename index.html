@@ -207,6 +207,17 @@
       max-width: 800px;
       padding: 2rem;
     }
+    .elan-vital-title {
+      font-family: var(--font-couture);
+      font-size: clamp(2rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      line-height: 1.2;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
 
     .brand-statement-banner {
       background-color: var(--color-bg-alt);
@@ -217,12 +228,14 @@
     }
     .brand-statement-text {
       font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-size: clamp(1.4rem, 3.5vw, 2.5rem);
       font-weight: 700;
       color: var(--color-brand-purple);
       max-width: 1050px;
       margin: 0 auto 2rem;
-      line-height: 1.45;
+      line-height: 1.55;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .cannes-spotlight-section {
       background: var(--color-brand-purple-deep);
@@ -242,6 +255,34 @@
       aspect-ratio: 4 / 5;
       object-fit: cover;
       border: 1px solid var(--color-border-dark);
+    }
+    .cannes-spotlight-title {
+      font-family: var(--font-couture);
+      font-size: clamp(1.4rem, 3.8vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .cannes-spotlight-desc {
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+      color: #DDD;
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .cannes-spotlight-quote {
+      border-inline-start: 3px solid var(--color-accent-gold);
+      padding-inline-start: 1.2rem;
+      font-style: italic;
+      font-size: clamp(0.88rem, 1.8vw, 1rem);
+      color: #FFF;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .press-featured-row {
       padding: 3.5rem 4rem;
@@ -268,6 +309,98 @@
       font-weight: 800;
       color: var(--color-brand-purple);
       opacity: 0.85;
+    }
+
+    @media (max-width: 900px) {
+      .hero-cinema-section {
+        height: auto;
+        min-height: 500px;
+        padding: 4rem 1.2rem 5.5rem;
+      }
+      .hero-cinema-content {
+        padding: 0;
+        max-width: 100%;
+      }
+      .hero-cinema-title {
+        font-size: clamp(1.6rem, 5.5vw, 2.6rem);
+        line-height: 1.25;
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.04em;
+      }
+      .hero-cinema-desc {
+        font-size: clamp(0.85rem, 2.4vw, 1rem);
+        line-height: 1.65;
+        margin-bottom: 1.8rem;
+        max-width: 95%;
+        margin-inline: auto;
+      }
+      .video-selector-bar {
+        bottom: 12px;
+        max-width: 96vw;
+        padding: 0.35rem 0.6rem;
+        gap: 0.4rem;
+      }
+      .video-pill-btn {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.75rem;
+      }
+      
+      .campaign-collection-block {
+        padding: 3.5rem 1.2rem;
+      }
+      .campaign-header-box {
+        margin-bottom: 2.2rem;
+      }
+      .campaign-main-title {
+        font-size: clamp(1.4rem, 5vw, 2.4rem);
+        line-height: 1.25;
+      }
+      .campaign-desc-text {
+        font-size: clamp(0.88rem, 2.2vw, 1rem);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      .collection-video-preview-box {
+        aspect-ratio: 16 / 9;
+        margin-bottom: 2.2rem;
+      }
+
+      .elan-vital-hero {
+        height: auto;
+        min-height: 440px;
+        padding: 4.5rem 1.2rem;
+        margin: 2.5rem 0;
+      }
+      .elan-vital-content {
+        padding: 0;
+        max-width: 100%;
+      }
+      .elan-vital-title {
+        font-size: clamp(1.8rem, 6.5vw, 3.2rem);
+        margin-bottom: 1.4rem;
+      }
+
+      .brand-statement-banner {
+        padding: 3.5rem 1.2rem;
+      }
+      .brand-statement-text {
+        font-size: clamp(1.15rem, 3.8vw, 1.8rem);
+        line-height: 1.55;
+        margin-bottom: 1.5rem;
+      }
+
+      .cannes-spotlight-section {
+        padding: 3.5rem 1.2rem;
+      }
+      .cannes-container {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+      .cannes-spotlight-title {
+        font-size: clamp(1.35rem, 4.5vw, 2.2rem);
+        line-height: 1.3;
+        margin-bottom: 1rem;
+      }
     }
   </style>
 </head>
@@ -749,8 +882,8 @@
     <div class="elan-vital-overlay"></div>
     <div class="elan-vital-content scroll-reveal">
       <span style="font-size:0.85rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:1rem;">EXCLUSIVE COUTURE CAPSULE</span>
-      <h2 style="font-family:var(--font-couture); font-size:clamp(3rem, 7vw, 5.5rem); font-weight:900; letter-spacing:0.08em; margin-bottom:1.8rem; text-transform:uppercase;">Élan vital</h2>
-      <a href="collections.html?cat=elan-vital" class="btn-primary shimmer-gold-effect" style="padding:1.3rem 3.2rem; font-size:0.92rem; letter-spacing:0.12em;">
+      <h2 class="elan-vital-title">Élan vital</h2>
+      <a href="collections.html?cat=elan-vital" class="btn-primary shimmer-gold-effect" style="padding:1.1rem 2.8rem; font-size:0.9rem; letter-spacing:0.1em; max-width:100%; text-align:center;">
         <span class="txt-en">DISCOVER THE COLLECTION (14 GOWNS) &rarr;</span>
         <span class="txt-ar">استكشاف فساتين إيلان فيتال (14 فستان) &larr;</span>
       </a>
@@ -779,15 +912,15 @@
       </div>
       <div class="scroll-reveal">
         <span style="font-size:0.82rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:0.8rem;">UNDER THE SPOTLIGHT</span>
-        <h2 style="font-family:var(--font-couture); font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:900; line-height:1.15; margin-bottom:1.5rem;">
+        <h2 class="cannes-spotlight-title">
           <span class="txt-en">THE 79TH EDITION OF THE CANNES FILM FESTIVAL</span>
           <span class="txt-ar">الدورة الـ 79 لمهرجان كان السينمائي الدولي</span>
         </h2>
-        <p style="font-size:1.05rem; color:#DDD; line-height:1.85; margin-bottom:2rem;">
+        <p class="cannes-spotlight-desc">
           <span class="txt-en">At the 79th Cannes Film Festival, Waad Aloqaili Couture showcased a selection of couture creations that reflected the house’s distinctive vision of contemporary elegance. Worn by renowned international figures on the red carpet, the designs celebrated exceptional craftsmanship, intricate hand embroidery, and the refined artistry that lies at the heart of the house.</span>
           <span class="txt-ar">في الدورة التاسعة والسبعين لمهرجان كان السينمائي الدولي، تألقت تصاميم دار وعد العقيلي على السجادة الحمراء بإطلالات ساحرة ارتدتها نخبة من الشخصيات العالمية، محتفيةً بالحرفية السعودية اليدوية المتقنة والتطريز الكريستالي الاستثنائي.</span>
         </p>
-        <blockquote style="border-inline-start:3px solid var(--color-accent-gold); padding-inline-start:1.5rem; font-style:italic; font-size:1.05rem; color:#FFF; margin-bottom:1rem; line-height:1.75;">
+        <blockquote class="cannes-spotlight-quote">
           <span class="txt-en">"The fashion house embraces a philosophy of inclusivity, passion, and embracing transformation. As a result, every garment created by the brand undergoes careful and thoughtful consideration in order to deliver a lavish and immersive experience."</span>
           <span class="txt-ar">"تتبنى دار الأزياء فلسفة الإبداع والشغف والتحول الملكي. ونتيجة لذلك، يتم ابتكار كل فستان بعناية فائقة وتفكير عميق لتقديم تجربة فخمة لا تنسى."</span>
         </blockquote>
