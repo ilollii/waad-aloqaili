@@ -943,7 +943,7 @@
           <span class="txt-en">Couture Collections</span>
         </h4>
         <ul class="footer-links-list">
-          <li><a href="collections.html?cat=yamal" class="footer-link"><span class="txt-ar">مجموعة يمال (Yamal SS26)</span><span class="txt-en">Yamal SS26 Collection</span></a></li>
+        <li><a href="collections.html?cat=yamal" class="footer-link"><span class="txt-ar">مجموعة يمال (Yamal SS26)</span><span class="txt-en">Yamal SS26 Collection</span></a></li>
           <li><a href="collections.html?cat=veil-of-renewal" class="footer-link"><span class="txt-ar">حجاب التجدد (Veil of Renewal)</span><span class="txt-en">Veil of Renewal</span></a></li>
           <li><a href="collections.html?cat=elan-vital" class="footer-link"><span class="txt-ar">إيلان فيتال (Élan Vital)</span><span class="txt-en">Élan Vital Capsule</span></a></li>
           <li><a href="collections.html?cat=celestia" class="footer-link"><span class="txt-ar">سيليستيا الملكية (Celestia)</span><span class="txt-en">Celestia Collection</span></a></li>
@@ -1034,290 +1034,274 @@
     </div>
   </footer>
 
-  <!-- Slide Drawer -->
-  <div class="drawer-backdrop" id="drawerBackdrop" onclick="window.app.closeDrawers()"></div>
-
-  <aside class="slide-drawer drawer-right" id="rightNavDrawer" aria-label="Main Navigation Menu">
+  <!-- Navigation Drawer Component -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Drawer">
     <div class="drawer-header">
-      <div style="display:flex; align-items:center; gap:0.8rem;">
-        <img src="logo.svg" alt="Waad Aloqaili Logo" style="height:32px; width:auto;">
-        <div>
-          <h3 class="drawer-title" style="font-family:'Cormorant Garamond', serif; font-size:1.3rem; margin:0; line-height:1.2;">WAAD ALOQAILI</h3>
-          <span style="font-size:0.7rem; color:var(--color-accent-gold); letter-spacing:0.12em; text-transform:uppercase; display:block;">Haute Couture</span>
-        </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="logo.svg" alt="Waad Aloqaili" style="height:28px; width:auto; filter:brightness(0.2);">
+        <span style="font-family:var(--font-couture); font-size:1.1rem; font-weight:900; letter-spacing:0.15em; color:var(--color-brand-purple);">WAAD ALOQAILI</span>
       </div>
-      <button class="drawer-close-btn" onclick="window.app.closeDrawers()" aria-label="Close Menu">&times;</button>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <i data-feather="x"></i>
+      </button>
     </div>
 
     <div class="drawer-content">
-      <!-- Quick User Actions: Cart & Wishlist -->
-      <div class="drawer-quick-bar">
-        <a href="javascript:void(0)" onclick="window.app.openCart();" class="drawer-quick-btn">
-          <i data-feather="shopping-bag" style="width:16px;height:16px;"></i>
-          <span><span class="txt-ar">حقيبة التسوق</span><span class="txt-en">Cart</span></span>
-          <span class="quick-badge" id="menuCartBadge">0</span>
-        </a>
-        <a href="javascript:void(0)" onclick="window.app.openWishlist();" class="drawer-quick-btn">
-          <i data-feather="heart" style="width:16px;height:16px;"></i>
-          <span><span class="txt-ar">المفضلة</span><span class="txt-en">Wishlist</span></span>
-          <span class="quick-badge" id="menuWishlistBadge">0</span>
-        </a>
-      </div>
-
-      <!-- 1. Primary Core Navigation -->
-      <div class="drawer-section-title">
-        <i data-feather="compass" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">التنقل الرئيسي</span>
-        <span class="txt-en">Primary Navigation</span>
-      </div>
-      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
+      <ul class="drawer-nav-list">
         <li class="drawer-nav-item">
-          <a href="index.html" class="drawer-nav-link" onclick="window.app.closeDrawers()">
-            <span>
-              <span class="txt-ar">الرئيسية</span>
-              <span class="txt-en">Home</span>
-            </span>
-            <i data-feather="home" style="width:16px;height:16px; opacity:0.6;"></i>
+          <a href="index.html" class="drawer-nav-link">
+            <span><span class="txt-ar">الرئيسية</span><span class="txt-en">Home</span></span>
+            <i data-feather="chevron-left" style="width:16px;height:16px;"></i>
           </a>
         </li>
         <li class="drawer-nav-item">
           <a href="collections.html" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">جميع فساتين البوتيك (105 فستان)</span>
-              <span class="txt-en">All Boutique Gowns (105)</span>
-            </span>
-            <span class="drawer-nav-badge">105</span>
+            <span><span class="txt-ar">جميع فساتين البوتيك (105 فستان)</span><span class="txt-en">All Boutique Gowns (105)</span></span>
+            <span class="drawer-nav-badge">105 GOWNS</span>
           </a>
         </li>
         <li class="drawer-nav-item">
-          <a href="under-the-spotlight.html" class="drawer-nav-link" style="color:var(--color-brand-purple); font-weight:900;">
-            <span>
-              <span class="txt-ar">تحت الأضواء - سجادة كان (Spotlight)</span>
-              <span class="txt-en">Under The Spotlight - Cannes</span>
-            </span>
-            <span class="drawer-nav-badge">PRESS</span>
-          </a>
-        </li>
-        <li class="drawer-nav-item">
-          <a href="index.html#heroCinema" class="drawer-nav-link" onclick="window.app.closeDrawers()">
-            <span>
-              <span class="txt-ar">سينما أفلام الكوتور الرسمية</span>
-              <span class="txt-en">Official Campaign Films</span>
-            </span>
-            <span class="drawer-nav-badge">4K HD</span>
+          <a href="under-the-spotlight.html" class="drawer-nav-link active" style="color:var(--color-accent-gold); font-weight:900;">
+            <span><span class="txt-ar">تحت الأضواء - السجادة الحمراء</span><span class="txt-en">Under The Spotlight</span></span>
+            <span class="drawer-nav-badge">20 EVENTS</span>
           </a>
         </li>
         <li class="drawer-nav-item">
           <a href="about-us.html" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">عن الدار والحرفية (The House & Heritage)</span>
-              <span class="txt-en">About The House & Heritage</span>
-            </span>
-            <i data-feather="feather" style="width:16px;height:16px; opacity:0.6;"></i>
+            <span><span class="txt-ar">عن الدار والحرفية</span><span class="txt-en">The House & Heritage</span></span>
+            <i data-feather="chevron-left" style="width:16px;height:16px;"></i>
           </a>
         </li>
       </ul>
 
-      <!-- 2. Haute Couture Collections Quick Grid -->
-      <!-- 2. Haute Couture Collections Quick Grid -->
-      <div class="drawer-section-title">
-        <i data-feather="star" style="width:14px;height:14px; color:var(--color-accent-gold);"></i>
-        <span class="txt-ar">كوتور</span>
-        <span class="txt-en">Haute Couture</span>
-      </div>
-      <div class="drawer-collections-grid" style="margin-bottom:1.5rem;">
-        <a href="collections.html?cat=yamal" class="drawer-col-pill">
-          <span><span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span></span>
-          <span class="col-badge">29</span>
-        </a>
-        <a href="collections.html?cat=veil-of-renewal" class="drawer-col-pill">
-          <span><span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span></span>
-          <span class="col-badge">22</span>
-        </a>
-        <a href="collections.html?cat=into-the-dawn" class="drawer-col-pill">
-          <span><span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span></span>
-          <span class="col-badge">6</span>
-        </a>
-        <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-col-pill">
-          <span><span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span></span>
-          <span class="col-badge">11</span>
-        </a>
-        <a href="collections.html?cat=elan-vital" class="drawer-col-pill">
-          <span><span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span></span>
-          <span class="col-badge">14</span>
-        </a>
-        <a href="collections.html?cat=celestia" class="drawer-col-pill">
-          <span><span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span></span>
-          <span class="col-badge">7</span>
-        </a>
-        <a href="collections.html?cat=joy" class="drawer-col-pill">
-          <span><span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span></span>
-          <span class="col-badge">10</span>
-        </a>
-      </div>
-
-      <!-- 3. Ready to Wear Section -->
-      <div class="drawer-section-title">
-        <i data-feather="feather" style="width:14px;height:14px; color:var(--color-brand-purple);"></i>
-        <span class="txt-ar">جاهز للارتداء</span>
-        <span class="txt-en">Ready-to-Wear</span>
-      </div>
-      <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
-        <a href="collections.html?cat=soiree" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span></span>
-          <span class="col-badge">37</span>
-        </a>
-        <a href="collections.html?cat=bridal" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Royal Bridal</span></span>
-          <span class="col-badge">32</span>
-        </a>
-        <a href="collections.html?cat=engagement" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement</span></span>
-          <span class="col-badge">38</span>
-        </a>
-      </div>
-
-      <!-- 3. VIP Services -->
-      <div class="drawer-section-title">
-        <i data-feather="star" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">الخدمات الخاصة وتجربة VIP</span>
-        <span class="txt-en">VIP Services & Fittings</span>
-      </div>
-      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
-        <li class="drawer-nav-item">
-          <a href="javascript:void(0)" onclick="window.app.openBookingModal()" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
-              <span class="txt-en">Book Private Atelier Fitting</span>
-            </span>
-            <i data-feather="calendar" style="width:16px;height:16px; color:var(--color-brand-purple);"></i>
+      <!-- Couture Collections Category -->
+      <div style="margin-top:1.8rem; padding-top:1.4rem; border-top:1px solid var(--color-border);">
+        <span style="font-size:0.78rem; font-weight:900; letter-spacing:0.2em; color:var(--color-brand-purple); display:block; margin-bottom:0.8rem; text-transform:uppercase;">
+          <span class="txt-ar">👑 كوتور (HAUTE COUTURE)</span>
+          <span class="txt-en">👑 COUTURE COLLECTIONS</span>
+        </span>
+        <div class="drawer-quick-grid">
+          <a href="collections.html?cat=yamal" class="drawer-collection-pill">
+            <span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span>
           </a>
-        </li>
-        <li class="drawer-nav-item">
-          <a href="javascript:void(0)" onclick="window.app.openAiStylistModal()" class="drawer-nav-link" style="color:var(--color-brand-purple); font-weight:800;">
-            <span>
-              <span class="txt-ar">مستشارة المظهر بالذكاء الاصطناعي</span>
-              <span class="txt-en">AI Couture Stylist</span>
-            </span>
-            <i data-feather="sparkles" style="width:16px;height:16px; color:var(--color-accent-gold);"></i>
+          <a href="collections.html?cat=veil-of-renewal" class="drawer-collection-pill">
+            <span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span>
           </a>
-        </li>
-      </ul>
+          <a href="collections.html?cat=into-the-dawn" class="drawer-collection-pill">
+            <span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span>
+          </a>
+          <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-collection-pill">
+            <span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span>
+          </a>
+          <a href="collections.html?cat=elan-vital" class="drawer-collection-pill">
+            <span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span>
+          </a>
+          <a href="collections.html?cat=celestia" class="drawer-collection-pill">
+            <span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span>
+          </a>
+          <a href="collections.html?cat=joy" class="drawer-collection-pill">
+            <span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span>
+          </a>
+        </div>
+      </div>
 
-      <!-- 4. Language & Settings -->
-      <div class="drawer-section-title">
-        <i data-feather="globe" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">اختيار اللغة (Language)</span>
-        <span class="txt-en">Language Settings</span>
-      </div>
-      <div style="display:flex; gap:0.8rem; margin-bottom:1.8rem;">
-        <button class="btn-primary" onclick="window.app.setLanguage('ar')" style="flex:1; padding:0.85rem; font-size:0.85rem; border-radius:4px;">العربية (RTL)</button>
-        <button class="btn-secondary" onclick="window.app.setLanguage('en')" style="flex:1; padding:0.85rem; font-size:0.85rem; background:#FFF; color:#000; border-color:#CCC; border-radius:4px;">English (LTR)</button>
+      <!-- Ready-to-Wear Category -->
+      <div style="margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--color-border);">
+        <span style="font-size:0.78rem; font-weight:900; letter-spacing:0.2em; color:var(--color-accent-gold); display:block; margin-bottom:0.8rem; text-transform:uppercase;">
+          <span class="txt-ar">✨ جاهز للارتداء (READY-TO-WEAR)</span>
+          <span class="txt-en">✨ READY-TO-WEAR</span>
+        </span>
+        <div class="drawer-quick-grid">
+          <a href="collections.html?cat=soiree" class="drawer-collection-pill">
+            <span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span>
+          </a>
+          <a href="collections.html?cat=bridal" class="drawer-collection-pill">
+            <span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Bridal Gowns</span>
+          </a>
+          <a href="collections.html?cat=engagement" class="drawer-collection-pill">
+            <span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement Gowns</span>
+          </a>
+        </div>
       </div>
 
-      <!-- 5. VIP Concierge Contact -->
-      <div class="drawer-section-title">
-        <i data-feather="phone" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">الأتيليه وخدمة العملاء</span>
-        <span class="txt-en">Atelier & VIP Concierge</span>
-      </div>
-      <div class="drawer-concierge-card">
-        <p style="font-size:0.82rem; font-weight:800; color:var(--color-accent-gold); margin-bottom:0.2rem;">VIP Atelier Concierge:</p>
-        <p style="font-size:0.8rem; color:#777; margin-bottom:0.6rem;">الرياض - طريق الملك عبدالعزيز، حي الياسمين</p>
-        <a href="tel:0535554889" class="drawer-concierge-btn">
-          <i data-feather="phone-call" style="width:15px;height:15px;"></i>
-          <span>اتصال مباشر: 0535554889</span>
-        </a>
-        <a href="https://wa.me/966535554889" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
-          <i data-feather="message-circle" style="width:15px;height:15px;"></i>
-          <span>محادثة واتساب VIP</span>
-        </a>
+      <div style="margin-top:2rem; padding:1.2rem; background:var(--color-bg-alt); border:1px solid var(--color-border); text-align:center;">
+        <span style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.4rem;">
+          <span class="txt-ar">حجز موعد قياس خاص</span>
+          <span class="txt-en">Private Atelier Fitting</span>
+        </span>
+        <button class="btn-primary shimmer-gold-effect" onclick="window.app.openBookingModal()" style="width:100%; padding:0.75rem 1rem; font-size:0.85rem;">
+          <span class="txt-ar">حجز موعد الأتيليه الآن</span>
+          <span class="txt-en">Book Private Session</span>
+        </button>
       </div>
     </div>
   </aside>
 
-  <!-- Cart, Wishlist, Modals -->
-  <aside class="slide-drawer drawer-left" id="cartDrawer" aria-label="Shopping Cart">
+  <!-- Wishlist Drawer Component -->
+  <aside class="wishlist-drawer" id="wishlistDrawer" aria-label="Saved Gowns Wishlist">
     <div class="drawer-header">
-      <h3 class="drawer-title">
-        <span class="txt-ar">حقيبة التسوق</span>
-        <span class="txt-en">Shopping Bag</span>
-        (<span id="cartDrawerCount">0</span>)
-      </h3>
-      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
-    </div>
-    <div class="drawer-content">
-      <div class="cart-items-list" id="cartItemsList"></div>
-    </div>
-    <div class="drawer-footer" id="cartDrawerFooter">
-      <div class="cart-summary-line cart-summary-total">
-        <span>
-          <span class="txt-ar">الإجمالي</span>
-          <span class="txt-en">Total</span>
-        </span>
-        <span id="cartTotalVal">0 SR</span>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i data-feather="heart" style="color:var(--color-accent-gold);"></i>
+        <h3 style="font-family:var(--font-serif); font-size:1.2rem; margin:0;">
+          <span class="txt-ar">قائمة الرغبات المحفوظة</span>
+          <span class="txt-en">Saved Wishlist</span>
+        </h3>
       </div>
-      <button class="drawer-checkout-btn" onclick="window.app.openCheckout()">
-        <span class="txt-ar">إتمام الطلب والدفع الآمن &rarr;</span>
+      <button class="drawer-close-btn" onclick="window.app.closeWishlistDrawer()" aria-label="Close Wishlist">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+    <div class="wishlist-drawer-body" id="wishlistDrawerBody">
+      <!-- Dynamic Wishlist Items via app.js -->
+    </div>
+  </aside>
+
+  <!-- Shopping Bag Cart Drawer Component -->
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Luxury Shopping Bag">
+    <div class="cart-drawer-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <i data-feather="shopping-bag" style="color:var(--color-accent-gold);"></i>
+        <h3 style="font-family:var(--font-serif); font-size:1.2rem; margin:0;">
+          <span class="txt-ar">حقيبة التسوق الفاخرة</span>
+          <span class="txt-en">Couture Shopping Bag</span>
+        </h3>
+      </div>
+      <button class="drawer-close-btn" onclick="window.app.closeCartDrawer()" aria-label="Close Bag">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Dynamic Cart Items via app.js -->
+    </div>
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-subtotal-row">
+        <span class="txt-ar">المجموع الإجمالي:</span>
+        <span class="txt-en">Grand Total:</span>
+        <strong id="cartSubtotalAmount" style="color:var(--color-brand-purple); font-size:1.2rem;">0 SR</strong>
+      </div>
+      <p style="font-size:0.75rem; color:var(--color-text-muted); margin-bottom:1rem; text-align:center;">
+        <span class="txt-ar">شامل ضريبة القيمة المضافة والشحن الملكي المؤمن</span>
+        <span class="txt-en">Includes VAT & Insured White-Glove Delivery</span>
+      </p>
+      <button class="checkout-btn shimmer-gold-effect" onclick="window.app.proceedToCheckout()">
+        <span class="txt-ar">متابعة إتمام الطلب الملكي &larr;</span>
         <span class="txt-en">Proceed to Secure Checkout &rarr;</span>
       </button>
     </div>
   </aside>
 
-  <aside class="slide-drawer drawer-left" id="wishlistDrawer" aria-label="Saved Items">
-    <div class="drawer-header">
-      <h3 class="drawer-title">
-        <span class="txt-ar">الفساتين المحفوظة</span>
-        <span class="txt-en">Saved Gowns</span>
-        (<span id="wishlistDrawerCount">0</span>)
-      </h3>
-      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+  <!-- Live Search Overlay Modal -->
+  <div class="search-overlay-modal" id="searchOverlayModal">
+    <div class="search-modal-inner">
+      <div class="search-input-wrap">
+        <input type="search" id="liveSearchInput" class="live-search-field" placeholder="ابحثي عن اسم الفستان، المجموعة، أو اللون... / Search gowns by name, collection or fabric..." autofocus>
+        <button class="search-modal-close-btn" onclick="window.app.closeSearch()" aria-label="Close Search">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="live-search-results-grid" id="liveSearchResultsGrid">
+        <!-- Live Gown Search Cards via app.js -->
+      </div>
     </div>
-    <div class="drawer-content">
-      <div class="cart-items-list" id="wishlistItemsList"></div>
-    </div>
-  </aside>
-
-  <!-- Search Modal -->
-  <div class="search-modal" id="searchModal">
-    <div class="search-bar-header">
-      <span style="font-size:0.95rem; font-weight:900; color:var(--color-brand-purple);">Search Waad Aloqaili Collections</span>
-      <button class="drawer-close-btn" onclick="document.getElementById('searchModal').classList.remove('active'); document.getElementById('drawerBackdrop').classList.remove('active');">&times;</button>
-    </div>
-    <div class="search-input-box">
-      <i data-feather="search" style="width:26px; height:26px; color:var(--color-brand-purple);"></i>
-      <input type="text" class="search-input-field" id="searchInputField" placeholder="Search gown title, fabric, or collection...">
-    </div>
-    <div class="search-results-grid" id="searchResultsGrid"></div>
   </div>
 
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- VIP Private Fitting Booking Modal -->
+  <div class="booking-modal-overlay" id="bookingModalOverlay" onclick="window.app.closeBookingModal()">
+    <div class="booking-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="window.app.closeBookingModal()" aria-label="Close Booking Modal">
+        <i data-feather="x"></i>
+      </button>
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <img src="logo.svg" alt="Waad Aloqaili" style="height:35px; width:auto; margin-bottom:0.5rem; filter:brightness(0.2);">
+        <h3 style="font-family:var(--font-serif); font-size:1.45rem; color:var(--color-brand-purple); margin-bottom:0.3rem;">
+          <span class="txt-ar">حجز موعد قياس كوتور خاص</span>
+          <span class="txt-en">Private Atelier Fitting Appointment</span>
+        </h3>
+        <p style="font-size:0.85rem; color:var(--color-text-secondary);">
+          <span class="txt-ar">أتيليه دار وعد العقيلي - الرياض، حي الياسمين</span>
+          <span class="txt-en">Waad Aloqaili Atelier – Al Yasmin, Riyadh</span>
+        </p>
+      </div>
+      <form id="fittingBookingForm" onsubmit="window.app.handleBookingSubmit(event)">
+        <div class="booking-form-group">
+          <label class="booking-form-label"><span class="txt-ar">الاسم الكريم</span><span class="txt-en">Full Name</span></label>
+          <input type="text" class="booking-input" required placeholder="سارة العبدالله / Sarah Al-Abdullah">
+        </div>
+        <div class="booking-form-group">
+          <label class="booking-form-label"><span class="txt-ar">رقم الجوال (واتساب)</span><span class="txt-en">Mobile Phone (WhatsApp)</span></label>
+          <input type="tel" class="booking-input" required placeholder="+966 5x xxx xxxx" dir="ltr">
+        </div>
+        <div class="booking-form-group">
+          <label class="booking-form-label"><span class="txt-ar">التاريخ المفضل للموعد</span><span class="txt-en">Preferred Date</span></label>
+          <input type="date" class="booking-input" required>
+        </div>
+        <div class="booking-form-group">
+          <label class="booking-form-label"><span class="txt-ar">المناسبة والتفاصيل الخاصة</span><span class="txt-en">Occasion & Notes</span></label>
+          <textarea class="booking-input" rows="3" placeholder="فستان زفاف، خطوبة، أو سهرة كوتور خاصة..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary shimmer-gold-effect" style="width:100%; padding:1rem; margin-top:1rem;">
+          <span class="txt-ar">تأكيد طلب حجز الموعد الملكي &larr;</span>
+          <span class="txt-en">Confirm Private Appointment Request &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
 
-  <!-- WhatsApp Concierge -->
-  <a href="https://wa.me/966115001585" target="_blank" class="floating-vip-concierge" aria-label="Book Fitting">
-    <i data-feather="message-circle" style="width:18px;height:18px;"></i>
-    <span>
-      <span class="txt-ar">حجز قياس VIP</span>
-      <span class="txt-en">VIP Atelier Booking</span>
-    </span>
-  </a>
+  <!-- AI Stylist Modal -->
+  <div class="stylist-modal-overlay" id="stylistModalOverlay" onclick="window.app.closeAiStylistModal()">
+    <div class="stylist-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="window.app.closeAiStylistModal()" aria-label="Close AI Stylist">
+        <i data-feather="x"></i>
+      </button>
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <span style="font-size:0.8rem; font-weight:900; letter-spacing:0.2em; color:var(--color-accent-gold); display:block; margin-bottom:0.3rem;">AI COUTURE STYLIST</span>
+        <h3 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--color-brand-purple); margin-bottom:0.3rem;">
+          <span class="txt-ar">مستشارة المظهر والقصات الذكية AI</span>
+          <span class="txt-en">AI Smart Style & Silhouette Advisor</span>
+        </h3>
+        <p style="font-size:0.85rem; color:var(--color-text-secondary);">
+          <span class="txt-ar">اختاري مناسبتك ودرجة اللون المفضلة وسنقترح لكِ الفستان الأنسب من مجموعاتنا الرسمية</span>
+          <span class="txt-en">Select your event and preferred tone to receive instant tailored couture recommendations</span>
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div>
+          <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.4rem;">
+            <span class="txt-ar">نوع المناسبة</span><span class="txt-en">Event Type</span>
+          </label>
+          <select id="stylistEventType" class="booking-input">
+            <option value="bridal">فستان زفاف ملكي (Royal Wedding)</option>
+            <option value="engagement">حفل خطوبة وملكة (Engagement)</option>
+            <option value="cannes">سجادة حمراء ومهرجان عالمي (Red Carpet)</option>
+            <option value="soiree" selected>سهرة ومناسبة عائلية فاخرة (Gala & Soirée)</option>
+          </select>
+        </div>
+        <button class="btn-primary shimmer-gold-effect" onclick="window.app.recommendGownByAi()" style="width:100%; padding:0.95rem; margin-top:0.5rem;">
+          <span class="txt-ar">عرض الفساتين المقترحة &larr;</span>
+          <span class="txt-en">Get Curated Recommendations &rarr;</span>
+        </button>
+        <div id="stylistResultsBox" style="margin-top:1rem; display:none;"></div>
+      </div>
+    </div>
+  </div>
 
-  <script src="data.js"></script>
+  <!-- Store Policy Modal -->
+  <div class="policy-modal-overlay" id="policyModalOverlay" onclick="window.app.closePolicyModal()">
+    <div class="policy-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="window.app.closePolicyModal()" aria-label="Close Policy Modal">
+        <i data-feather="x"></i>
+      </button>
+      <div id="policyModalContent">
+        <!-- Dynamic Policy Content via app.js -->
+      </div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (window.feather) feather.replace();
-
-      const cursor = document.getElementById('customCursor');
-      if (cursor && window.innerWidth > 900) {
-        document.addEventListener('mousemove', (e) => {
-          cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        });
-        document.querySelectorAll('a, button, .spotlight-story-card').forEach(el => {
-          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-      }
     });
   </script>
 </body>
