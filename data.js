@@ -95486,15 +95486,18 @@ window.VIDEOS_DATA = [
 ];
 
 window.CATEGORIES_DATA = [
-  { id: "all", title_ar: "جميع الفساتين (١٠٦ فساتين)", title_en: "All Gowns (106 Gowns)" },
-  { id: "yamal", title_ar: "مجموعة يمال SS26", title_en: "Yamal SS26 Collection" },
-  { id: "veil-of-renewal", title_ar: "حجاب التجدد (Veil of Renewal)", title_en: "Veil of Renewal" },
-  { id: "elan-vital", title_ar: "إيلان فيتال (Élan vital)", title_en: "Élan Vital Capsule" },
-  { id: "celestia", title_ar: "مجموعة سيليستيا (Celestia)", title_en: "Celestia Collection" },
-  { id: "bridal", title_ar: "فساتين الزفاف الملكية", title_en: "Royal Bridal Gowns" },
-  { id: "soiree", title_ar: "فساتين السهرة والمناسبات", title_en: "Soirée & Evening Gowns" },
-  { id: "engagement", title_ar: "فساتين الخطوبة والملكة", title_en: "Engagement & Melka" },
-  { id: "couture", title_ar: "إصدارات الهوت كوتور", title_en: "Haute Couture Editions" }
+  { id: "all", title_ar: "كافة تصاميم البوتيك (105 فستان)", title_en: "All Boutique Designs (105)" },
+  { id: "yamal", title_ar: "مجموعة يمال SS26 (29 فستان)", title_en: "Yamal SS26 Collection (29)" },
+  { id: "veil-of-renewal", title_ar: "حجاب التجدد Veil of Renewal (22)", title_en: "Veil of Renewal (22)" },
+  { id: "elan-vital", title_ar: "إيلان فيتال Élan vital (14)", title_en: "Élan Vital Capsule (14)" },
+  { id: "out-of-the-chrysalis", title_ar: "مجموعة كريساليث Chrysalis (11)", title_en: "Out of the Chrysalis (11)" },
+  { id: "joy", title_ar: "مجموعة جوي Joy (10)", title_en: "Joy Collection (10)" },
+  { id: "celestia", title_ar: "سيليستيا الملكية Celestia (7)", title_en: "Celestia Royal (7)" },
+  { id: "into-the-dawn", title_ar: "إنتو ذا دون Into the Dawn (6)", title_en: "Into the Dawn (6)" },
+  { id: "bridal", title_ar: "فساتين الزفاف الملكية (32)", title_en: "Royal Bridal Gowns (32)" },
+  { id: "soiree", title_ar: "فساتين السهرة والمناسبات (37)", title_en: "Soirée & Evening (37)" },
+  { id: "engagement", title_ar: "فساتين الخطوبة والملكة (38)", title_en: "Engagement & Melka (38)" },
+  { id: "couture", title_ar: "إصدارات الهوت كوتور (105)", title_en: "Haute Couture Editions (105)" }
 ];
 
 window.CURRENCIES = {
