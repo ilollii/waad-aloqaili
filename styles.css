@@ -126,7 +126,59 @@ body {
   overflow-x: hidden;
   width: 100%;
   min-width: 320px;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.4s var(--ease-luxury), color 0.4s var(--ease-luxury);
+}
+
+/* ==========================================================================
+   GLOBAL RESPONSIVE FLUID TYPOGRAPHY SYSTEM (clamp & word-break)
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.heading-1, .heading-2, .heading-3,
+.hero-1886-title, .catalog-title, .product-title,
+.lookbook-main-title, .lookbook-card-title,
+.section-title, .craft-card-title,
+.gown-detail-title, .spotlight-hero-title, .spotlight-story-title,
+.drawer-title, .drawer-section-title, .cart-item-title,
+.newsletter-title, .footer-col-title, .checkout-section-heading {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.8vw, 2.6rem);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.8vw, 1.85rem);
+  line-height: 1.35;
+}
+
+h4 {
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  line-height: 1.4;
+}
+
+h5 {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  line-height: 1.45;
+}
+
+h6 {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.5;
+}
+
+p, li, span, blockquote {
+  overflow-wrap: break-word;
 }
 
 /* Form Inputs Mobile Hardening (Prevents iOS Safari Auto-Zoom) */
@@ -388,15 +440,16 @@ img {
 
 .brand-logo-text {
   font-family: 'Cormorant Garamond', 'Cinzel', 'Playfair Display', serif;
-  font-size: 2.1rem;
+  font-size: clamp(1.25rem, 3.5vw, 2.1rem);
   font-weight: 600;
   letter-spacing: 0.18em;
-  line-height: 1;
+  line-height: 1.1;
   color: var(--color-brand-purple);
   text-decoration: none;
   text-transform: uppercase;
   transition: transform 0.3s var(--ease-luxury), opacity 0.2s;
   display: block;
+  white-space: nowrap;
 }
 
 .brand-logo-sub {
@@ -567,25 +620,29 @@ img {
 
 .hero-1886-title {
   font-family: var(--font-couture);
-  font-size: clamp(3.2rem, 7.5vw, 6.5rem);
+  font-size: clamp(2.2rem, 6.5vw, 6rem);
   font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: 0.08em;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
   margin-bottom: 1.2rem;
   text-transform: uppercase;
   background: linear-gradient(180deg, #FFFFFF 30%, rgba(220, 208, 238, 0.85) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-1886-subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   max-width: 720px;
   line-height: 1.7;
   margin-bottom: 2.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* 1886 Iconic Split Portal Cards */
@@ -876,15 +933,19 @@ img {
 }
 
 .craft-card-title {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 900;
   color: var(--color-brand-purple);
+  line-height: 1.35;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .craft-card-desc {
-  font-size: 0.88rem;
+  font-size: clamp(0.82rem, 1.5vw, 0.9rem);
   color: var(--color-text-secondary);
   line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
@@ -966,15 +1027,19 @@ img {
 }
 
 .catalog-title {
-  font-size: 1.8rem;
+  font-size: clamp(1.3rem, 3.2vw, 1.85rem);
   font-weight: 900;
   color: var(--color-brand-purple);
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .catalog-count {
-  font-size: 0.92rem;
+  font-size: clamp(0.82rem, 1.5vw, 0.92rem);
   font-weight: 600;
   color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
 .catalog-controls {
@@ -1246,7 +1311,7 @@ img {
 }
 
 .product-title {
-  font-size: 1rem;
+  font-size: clamp(0.82rem, 1.5vw, 1rem);
   font-weight: 800;
   line-height: 1.45;
   color: var(--color-text-primary);
@@ -1256,6 +1321,8 @@ img {
   overflow: hidden;
   cursor: pointer;
   transition: color 0.2s;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .product-title:hover {
@@ -1306,10 +1373,12 @@ img {
 }
 
 .lookbook-main-title {
-  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-size: clamp(1.8rem, 4.5vw, 3.6rem);
   font-weight: 900;
-  line-height: 1.15;
+  line-height: 1.25;
   margin-bottom: 1.4rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .lookbook-grid {
@@ -1351,16 +1420,20 @@ img {
 }
 
 .lookbook-card-title {
-  font-size: 1.4rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
   font-weight: 900;
+  line-height: 1.35;
   margin-bottom: 0.7rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .lookbook-card-desc {
-  font-size: 0.92rem;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.65;
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
 }
 
 .lookbook-link-btn {
@@ -1403,18 +1476,22 @@ img {
 }
 
 .section-title {
-  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-size: clamp(1.6rem, 3.8vw, 3rem);
   font-weight: 900;
   color: var(--color-brand-purple);
+  line-height: 1.25;
   margin-bottom: 1.2rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: clamp(0.92rem, 1.8vw, 1.1rem);
   color: var(--color-text-secondary);
   max-width: 720px;
   margin: 0 auto;
   line-height: 1.75;
+  overflow-wrap: break-word;
 }
 
 .stores-grid {
@@ -1454,10 +1531,13 @@ img {
 }
 
 .store-name {
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   font-weight: 900;
   color: var(--color-brand-purple);
+  line-height: 1.35;
   margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .store-location {
@@ -1520,16 +1600,19 @@ img {
 }
 
 .about-quote {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(1.6rem, 3.8vw, 3.2rem);
   font-weight: 900;
   color: var(--color-brand-purple);
-  line-height: 1.2;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .about-text {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   color: var(--color-text-secondary);
   line-height: 1.95;
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
@@ -1548,16 +1631,20 @@ img {
 }
 
 .newsletter-title {
-  font-size: 2.3rem;
+  font-size: clamp(1.4rem, 3.5vw, 2.3rem);
   font-weight: 900;
+  line-height: 1.3;
   margin-bottom: 1.2rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .newsletter-desc {
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
   color: #DDD;
   margin-bottom: 2.5rem;
   line-height: 1.75;
+  overflow-wrap: break-word;
 }
 
 .newsletter-form {
@@ -1622,8 +1709,11 @@ img {
 }
 
 .footer-logo {
-  font-size: 2.4rem;
+  font-size: clamp(1.6rem, 3.8vw, 2.4rem);
   font-weight: 900;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .footer-bio {
@@ -1659,10 +1749,13 @@ img {
 }
 
 .footer-col-title {
-  font-size: 0.92rem;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
   font-weight: 900;
   margin-bottom: 1.8rem;
   color: #FFFFFF;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .footer-links-list {
@@ -1786,9 +1879,12 @@ img {
 }
 
 .drawer-title {
-  font-size: 1.35rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
   font-weight: 900;
   color: var(--color-brand-purple);
+  line-height: 1.35;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .drawer-close-btn {
@@ -1833,7 +1929,7 @@ img {
 }
 
 .drawer-nav-link {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 800;
   color: var(--color-text-primary);
   display: flex;
@@ -1841,6 +1937,9 @@ img {
   justify-content: space-between;
   text-decoration: none;
   transition: color 0.2s;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .drawer-nav-link:hover {
@@ -1856,12 +1955,14 @@ img {
 }
 
 .drawer-section-title {
-  font-size: 0.82rem;
+  font-size: clamp(0.78rem, 1.4vw, 0.85rem);
   font-weight: 800;
   color: var(--color-accent-gold);
   margin-bottom: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  line-height: 1.4;
+  overflow-wrap: break-word;
 }
 
 /* Free Shipping Meter */
@@ -1926,10 +2027,12 @@ img {
 }
 
 .cart-item-title {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.6vw, 0.98rem);
   font-weight: 800;
   color: var(--color-brand-purple);
   line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .cart-item-meta {
@@ -2215,10 +2318,12 @@ img {
 }
 
 .gown-detail-title {
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
   font-weight: 900;
   color: var(--color-brand-purple);
-  line-height: 1.25;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .gown-detail-price {
@@ -2688,10 +2793,12 @@ img {
 
 .gown-detail-title {
   font-family: var(--font-couture);
-  font-size: 2.2rem;
+  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
   font-weight: 800;
   color: var(--color-brand-purple);
-  line-height: 1.2;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .gown-detail-price {
@@ -3034,15 +3141,20 @@ img {
     padding: 0.4rem 1rem;
   }
   .hero-1886-title {
-    font-size: clamp(2.2rem, 8.5vw, 3.2rem);
+    font-size: clamp(1.9rem, 7.5vw, 3rem);
     letter-spacing: 0.04em;
+    line-height: 1.18;
     margin-bottom: 1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .hero-1886-subtitle {
-    font-size: 0.95rem;
+    font-size: clamp(0.88rem, 2.2vw, 1rem);
     line-height: 1.65;
     margin-bottom: 1.8rem;
     text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .hero-1886-portals-grid {
     grid-template-columns: 1fr;
@@ -3070,7 +3182,10 @@ img {
     width: 100%;
   }
   .catalog-title {
-    font-size: 1.35rem;
+    font-size: clamp(1.2rem, 3.8vw, 1.45rem);
+    line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .catalog-controls {
     width: 100%;
@@ -3110,15 +3225,17 @@ img {
     margin-bottom: 0.15rem;
   }
   .product-title {
-    font-size: 0.84rem;
+    font-size: clamp(0.78rem, 2.4vw, 0.88rem);
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.35;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 2.6em;
+    height: 2.7em;
     margin-bottom: 0.2rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .product-price-row {
     margin-top: 0.2rem;
@@ -3172,7 +3289,10 @@ img {
     padding: 3rem 1.2rem;
   }
   .spotlight-hero-title {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    line-height: 1.25;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .spotlight-feed-container {
     padding: 1.5rem 0.9rem;
@@ -3186,7 +3306,10 @@ img {
     padding: 1.4rem;
   }
   .spotlight-story-title {
-    font-size: 1.15rem;
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   /* Footer & Stores Section */
@@ -3260,7 +3383,10 @@ img {
     gap: 1rem !important;
   }
   .gown-detail-title {
-    font-size: 1.5rem !important;
+    font-size: clamp(1.3rem, 3.8vw, 1.6rem) !important;
+    line-height: 1.3 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
   }
   .gown-detail-price {
     font-size: 1.35rem !important;

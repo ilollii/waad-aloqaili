@@ -35,18 +35,23 @@
     }
     .spotlight-hero-title {
       font-family: var(--font-couture);
-      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+      font-size: clamp(1.8rem, 4.8vw, 4.2rem);
       font-weight: 900;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       margin-bottom: 1.2rem;
       text-transform: uppercase;
+      line-height: 1.25;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .spotlight-hero-subtitle {
-      font-size: 1.18rem;
+      font-size: clamp(0.92rem, 2vw, 1.18rem);
       color: var(--color-accent-gold-light);
       max-width: 850px;
       margin: 0 auto 2rem;
-      line-height: 1.7;
+      line-height: 1.75;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .spotlight-feed-container {
@@ -125,18 +130,21 @@
     }
     .spotlight-story-title {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
       font-weight: 800;
       color: var(--color-brand-purple);
       margin-bottom: 1rem;
       line-height: 1.35;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .spotlight-story-desc {
-      font-size: 0.95rem;
+      font-size: clamp(0.88rem, 1.6vw, 0.95rem);
       color: var(--color-text-secondary);
       line-height: 1.75;
       margin-bottom: 1.8rem;
       flex: 1;
+      overflow-wrap: break-word;
     }
     .spotlight-story-footer {
       display: flex;

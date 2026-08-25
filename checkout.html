@@ -47,7 +47,7 @@
     }
     .checkout-section-heading {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
       font-weight: 800;
       color: var(--color-brand-purple);
       margin-bottom: 1.5rem;
@@ -56,6 +56,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      line-height: 1.35;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .form-group {
