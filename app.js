@@ -929,6 +929,9 @@
       if (btnEl) {
         document.querySelectorAll('.video-pill-btn').forEach(b => b.classList.remove('active'));
         btnEl.classList.add('active');
+        try {
+          btnEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } catch (e) {}
       }
     },
     toggleHeroVideoSound: function () {
