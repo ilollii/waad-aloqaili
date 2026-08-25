@@ -1,0 +1,53 @@
+{
+  "store_info": {
+    "name": "Waad Aloqaili Haute Couture",
+    "name_ar": "دار وعد العقيلي للأزياء الراقية",
+    "commercial_reg": "7006113000",
+    "sbc_certificate": "0000007788",
+    "vat_number": "310000000000003",
+    "phone": "0535554889",
+    "email": "concierge@waadaloqaili.com",
+    "address_ar": "طريق الملك عبدالعزيز، حي الياسمين، الرياض، المملكة العربية السعودية",
+    "address_en": "King Abdulaziz Road, Al Yasmin, Riyadh, Saudi Arabia",
+    "currency": "SAR",
+    "iban": "SA7180000412608010546887",
+    "bank_name": "Al Rajhi Bank"
+  },
+  "payment_gateways": {
+    "mode": "sandbox",
+    "moyasar": {
+      "enabled": true,
+      "publishable_key": "pk_test_moyasar_sample_key_waad",
+      "secret_key": "sk_test_moyasar_sample_key_waad",
+      "supports": ["mada", "applepay", "visa", "mastercard", "stcpay"]
+    },
+    "tabby": {
+      "enabled": true,
+      "public_key": "pk_test_tabby_sample_key_waad",
+      "secret_key": "sk_test_tabby_sample_key_waad",
+      "installments_count": 4
+    },
+    "bank_transfer": {
+      "enabled": true,
+      "auto_verify": false
+    }
+  },
+  "notifications": {
+    "sms": {
+      "provider": "taqnyat",
+      "api_key": "taqnyat_sample_api_key",
+      "sender_name": "WAAD COUTURE",
+      "send_on_order": true
+    },
+    "email": {
+      "provider": "resend",
+      "api_key": "re_sample_api_key",
+      "from_email": "orders@waadaloqaili.com",
+      "send_invoice_pdf": true
+    }
+  },
+  "admin_auth": {
+    "username": "admin",
+    "password_hash": "admin1886"
+  }
+}

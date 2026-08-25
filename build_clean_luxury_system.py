@@ -1,0 +1,1735 @@
+import json
+import re
+
+with open(r'C:\Users\o3v7g\.gemini\antigravity-ide\scratch\1886-riyadh-fashion\clean_waad_products.json', 'r', encoding='utf-8') as f:
+    products = json.load(f)
+
+with open(r'C:\Users\o3v7g\.gemini\antigravity-ide\scratch\1886-riyadh-fashion\full_waad_scraped_data.json', 'r', encoding='utf-8') as f:
+    scraped = json.load(f)
+
+videos = scraped.get('videos', [])
+collections_map = scraped.get('collections', {})
+
+def clean_emojis(text):
+    if not text: return text
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F1E0-\U0001F1FF"
+        "\U0001F300-\U0001F5FF"
+        "\U0001F600-\U0001F64F"
+        "\U0001F680-\U0001F6FF"
+        "\U0001F700-\U0001F77F"
+        "\U0001F780-\U0001F7FF"
+        "\U0001F800-\U0001F8FF"
+        "\U0001F900-\U0001F9FF"
+        "\U0001FA00-\U0001FA6F"
+        "\U0001FA70-\U0001FAFF"
+        "\U00002702-\U000027B0"
+        "\U000024C2-\U0001F251"
+        "\U00002600-\U000026FF"
+        "]+", flags=re.UNICODE)
+    cleaned = emoji_pattern.sub(r'', text)
+    for char in ['✨', '👑', '💎', '👰‍♀️', '👰', '💍', '🌊', '🌸', '💫', '🎬', '🤖', '📅', '🕒', '📞', '✂️', '💐', '🦋', '🌅', '🧜‍♀️', '🇸🇦', '🇺🇸', '🇪🇺', '🇦🇪', '🇰🇼', '🇶🇦', '✓', '👗']:
+        cleaned = cleaned.replace(char, '')
+    return cleaned.strip()
+
+def render_product_card(p, custom_cat_label=""):
+    title_ar = clean_emojis(p.get('title_ar', p.get('title_en', 'فستان كوتور')))
+    title_en = clean_emojis(p.get('title_en', p.get('title_ar', 'Couture Gown')))
+    subcats = " ".join(p.get('subcategories', [p.get('subcategory', 'couture')]))
+    cols = " ".join(p.get('collections', []))
+    
+    badge_html = ''
+    if 'bridal' in subcats:
+        badge_html = '<span class="badge-tag badge-new">BRIDAL</span>'
+    elif 'yamal' in cols:
+        badge_html = '<span class="badge-tag" style="background:#2C1A48; color:#FFF;">YAMAL SS26</span>'
+    elif 'engagement' in subcats:
+        badge_html = '<span class="badge-tag badge-sale" style="background:#8A2BE2;">ENGAGEMENT</span>'
+    elif 'soiree' in subcats:
+        badge_html = '<span class="badge-tag" style="background:#2C1A48; color:#FFF;">SOIREE</span>'
+    else:
+        badge_html = '<span class="badge-tag badge-collab">HAUTE COUTURE</span>'
+
+    price_val = int(p['price'])
+    price_sar = f"{price_val:,} SR"
+    price_sar_ar = f"{price_val:,} ر.س"
+    
+    variants = p.get('variants', [{'title': '36 EU'}, {'title': '38 EU'}, {'title': '40 EU'}, {'title': 'Custom'}])
+    size_btns = ''.join([f'<button class="quick-size-btn" data-product-id="{p["id"]}" data-size="{v["title"]}" style="width:auto; padding:0 8px;">{v["title"]}</button>' for v in variants[:4]])
+    
+    vendor_label = custom_cat_label if custom_cat_label else "WAAD ALOQAILI HAUTE COUTURE"
+
+    return f'''
+      <article class="product-card" data-id="{p['id']}" data-cat="{subcats}" data-collections="{cols}">
+        <div class="card-media-wrapper" onclick="window.app.openGownDetail({p['id']})">
+          <div class="card-badges">{badge_html}</div>
+          <button class="wishlist-card-btn" data-wishlist-id="{p['id']}" title="Save to Wishlist" aria-label="Save to Wishlist" onclick="event.stopPropagation(); window.app.toggleWishlist({p['id']});">
+            <i data-feather="heart" style="width:16px;height:16px;"></i>
+          </button>
+          <img src="{p['primary_image']}" alt="{title_en}" class="product-img-primary" loading="lazy">
+          <img src="{p['hover_image']}" alt="{title_en}" class="product-img-hover" loading="lazy">
+          <div class="card-quick-actions" onclick="event.stopPropagation();">
+            <div class="quick-size-list">
+              {size_btns}
+            </div>
+            <button class="quick-view-trigger" onclick="window.app.openGownDetail({p['id']})">
+              <span class="txt-en">VIEW GOWN DETAILS</span>
+              <span class="txt-ar">عرض تفاصيل الفستان</span>
+            </button>
+          </div>
+        </div>
+        <div class="product-meta">
+          <span class="product-vendor">{vendor_label}</span>
+          <h3 class="product-title" onclick="window.app.openGownDetail({p['id']})">
+            <span class="txt-en">{title_en}</span>
+            <span class="txt-ar">{title_ar}</span>
+          </h3>
+          <div class="product-pricing">
+            <span class="current-price">
+              <span class="txt-en">{price_sar}</span>
+              <span class="txt-ar">{price_sar_ar}</span>
+            </span>
+          </div>
+        </div>
+      </article>
+    '''
+
+# 105 Gowns
+all_cards_str = '\n'.join([render_product_card(p) for p in products])
+
+# Yamal 4 featured gowns
+yamal_prods = [p for p in products if 'yamal' in p.get('collections', []) or 'yamal' in p.get('handle', '')]
+if not yamal_prods: yamal_prods = products[:4]
+yamal_cards_str = '\n'.join([render_product_card(p, "YAMAL SS26") for p in yamal_prods[:4]])
+
+# Veil of Renewal 4 featured gowns
+veil_prods = [p for p in products if 'veil-of-renewal' in p.get('collections', []) or 'veil' in p.get('handle', '')]
+if not veil_prods: veil_prods = products[4:8]
+veil_cards_str = '\n'.join([render_product_card(p, "VEIL OF RENEWAL") for p in veil_prods[:4]])
+
+# Video URLs
+video_yamal = "https://cdn.shopify.com/videos/c/o/v/a4b9c4caede049d4b2fe530db3fa2b7b.mp4"
+video_veil = "https://cdn.shopify.com/videos/c/o/v/4118625ea020439d8574ea24c3c131a7.mp4"
+video_elan = "https://cdn.shopify.com/videos/c/o/v/188a17448ac24b2bb274afd7c5a62048.mp4"
+video_celestia = "https://cdn.shopify.com/videos/c/o/v/5b722331733742e8808658b42f866740.mp4"
+video_joy = "https://cdn.shopify.com/videos/c/o/v/8f9313c5244145af9b8f60e7a5fa33fe.mp4"
+video_chrysalis = "https://cdn.shopify.com/videos/c/o/v/7541a18b6ab642489b5e160de7993c25.mp4"
+video_dawn = "https://cdn.shopify.com/videos/c/o/v/563797f9bae34feda88d1b82b5603379.mp4"
+
+def get_header_html(active_page="home"):
+    return '''
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-meta">
+      <span style="font-weight:800; color:var(--color-accent-gold); letter-spacing:0.05em;">
+        <span class="txt-ar">المملكة العربية السعودية</span>
+        <span class="txt-en">Saudi Arabia</span>
+      </span>
+      <select class="currency-select" id="currencySelect" aria-label="Select Currency" style="margin-inline-start:1rem;">
+        <option value="SAR" selected>SAR (ر.س)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="AED">AED (د.إ)</option>
+        <option value="KWD">KWD (د.ك)</option>
+        <option value="QAR">QAR (ر.ق)</option>
+      </select>
+    </div>
+
+    <div class="announcement-slider" id="announcementSlider">
+      <span class="announcement-item active">
+        <span class="txt-ar">توصيل ملكي فاخر مجاني لجميع مناطق المملكة وكافة دول العالم</span>
+        <span class="txt-en">Complimentary White-Glove Couture Delivery Across Saudi Arabia & Worldwide</span>
+      </span>
+      <span class="announcement-item">
+        <span class="txt-ar">مجموعات الهوت كوتور والزفاف لعام 2026 متاحة الآن للطلب والحجز</span>
+        <span class="txt-en">Haute Couture & Bridal 2026 Collections Available For Private Orders</span>
+      </span>
+    </div>
+
+    <div class="announcement-meta" style="display:flex; align-items:center; gap:1.2rem;">
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="window.app.toggleVelvetTheme()" aria-label="Toggle Velvet Mode">
+        <i data-feather="moon" id="themeIcon" style="width:14px;height:14px; color:var(--color-accent-gold);"></i>
+        <span id="themeLabel">
+          <span class="txt-ar">الوضع الملكي</span>
+          <span class="txt-en">Velvet Mode</span>
+        </span>
+      </button>
+
+      <button class="lang-btn" id="langToggleBtn" onclick="window.app.toggleLanguage()" aria-label="Switch Language">
+        <i data-feather="globe" style="width:14px;height:14px;"></i>
+        <span id="langLabel">
+          <span class="txt-ar">English</span>
+          <span class="txt-en">العربية</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-left">
+      <button class="menu-toggle-btn" id="rightNavToggleBtn" onclick="window.app.openRightNav()" aria-label="Open Menu">
+        <div class="hamburger-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>
+          <span class="txt-ar">القائمة والتصنيفات</span>
+          <span class="txt-en">Menu & Navigation</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Center Brand Logo -->
+    <div class="brand-logo-container">
+      <a href="index.html" class="brand-logo-link">
+        <img src="logo.svg" alt="Waad Aloqaili Emblem" style="height:32px; width:auto; margin-bottom:2px;">
+        <span class="brand-logo-text" id="brandLogo">Waad Aloqaili</span>
+      </a>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-right">
+      <a href="#about" class="header-link" onclick="window.app.openBookingModal()" style="font-size:0.85rem; font-weight:800; text-decoration:none; color:var(--color-brand-purple); display:none; @media(min-width:768px){display:block;}">
+        <span class="txt-ar">حجز موعد قياس</span>
+        <span class="txt-en">Log in</span>
+      </a>
+
+      <button class="header-icon-btn" id="searchTriggerBtn" onclick="window.app.openSearch()" aria-label="Search" title="Search">
+        <i data-feather="search"></i>
+      </button>
+
+      <button class="header-icon-btn" id="wishlistTriggerBtn" onclick="window.app.openWishlist()" aria-label="Wishlist" title="Wishlist">
+        <i data-feather="heart"></i>
+        <span class="icon-badge" id="wishlistCountBadge">0</span>
+      </button>
+
+      <button class="header-icon-btn" id="cartTriggerBtn" onclick="window.app.openCart()" aria-label="Cart" title="Cart">
+        <i data-feather="shopping-bag"></i>
+        <span class="icon-badge" id="cartCountBadge">0</span>
+      </button>
+    </div>
+  </header>
+'''
+
+def get_drawer_html():
+    return '''
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="window.app.closeDrawers()"></div>
+
+  <aside class="slide-drawer drawer-right" id="rightNavDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <img src="logo.svg" alt="Waad Aloqaili Logo" style="height:32px; width:auto;">
+        <h3 class="drawer-title" style="font-family:'Cormorant Garamond', serif; font-size:1.4rem;">Waad Aloqaili</h3>
+      </div>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+    </div>
+
+    <div class="drawer-content">
+      <!-- 1. All Collections & Gowns Navigation -->
+      <div class="drawer-section-title">
+        <span class="txt-ar">فساتين ومجموعات البوتيك</span>
+        <span class="txt-en">Boutique Gowns & Collections</span>
+      </div>
+      <ul class="drawer-nav-list">
+        <li class="drawer-nav-item">
+          <a href="collections.html" class="drawer-nav-link" onclick="window.app.navigateCollection('all')">
+            <span>
+              <span class="txt-ar">صفحة جميع الفساتين (105 فساتين)</span>
+              <span class="txt-en">All Boutique Gowns Page (105)</span>
+            </span>
+            <span class="drawer-nav-badge">105</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="under-the-spotlight.html" class="drawer-nav-link" style="color:var(--color-brand-purple); font-weight:900;">
+            <span>
+              <span class="txt-ar">تحت الأضواء (Under the Spotlight)</span>
+              <span class="txt-en">Under The Spotlight</span>
+            </span>
+            <span class="drawer-nav-badge">PRESS</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=yamal" class="drawer-nav-link" onclick="window.app.navigateCollection('yamal')">
+            <span>
+              <span class="txt-ar">مجموعة يمال (Yamal SS26)</span>
+              <span class="txt-en">Yamal SS26 Collection</span>
+            </span>
+            <span class="drawer-nav-badge">29</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=veil-of-renewal" class="drawer-nav-link" onclick="window.app.navigateCollection('veil-of-renewal')">
+            <span>
+              <span class="txt-ar">حجاب التجدد (Veil of Renewal)</span>
+              <span class="txt-en">Veil of Renewal</span>
+            </span>
+            <span class="drawer-nav-badge">22</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=elan-vital" class="drawer-nav-link" onclick="window.app.navigateCollection('elan-vital')">
+            <span>
+              <span class="txt-ar">إيلان فيتال (Élan vital)</span>
+              <span class="txt-en">Élan vital Capsule</span>
+            </span>
+            <span class="drawer-nav-badge">14</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-nav-link" onclick="window.app.navigateCollection('out-of-the-chrysalis')">
+            <span>
+              <span class="txt-ar">كريساليث (Out of the Chrysalis)</span>
+              <span class="txt-en">Out of the Chrysalis</span>
+            </span>
+            <span class="drawer-nav-badge">11</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=joy" class="drawer-nav-link" onclick="window.app.navigateCollection('joy')">
+            <span>
+              <span class="txt-ar">مجموعة جوي (Joy)</span>
+              <span class="txt-en">Joy Collection</span>
+            </span>
+            <span class="drawer-nav-badge">10</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=celestia" class="drawer-nav-link" onclick="window.app.navigateCollection('celestia')">
+            <span>
+              <span class="txt-ar">سيليستيا الملكية (Celestia)</span>
+              <span class="txt-en">Celestia Collection</span>
+            </span>
+            <span class="drawer-nav-badge">7</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=into-the-dawn" class="drawer-nav-link" onclick="window.app.navigateCollection('into-the-dawn')">
+            <span>
+              <span class="txt-ar">إنتو ذا دون (Into the Dawn)</span>
+              <span class="txt-en">Into the Dawn</span>
+            </span>
+            <span class="drawer-nav-badge">6</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=bridal" class="drawer-nav-link" onclick="window.app.navigateCollection('bridal')">
+            <span>
+              <span class="txt-ar">فساتين الزفاف الملكية (Bridal)</span>
+              <span class="txt-en">Royal Bridal Gowns</span>
+            </span>
+            <span class="drawer-nav-badge">32</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=soiree" class="drawer-nav-link" onclick="window.app.navigateCollection('soiree')">
+            <span>
+              <span class="txt-ar">فساتين السهرة والمناسبات (Soirée)</span>
+              <span class="txt-en">Evening & Soirée Gowns</span>
+            </span>
+            <span class="drawer-nav-badge">37</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html?cat=engagement" class="drawer-nav-link" onclick="window.app.navigateCollection('engagement')">
+            <span>
+              <span class="txt-ar">فساتين الخطوبة والملكة (Engagement)</span>
+              <span class="txt-en">Engagement & Melka Gowns</span>
+            </span>
+            <span class="drawer-nav-badge">38</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- 2. Campaigns & Features -->
+      <div class="drawer-section-title">
+        <span class="txt-ar">أفلام الحملات والتجارب الخاصة</span>
+        <span class="txt-en">Campaign Films & Services</span>
+      </div>
+      <ul class="drawer-nav-list">
+        <li class="drawer-nav-item">
+          <a href="index.html#heroCinema" class="drawer-nav-link" onclick="window.app.closeDrawers()">
+            <span>
+              <span class="txt-ar">سينما أفلام الكوتور الرسمية</span>
+              <span class="txt-en">Official Campaign Films</span>
+            </span>
+            <span class="drawer-nav-badge">HD</span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="index.html#cannes-spotlight" class="drawer-nav-link" onclick="window.app.closeDrawers()">
+            <span>
+              <span class="txt-ar">مهرجان كان السينمائي (Cannes Spotlight)</span>
+              <span class="txt-en">Cannes 79th Spotlight</span>
+            </span>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="javascript:void(0)" onclick="window.app.openAiStylistModal()" class="drawer-nav-link" style="color:var(--color-brand-purple); font-weight:900;">
+            <span>
+              <span class="txt-ar">مستشارة المظهر بالذكاء الاصطناعي</span>
+              <span class="txt-en">AI Couture Stylist</span>
+            </span>
+            <i data-feather="arrow-left" style="width:16px;height:16px;"></i>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="javascript:void(0)" onclick="window.app.openBookingModal()" class="drawer-nav-link">
+            <span>
+              <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
+              <span class="txt-en">Book Private Atelier Fitting</span>
+            </span>
+            <i data-feather="calendar" style="width:16px;height:16px;"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- 3. Language & Settings -->
+      <div class="drawer-section-title">
+        <span class="txt-ar">اختيار اللغة (Language)</span>
+        <span class="txt-en">Language Settings</span>
+      </div>
+      <div style="display:flex; gap:0.8rem; margin-bottom:1.8rem;">
+        <button class="btn-primary" onclick="window.app.setLanguage('ar')" style="flex:1; padding:0.85rem; font-size:0.85rem;">العربية (RTL)</button>
+        <button class="btn-secondary" onclick="window.app.setLanguage('en')" style="flex:1; padding:0.85rem; font-size:0.85rem; background:#FFF; color:#000; border-color:#CCC;">English (LTR)</button>
+      </div>
+
+      <!-- 4. Contact & Verification -->
+      <div class="drawer-section-title">
+        <span class="txt-ar">الأتيليه والتوثيق المعتمد</span>
+        <span class="txt-en">Atelier & Verification</span>
+      </div>
+      <div style="background:var(--color-bg-alt); padding:1.2rem; border:1px solid var(--color-border); border-radius:4px; margin-bottom:1rem;">
+        <p style="font-size:0.82rem; font-weight:700; color:var(--color-brand-purple); margin-bottom:0.3rem;">VIP Boutique Concierge:</p>
+        <a href="tel:0535554889" style="font-size:1.15rem; font-weight:900; color:var(--color-brand-purple); display:block; margin-bottom:0.2rem;">0535554889</a>
+        <p style="font-size:0.78rem; color:#777;">King Abdulaziz Road, Al Yasmin, Riyadh, KSA</p>
+      </div>
+      <button class="btn-secondary" onclick="window.app.openVerificationModal()" style="width:100%; padding:0.85rem; font-size:0.82rem; background:#FFF; border-color:var(--color-brand-purple); color:var(--color-brand-purple);">
+        <span class="txt-ar">عرض شهادة التوثيق (0000007788) &rarr;</span>
+        <span class="txt-en">View Business Verification &rarr;</span>
+      </button>
+    </div>
+  </aside>
+'''
+
+def get_modals_html():
+    return '''
+  <!-- CART DRAWER -->
+  <aside class="slide-drawer drawer-left" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <span class="txt-ar">حقيبة التسوق</span>
+        <span class="txt-en">Shopping Bag</span>
+        (<span id="cartDrawerCount">0</span>)
+      </h3>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div class="free-shipping-progress-box">
+        <p class="shipping-progress-text" id="shippingProgressText">
+          <span class="txt-ar">تم تفعيل التوصيل الملكي المجاني لطلبك</span>
+          <span class="txt-en">Complimentary White-Glove Delivery Activated</span>
+        </p>
+        <div class="shipping-progress-bar">
+          <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div class="cart-items-list" id="cartItemsList"></div>
+    </div>
+    <div class="drawer-footer" id="cartDrawerFooter">
+      <div class="cart-summary-line">
+        <span>
+          <span class="txt-ar">المجموع الفرعي</span>
+          <span class="txt-en">Subtotal</span>
+        </span>
+        <span id="cartSubtotalVal">0 SR</span>
+      </div>
+      <div class="cart-summary-line cart-summary-total">
+        <span>
+          <span class="txt-ar">الإجمالي</span>
+          <span class="txt-en">Total</span>
+        </span>
+        <span id="cartTotalVal">0 SR</span>
+      </div>
+      <button class="drawer-checkout-btn" onclick="window.app.openCheckout()">
+        <span class="txt-ar">إتمام الطلب والدفع الآمن &rarr;</span>
+        <span class="txt-en">Proceed to Secure Checkout &rarr;</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- WISHLIST DRAWER -->
+  <aside class="slide-drawer drawer-left" id="wishlistDrawer" aria-label="Saved Items">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <span class="txt-ar">الفساتين المحفوظة</span>
+        <span class="txt-en">Saved Gowns</span>
+        (<span id="wishlistDrawerCount">0</span>)
+      </h3>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div class="cart-items-list" id="wishlistItemsList"></div>
+    </div>
+  </aside>
+
+  <!-- DEDICATED FULL GOWN DETAIL VIEW / MODAL -->
+  <div class="gown-detail-modal" id="gownDetailModal">
+    <div class="gown-detail-container">
+      <div class="gown-detail-header-nav">
+        <div class="gown-breadcrumbs" id="gownBreadcrumbs">
+          <a href="index.html" onclick="window.app.closeGownDetailModal()">Home</a>
+          <span>/</span>
+          <span id="gownCatBreadcrumb">Couture</span>
+          <span>/</span>
+          <span id="gownTitleBreadcrumb" style="font-weight:700; color:var(--color-brand-purple);">Gown</span>
+        </div>
+        <button class="gown-close-page-btn" onclick="window.app.closeGownDetailModal()">
+          <i data-feather="x" style="width:16px;height:16px;"></i>
+          <span>
+            <span class="txt-ar">إغلاق والعودة</span>
+            <span class="txt-en">Close & Return</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="gown-layout-grid">
+        <div class="gown-gallery-col">
+          <div class="gown-thumbs-strip" id="gownDetailThumbs"></div>
+          <div class="gown-main-photo-wrap">
+            <img src="" alt="Gown photo" class="gown-main-photo" id="gownDetailMainPhoto">
+          </div>
+        </div>
+
+        <div class="gown-info-col">
+          <span class="gown-brand-badge">WAAD ALOQAILI HAUTE COUTURE</span>
+          <h1 class="gown-detail-title" id="gownDetailTitle">Gown Title</h1>
+          <div class="gown-detail-price" id="gownDetailPrice">0 SR</div>
+          <div class="gown-stock-status">
+            <i data-feather="check" style="width:14px;height:14px;"></i>
+            <span>
+              <span class="txt-ar">متاح للطلب الفوري مع جلسة قياس وتعديل خاصة</span>
+              <span class="txt-en">Available for order with bespoke atelier fitting</span>
+            </span>
+          </div>
+
+          <div class="qv-size-selector" style="margin-top:0.5rem;">
+            <div class="qv-size-label">
+              <span style="font-weight:800;">
+                <span class="txt-ar">اختاري المقاس (EU):</span>
+                <span class="txt-en">Select Size (EU):</span>
+              </span>
+              <span style="cursor:pointer; text-decoration:underline; font-weight:700; color:var(--color-brand-purple);" onclick="window.app.openSizeGuideModal()">Smart Size Guide</span>
+            </div>
+            <div class="qv-sizes-grid" id="gownDetailSizesGrid"></div>
+          </div>
+
+          <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <button class="btn-primary" id="gownDetailAddBagBtn" style="flex:1; padding:1.25rem;">
+              <i data-feather="shopping-bag" style="width:18px;height:18px;"></i>
+              <span>
+                <span class="txt-ar">إضافة الفستان لحقيبة التسوق</span>
+                <span class="txt-en">Add to Shopping Bag</span>
+              </span>
+            </button>
+            <button class="btn-secondary" onclick="window.app.openBookingModal()" style="padding:1.25rem 2rem; background:var(--color-bg-alt); color:var(--color-brand-purple); border-color:var(--color-border);">
+              <span>
+                <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
+                <span class="txt-en">Book Atelier Fitting</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="gown-accordion-box">
+            <div class="gown-accordion-item">
+              <button class="gown-accordion-trigger" onclick="window.app.toggleAccordion(this)">
+                <span>
+                  <span class="txt-ar">تفاصيل التصميم والأقمشة</span>
+                  <span class="txt-en">Design & Craftsmanship Details</span>
+                </span>
+                <i data-feather="chevron-down" style="width:16px;height:16px;"></i>
+              </button>
+              <div class="gown-accordion-body" id="gownDetailDescText">
+                Exclusive Haute Couture creation by Waad Aloqaili, handcrafted with the finest French lace, Italian silk taffeta, and meticulous crystal embroidery.
+              </div>
+            </div>
+            <div class="gown-accordion-item">
+              <button class="gown-accordion-trigger" onclick="window.app.toggleAccordion(this)">
+                <span>
+                  <span class="txt-ar">الشحن الملكي والتعديل الخاص</span>
+                  <span class="txt-en">Complimentary Delivery & Alterations</span>
+                </span>
+                <i data-feather="chevron-down" style="width:16px;height:16px;"></i>
+              </button>
+              <div class="gown-accordion-body">
+                Complimentary white-glove delivery in luxury garment case across Saudi Arabia and worldwide. Private fitting sessions available at our Riyadh Atelier.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMART ATELIER BOOKING CALENDAR MODAL -->
+  <div class="quickview-modal" id="atelierBookingModal">
+    <div class="quickview-card" style="max-width:780px; padding:3rem; max-height:88vh; overflow-y:auto;">
+      <button class="quickview-close-btn" onclick="document.getElementById('atelierBookingModal').classList.remove('active')">&times;</button>
+      
+      <div style="text-align:center; margin-bottom:2rem;">
+        <span style="background:var(--color-brand-purple-tint); color:var(--color-brand-purple); border:1px solid var(--color-brand-purple-border); padding:0.4rem 1.2rem; border-radius:50px; font-weight:900; font-size:0.82rem; display:inline-flex; align-items:center; gap:0.5rem;">
+          <i data-feather="calendar" style="width:14px;height:14px;"></i> VIP ATELIER RESERVATION
+        </span>
+        <h3 style="font-size:1.7rem; font-weight:900; color:var(--color-brand-purple); margin-top:0.6rem;">
+          <span class="txt-ar">حجز موعد قياس كوتور خاص</span>
+          <span class="txt-en">Book Private Fitting & Consultation</span>
+        </h3>
+        <p style="font-size:0.88rem; color:var(--color-text-secondary);">Select boutique location and preferred schedule</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); window.app.submitAtelierBooking(this);">
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.6rem;">1. اختيار الفرع / Select Boutique:</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <label style="border:1.5px solid var(--color-brand-purple); padding:1rem; cursor:pointer; background:var(--color-brand-purple-tint); display:block;">
+              <input type="radio" name="booking_branch" value="riyadh" checked style="accent-color:var(--color-brand-purple);">
+              <strong style="display:block; margin-top:0.3rem; font-size:0.95rem;">أتيليه الرياض الرئيسي</strong>
+              <span style="font-size:0.75rem; color:#666;">King Abdulaziz Rd, Al Yasmin</span>
+            </label>
+            <label style="border:1.5px solid var(--color-border); padding:1rem; cursor:pointer; background:#FFF; display:block;">
+              <input type="radio" name="booking_branch" value="jeddah" style="accent-color:var(--color-brand-purple);">
+              <strong style="display:block; margin-top:0.3rem; font-size:0.95rem;">صالون جدة للعرائس</strong>
+              <span style="font-size:0.75rem; color:#666;">Prince Sultan Rd, Al Rawdah</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.6rem;">2. نوع الجلسة / Service Type:</label>
+          <select id="bookingServiceType" style="width:100%; padding:0.9rem; border:1px solid var(--color-border); font-size:0.9rem; font-weight:700; color:var(--color-brand-purple); background:#FFF; font-family:inherit;">
+            <option value="bridal_fitting">جلسة قياس فستان زفاف ملكي (Bridal Fitting)</option>
+            <option value="soiree_fitting">تجربة قياس فساتين السهرة والكوتور</option>
+            <option value="bespoke_design">استشارة تفصيل كوتور خاص مع المصممة</option>
+            <option value="final_fitting">التعديل النهائي واستلام الفستان</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:1.2rem; margin-bottom:1.5rem;">
+          <div>
+            <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.6rem;">3. التاريخ / Date:</label>
+            <input type="date" id="bookingDateInput" value="2026-08-28" style="width:100%; padding:0.85rem; border:1px solid var(--color-border); font-weight:700; font-family:inherit;">
+          </div>
+          <div>
+            <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.6rem;">الوقت / Time Slot:</label>
+            <select id="bookingTimeInput" style="width:100%; padding:0.85rem; border:1px solid var(--color-border); font-weight:700; color:var(--color-brand-purple); background:#FFF; font-family:inherit;">
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="05:00 PM" selected>05:00 PM</option>
+              <option value="08:00 PM">08:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:1.8rem;">
+          <div>
+            <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.4rem;">الاسم الكامل / Name:</label>
+            <input type="text" id="bookingClientName" placeholder="Full Name" required style="width:100%; padding:0.85rem; border:1px solid var(--color-border); font-weight:700; font-family:inherit;">
+          </div>
+          <div>
+            <label style="font-size:0.85rem; font-weight:800; color:var(--color-brand-purple); display:block; margin-bottom:0.4rem;">رقم الجوال / Phone:</label>
+            <input type="tel" id="bookingClientPhone" placeholder="+966 5X XXX XXXX" required style="width:100%; padding:0.85rem; border:1px solid var(--color-border); font-weight:700; font-family:inherit; direction:ltr; text-align:right;">
+          </div>
+        </div>
+
+        <button type="submit" class="drawer-checkout-btn" style="background:var(--color-brand-purple); padding:1.2rem; font-size:1rem;">
+          <span>تأكيد حجز الموعد واستلام رسالة التأكيد</span> &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI COUTURE STYLIST MODAL -->
+  <div class="quickview-modal" id="aiStylistModal">
+    <div class="quickview-card" style="max-width:800px; padding:3rem; max-height:90vh; overflow-y:auto;">
+      <button class="quickview-close-btn" onclick="document.getElementById('aiStylistModal').classList.remove('active')">&times;</button>
+      
+      <div style="text-align:center; margin-bottom:2rem;">
+        <span style="background:var(--color-brand-purple); color:var(--color-accent-gold); padding:0.4rem 1.4rem; border-radius:50px; font-weight:900; font-size:0.82rem; display:inline-flex; align-items:center; gap:0.5rem; letter-spacing:0.1em;">
+          <span>WAAD ALOQAILI AI STYLIST</span>
+        </span>
+        <h3 style="font-size:1.8rem; font-weight:900; color:var(--color-brand-purple); margin-top:0.8rem;">
+          <span class="txt-ar">مستشارة المظهر الملكية الذكية</span>
+          <span class="txt-en">AI Couture Stylist & Advisor</span>
+        </h3>
+        <p style="font-size:0.9rem; color:var(--color-text-secondary);">Discover the ideal couture gown matched for your occasion</p>
+      </div>
+
+      <div id="aiStylistWizard">
+        <div class="ai-step active" id="aiStep1">
+          <h4 style="font-size:1.1rem; font-weight:900; color:var(--color-brand-purple); margin-bottom:1rem;">1. ما هي مناسبتك القادمة؟ / What is your occasion?</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('occ', 'bridal', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              حفل زفاف ملكي (Bridal)
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('occ', 'engagement', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              حفل ملكة أو خطوبة (Engagement)
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('occ', 'soiree', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              سهرة ومناسبة كبرى (Soirée)
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('occ', 'couture', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              مناسبة رسمية رفيعة المستوى (Haute Couture)
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-step" id="aiStep2" style="display:none;">
+          <h4 style="font-size:1.1rem; font-weight:900; color:var(--color-brand-purple); margin-bottom:1rem;">2. ما هو الطابع والقصة المفضلة؟ / Preferred Silhouette:</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('vibe', 'royal', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              قصة ملكية واسعة (Royal A-Line)
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('vibe', 'mermaid', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              قصة حورية البحر محددة للقوام (Mermaid)
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('vibe', 'soft', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              ناعم وانسيابي بحرير التافتا الفرنسي
+            </div>
+            <div class="ai-opt-btn" onclick="window.app.selectAiOpt('vibe', 'glam', this)" style="border:1.5px solid var(--color-border); padding:1.2rem; cursor:pointer; background:var(--color-bg-alt); text-align:center; font-weight:800;">
+              تطريز يدوي كريستالي مكثف وفاخر
+            </div>
+          </div>
+        </div>
+
+        <div id="aiStylistResult" style="display:none; text-align:center;">
+          <div style="background:var(--color-bg-alt); border:1px solid var(--color-brand-purple-border); padding:2rem; margin-bottom:1.5rem; text-align:right;">
+            <div style="display:flex; align-items:center; gap:0.6rem; color:var(--color-accent-gold); font-weight:900; font-size:0.85rem; margin-bottom:0.8rem;">
+              <i data-feather="award" style="width:16px;height:16px;"></i> ترشيح مستشارة المظهر الخاص بك (Top AI Match):
+            </div>
+            <div id="aiMatchedProductCard" style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;"></div>
+          </div>
+
+          <div style="display:flex; gap:1rem;">
+            <button class="btn-primary" id="aiOpenMatchedGownBtn" style="flex:1;">معاينة الفستان بالكامل</button>
+            <button class="btn-secondary" onclick="window.app.openBookingModal()" style="flex:1; background:#FFF; color:#000; border-color:#CCC;">حجز موعد قياس</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTIC SAUDI BUSINESS CENTER VERIFICATION MODAL -->
+  <div class="quickview-modal" id="verificationModal">
+    <div class="quickview-card" style="max-width:720px; padding:3rem;">
+      <button class="quickview-close-btn" onclick="document.getElementById('verificationModal').classList.remove('active')">&times;</button>
+      <div style="text-align:center; margin-bottom:2rem;">
+        <span style="background:#0F9D58; color:#FFF; padding:0.4rem 1.2rem; border-radius:50px; font-weight:900; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.5rem;">
+          <i data-feather="check-circle" style="width:16px;height:16px;"></i> متجر معتمد وموثق رسميا
+        </span>
+        <h3 style="font-size:1.8rem; font-weight:900; color:var(--color-brand-purple); margin-top:0.8rem;">بيانات شهادة التوثيق بالمركز السعودي للأعمال</h3>
+        <p style="font-size:0.9rem; color:#666;">منصة التوثيق الرسمية للمنشآت التجارية في المملكة العربية السعودية</p>
+      </div>
+
+      <div style="background:var(--color-bg-alt); padding:1.8rem; border:1px solid var(--color-border); border-radius:6px; display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-bottom:2rem; font-size:0.9rem;">
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">رقم شهادة التوثيق:</span>
+          <strong style="color:var(--color-brand-purple); font-size:1.15rem;">0000007788</strong>
+        </div>
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">حالة الشهادة والصلاحية:</span>
+          <strong style="color:#0F9D58;">ساري (حتى 16/09/2026)</strong>
+        </div>
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">الرقم الوطني الموحد:</span>
+          <strong>7006113000</strong>
+        </div>
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">الاسم التجاري للمنشأة:</span>
+          <strong>دار وعد العقيلي | شركة لمسة زاهية للتجارة</strong>
+        </div>
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">الأنشطة المرخصة:</span>
+          <span>تصميم الأزياء والملبوسات وتجارة التجزئة</span>
+        </div>
+        <div>
+          <span style="color:#777; font-size:0.8rem; display:block;">الحساب البنكي المعتمد (IBAN):</span>
+          <span style="direction:ltr; display:block; font-size:0.82rem; font-weight:700;">SA7180000412608010546887</span>
+        </div>
+      </div>
+
+      <a href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/0000007788" target="_blank" class="drawer-checkout-btn" style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:0.6rem; background:var(--color-brand-purple);">
+        <span>التحقق مباشرة من بوابة المركز السعودي للأعمال</span>
+        <i data-feather="external-link" style="width:16px;height:16px;"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- COUTURE SIZE GUIDE MODAL -->
+  <div class="quickview-modal" id="sizeGuideModal">
+    <div class="quickview-card" style="max-width:650px; padding:3rem;">
+      <button class="quickview-close-btn" onclick="document.getElementById('sizeGuideModal').classList.remove('active')">&times;</button>
+      <h3 style="font-size:1.6rem; font-weight:900; color:var(--color-brand-purple); margin-bottom:0.5rem; text-align:center;">دليل قياسات الهوت كوتور</h3>
+      <p style="font-size:0.9rem; color:#666; text-align:center; margin-bottom:2rem;">جدول المقاسات المعيارية بالسنتيمتر (cm) لأتيليه وعد العقيلي</p>
+      
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:center; margin-bottom:2rem;">
+        <thead>
+          <tr style="background:var(--color-brand-purple); color:#FFF;">
+            <th style="padding:0.8rem;">المقاس (EU)</th>
+            <th style="padding:0.8rem;">الصدر (Bust)</th>
+            <th style="padding:0.8rem;">الخصر (Waist)</th>
+            <th style="padding:0.8rem;">الأرداف (Hips)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #EEE;">
+            <td style="padding:0.75rem; font-weight:800;">34 EU (XS)</td>
+            <td>82 cm</td>
+            <td>62 cm</td>
+            <td>88 cm</td>
+          </tr>
+          <tr style="border-bottom:1px solid #EEE; background:#FBFBFB;">
+            <td style="padding:0.75rem; font-weight:800;">36 EU (S)</td>
+            <td>86 cm</td>
+            <td>66 cm</td>
+            <td>92 cm</td>
+          </tr>
+          <tr style="border-bottom:1px solid #EEE;">
+            <td style="padding:0.75rem; font-weight:800;">38 EU (M)</td>
+            <td>90 cm</td>
+            <td>70 cm</td>
+            <td>96 cm</td>
+          </tr>
+          <tr style="border-bottom:1px solid #EEE; background:#FBFBFB;">
+            <td style="padding:0.75rem; font-weight:800;">40 EU (L)</td>
+            <td>94 cm</td>
+            <td>74 cm</td>
+            <td>100 cm</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem; font-weight:800;">42 EU (XL)</td>
+            <td>98 cm</td>
+            <td>78 cm</td>
+            <td>104 cm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn-primary" onclick="document.getElementById('sizeGuideModal').classList.remove('active')" style="width:100%;">فهمت، العودة للفستان</button>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-bar-header">
+      <span style="font-size:0.95rem; font-weight:900; color:var(--color-brand-purple);">Search Waad Aloqaili Collections</span>
+      <button class="drawer-close-btn" onclick="document.getElementById('searchModal').classList.remove('active'); document.getElementById('drawerBackdrop').classList.remove('active');">&times;</button>
+    </div>
+    <div class="search-input-box">
+      <i data-feather="search" style="width:26px; height:26px; color:var(--color-brand-purple);"></i>
+      <input type="text" class="search-input-field" id="searchInputField" placeholder="Search gown title, fabric, or collection...">
+    </div>
+    <div class="search-popular-tags">
+      <span>Popular: </span>
+      <a href="collections.html?cat=yamal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Yamal SS26</a> |
+      <a href="collections.html?cat=veil-of-renewal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Veil of Renewal</a> |
+      <a href="collections.html?cat=bridal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Royal Bridal</a>
+    </div>
+    <div class="search-results-grid" id="searchResultsGrid"></div>
+  </div>
+
+  <!-- AUTHENTIC PAYMENT CHECKOUT MODAL -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-card" style="max-width:700px; padding:3rem; max-height:90vh; overflow-y:auto;">
+      <button class="quickview-close-btn" onclick="document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('drawerBackdrop').classList.remove('active');">&times;</button>
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <span style="font-size:0.8rem; font-weight:900; letter-spacing:0.18em; color:var(--color-accent-gold); display:block; margin-bottom:0.3rem;">SECURE CHECKOUT</span>
+        <h3 class="checkout-heading" style="margin-bottom:0.3rem;">Payment & Checkout</h3>
+        <p style="font-size:0.85rem; color:#666;">All transactions are secure and encrypted.</p>
+      </div>
+
+      <div style="background:var(--color-bg-alt); padding:1.2rem; border:1px solid var(--color-border); margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+        <span>المبلغ الإجمالي المستحق / Total:</span>
+        <strong id="checkoutTotalAmount" style="font-size:1.3rem; color:var(--color-brand-purple);">0 SR</strong>
+      </div>
+
+      <button class="drawer-checkout-btn" onclick="alert('تم تأكيد طلبك بنجاح! سيتم التواصل معك من خدمة عملاء كبار الشخصيات.'); document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('drawerBackdrop').classList.remove('active');">
+        <span>Complete Secure Order &rarr;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Floating Concierge WhatsApp -->
+  <a href="https://wa.me/966115001585" target="_blank" class="floating-vip-concierge" aria-label="Book Fitting">
+    <i data-feather="message-circle" style="width:18px;height:18px;"></i>
+    <span>
+      <span class="txt-ar">حجز قياس VIP</span>
+      <span class="txt-en">VIP Atelier Booking</span>
+    </span>
+  </a>
+'''
+
+def get_footer_html():
+    return '''
+  <footer class="site-footer" id="footerSection">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4 class="footer-col-title">
+          <span class="txt-ar">خدمة العميلات</span>
+          <span class="txt-en">Customer care</span>
+        </h4>
+        <ul class="footer-links-list">
+          <li><a href="#about" class="footer-link">VAT</a></li>
+          <li><a href="#about" class="footer-link">Shipping Policy</a></li>
+          <li><a href="#about" class="footer-link">Complaint</a></li>
+          <li><a href="javascript:void(0)" onclick="window.app.openSizeGuideModal()" class="footer-link">Couture Size Guide</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">
+          <span class="txt-ar">تواصل معنا</span>
+          <span class="txt-en">Contact us</span>
+        </h4>
+        <ul class="footer-links-list">
+          <li><a href="tel:0535554889" class="footer-link">Contact us (0535554889)</a></li>
+          <li><a href="https://maps.app.goo.gl/gazAkarf8r8Nge8RA" target="_blank" class="footer-link">Visit our boutique</a></li>
+          <li><a href="https://wa.me/966115001585" target="_blank" class="footer-link">Book an appointment (WhatsApp)</a></li>
+          <li><a href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/0000007788" target="_blank" class="footer-link" style="color:var(--color-accent-gold); font-weight:800;">Authentication (0000007788)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">
+          <span class="txt-ar">عن الدار</span>
+          <span class="txt-en">About us</span>
+        </h4>
+        <ul class="footer-links-list">
+          <li><a href="#about" class="footer-link">The House</a></li>
+          <li><a href="#about" class="footer-link">Trademark</a></li>
+          <li><a href="https://sa.linkedin.com/company/waadaloqaili" target="_blank" class="footer-link">Career</a></li>
+          <li><a href="under-the-spotlight.html" class="footer-link">Under the Spotlight</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">
+          <span class="txt-ar">الشروط والخصوصية</span>
+          <span class="txt-en">Legal</span>
+        </h4>
+        <ul class="footer-links-list">
+          <li><a href="checkout.html" class="footer-link">VIP Checkout (صفحة الدفع)</a></li>
+          <li><a href="admin.html" class="footer-link" style="color:var(--color-accent-gold); font-weight:800;">Admin Dashboard (لوحة الإدارة)</a></li>
+          <li><a href="#about" class="footer-link">Privacy Policy</a></li>
+          <li><a href="#about" class="footer-link">Returns & Exchange Policy</a></li>
+          <li><a href="#about" class="footer-link">Terms & Conditions</a></li>
+          <li><a href="javascript:void(0)" onclick="window.app.openVerificationModal()" class="footer-link">Commercial Registry (7006113000)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:#140822; border:1px solid #2C1A48; padding:1.2rem 2rem; margin-bottom:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <span style="background:#0F9D58; color:#FFF; font-size:0.75rem; font-weight:900; padding:0.35rem 0.8rem; border-radius:4px;">
+          Saudi Business Center Authenticated
+        </span>
+        <span style="color:#FFF; font-size:0.85rem;">Certificate No: <strong style="color:var(--color-accent-gold);">0000007788</strong> (Valid until 16/09/2026)</span>
+      </div>
+      <a href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/0000007788" target="_blank" style="color:var(--color-accent-gold); font-size:0.82rem; font-weight:800;">
+        View Official Authentication Certificate &rarr;
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        © 2026 Waad Aloqaili ❘ All right reserved
+      </div>
+      <div class="payment-badges-row">
+        <span class="pay-badge">MADA</span>
+        <span class="pay-badge">APPLE PAY</span>
+        <span class="pay-badge">TABBY</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">MASTERCARD</span>
+      </div>
+    </div>
+  </footer>
+'''
+
+# =========================================================================
+# BUILD 1: index.html (Homepage - Campaign Showcase, Zero Emojis)
+# =========================================================================
+index_html = f'''<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waad Aloqaili | دار وعد العقيلي للأزياء الراقية</title>
+  <meta name="description" content="الموقع الرسمي لدار الأزياء الراقية وعد العقيلي بالرياض. استكشفي مجموعات الكوتور والزفاف وأفلام الحملات الرسمية.">
+  <meta name="theme-color" content="#2C1A48">
+  
+  <meta property="og:title" content="Waad Aloqaili – Haute Couture">
+  <meta property="og:description" content="Waad Aloqaili Couture epitomizes timeless elegance, female empowerment and Saudi luxury.">
+  <meta property="og:site_name" content="Waad Aloqaili">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0609/7181/1001/files/EA370542-24DE-4631-B04D-BCD7E46191E6.jpg?width=1800">
+  
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    body[data-lang="ar"] .txt-en {{ display: none !important; }}
+    body[data-lang="ar"] .txt-ar {{ display: inline !important; }}
+    body[data-lang="ar"] span.txt-ar, body[data-lang="ar"] p.txt-ar, body[data-lang="ar"] div.txt-ar, body[data-lang="ar"] h1.txt-ar, body[data-lang="ar"] h2.txt-ar, body[data-lang="ar"] h3.txt-ar, body[data-lang="ar"] h4.txt-ar {{ display: block !important; }}
+
+    body[data-lang="en"] .txt-ar {{ display: none !important; }}
+    body[data-lang="en"] .txt-en {{ display: inline !important; }}
+    body[data-lang="en"] span.txt-en, body[data-lang="en"] p.txt-en, body[data-lang="en"] div.txt-en, body[data-lang="en"] h1.txt-en, body[data-lang="en"] h2.txt-en, body[data-lang="en"] h3.txt-en, body[data-lang="en"] h4.txt-en {{ display: block !important; }}
+
+    .hero-cinema-section {{
+      position: relative;
+      height: 85vh;
+      min-height: 580px;
+      background: #0D0517;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+    }}
+    .hero-cinema-video {{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }}
+    .hero-cinema-overlay {{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 8, 32, 0.4) 0%, rgba(18, 8, 32, 0.25) 50%, rgba(18, 8, 32, 0.85) 100%);
+      z-index: 1;
+    }}
+    .hero-cinema-content {{
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 950px;
+      padding: 2rem;
+    }}
+    .hero-cinema-title {{
+      font-family: var(--font-couture);
+      font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 25px rgba(0,0,0,0.6);
+      line-height: 1.1;
+    }}
+    .hero-cinema-desc {{
+      font-size: 1.25rem;
+      color: #E2D7F0;
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }}
+    .video-selector-bar {{
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 0.8rem;
+      background: rgba(18, 8, 32, 0.75);
+      backdrop-filter: blur(12px);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(223, 186, 115, 0.3);
+      max-width: 92vw;
+      overflow-x: auto;
+    }}
+    .video-pill-btn {{
+      background: transparent;
+      border: none;
+      color: #CCC;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.45rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s;
+    }}
+    .video-pill-btn.active, .video-pill-btn:hover {{
+      background: var(--color-accent-gold-gradient);
+      color: #120820;
+    }}
+
+    .campaign-collection-block {{
+      padding: 5.5rem 4rem;
+      max-width: 1720px;
+      margin: 0 auto;
+    }}
+    .campaign-header-box {{
+      text-align: center;
+      max-width: 920px;
+      margin: 0 auto 3.5rem;
+    }}
+    .campaign-sub-title {{
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent-gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }}
+    .campaign-main-title {{
+      font-family: var(--font-couture);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--color-brand-purple);
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }}
+    .campaign-desc-text {{
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.8rem;
+    }}
+    .campaign-read-more-link {{
+      font-size: 0.88rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      color: var(--color-brand-purple);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--color-brand-purple);
+      padding-bottom: 0.35rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }}
+    .campaign-read-more-link:hover {{
+      color: var(--color-accent-gold);
+      border-color: var(--color-accent-gold);
+    }}
+
+    .collection-video-preview-box {{
+      position: relative;
+      width: 100%;
+      max-height: 480px;
+      aspect-ratio: 16 / 7;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+    }}
+    .collection-video-preview-box video {{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }}
+
+    .elan-vital-hero {{
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+      background: url('https://cdn.shopify.com/s/files/1/0609/7181/1001/files/417C3203-6E8B-4474-832E-2994E78CB884.jpg?width=1800') center 25% / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFF;
+      margin: 4rem 0;
+    }}
+    .elan-vital-overlay {{
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 8, 32, 0.65);
+    }}
+    .elan-vital-content {{
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+    }}
+
+    .brand-statement-banner {{
+      background-color: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 5.5rem 4rem;
+      text-align: center;
+    }}
+    .brand-statement-text {{
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-weight: 700;
+      color: var(--color-brand-purple);
+      max-width: 1050px;
+      margin: 0 auto 2rem;
+      line-height: 1.45;
+    }}
+    .cannes-spotlight-section {{
+      background: var(--color-brand-purple-deep);
+      color: #FFFFFF;
+      padding: 6.5rem 4rem;
+    }}
+    .cannes-container {{
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: center;
+    }}
+    .cannes-img {{
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border: 1px solid var(--color-border-dark);
+    }}
+    .press-featured-row {{
+      padding: 3.5rem 4rem;
+      text-align: center;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--color-border);
+    }}
+    .press-featured-title {{
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 1.8rem;
+    }}
+    .press-logos-wrap {{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--color-brand-purple);
+      opacity: 0.85;
+    }}
+  </style>
+</head>
+<body data-lang="ar">
+
+  <div class="custom-cursor" id="customCursor"></div>
+
+  {get_header_html("home")}
+
+  <!-- Cinematic Hero Video Player -->
+  <section class="hero-cinema-section" id="heroCinema">
+    <video class="hero-cinema-video" id="mainHeroVideo" autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0609/7181/1001/files/EA370542-24DE-4631-B04D-BCD7E46191E6.jpg?width=1800">
+      <source src="{video_yamal}" type="video/mp4">
+    </video>
+    <div class="hero-cinema-overlay"></div>
+    
+    <div class="hero-cinema-content scroll-reveal">
+      <span style="font-size:0.88rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:1rem;">HAUTE COUTURE 2026</span>
+      <h1 class="hero-cinema-title" id="heroCinemaTitle">Waad Aloqaili</h1>
+      <p class="hero-cinema-desc" id="heroCinemaDesc">
+        <span class="txt-ar">حوار بين البحر والروح وفخامة الهوت كوتور السعودية بمعايير عالمية</span>
+        <span class="txt-en">A poetic dialogue between Saudi maritime legacy and contemporary haute couture</span>
+      </p>
+      <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;">
+        <a href="collections.html" class="btn-primary shimmer-gold-effect" style="padding:1.1rem 2.8rem;">
+          <span class="txt-ar">استكشاف صفحة جميع الفساتين (105) &larr;</span>
+          <span class="txt-en">Explore All 105 Boutique Gowns &rarr;</span>
+        </a>
+        <button class="btn-secondary" onclick="window.app.toggleHeroVideoSound()" id="soundToggleBtn" style="background:rgba(255,255,255,0.15); color:#FFF; border-color:rgba(255,255,255,0.4); padding:1.1rem 2rem; backdrop-filter:blur(8px);">
+          <i data-feather="volume-x" id="soundIcon" style="width:16px;height:16px;"></i>
+          <span id="soundLabel">
+            <span class="txt-ar">تشغيل الصوت</span>
+            <span class="txt-en">Unmute Video</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Selector Pills for 7 Official Collections -->
+    <div class="video-selector-bar">
+      <button class="video-pill-btn active" onclick="window.app.switchHeroVideo('{video_yamal}', 'Yamal SS26', 'مجموعة يمال 2026', this)">Yamal</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_veil}', 'Veil of Renewal', 'حجاب التجدد', this)">Veil of Renewal</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_elan}', 'Élan Vital', 'إيلان فيتال', this)">Élan Vital</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_celestia}', 'Celestia', 'سيليستيا', this)">Celestia</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_joy}', 'Joy', 'مجموعة جوي', this)">Joy</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_chrysalis}', 'Out of the Chrysalis', 'كريساليث', this)">Chrysalis</button>
+      <button class="video-pill-btn" onclick="window.app.switchHeroVideo('{video_dawn}', 'Into the Dawn', 'إنتو ذا دون', this)">Into the Dawn</button>
+    </div>
+  </section>
+
+  <!-- 1. YAMAL COLLECTION SECTION -->
+  <section class="campaign-collection-block" id="yamal">
+    <div class="campaign-header-box scroll-reveal">
+      <span class="campaign-sub-title">COUTURE SPRING/SUMMER 2026</span>
+      <h2 class="campaign-main-title">
+        <span class="txt-en">Yamal</span>
+        <span class="txt-ar">مجموعة يمال</span>
+      </h2>
+      <p class="campaign-desc-text">
+        <span class="txt-en">Yamal unfolds as a dialogue between the sea and the soul, rooted in Saudi Arabia’s maritime legacy. Drawn from the chant “Ya Mal” — once used by pearl divers to unify effort and endurance — the collection transforms a rhythm of survival into a contemporary couture language of resilience and belonging.</span>
+        <span class="txt-ar">تتجلى مجموعة "يمال" كحوار شاعري بين البحر والروح، متجذرة في التراث البحري العريق للمملكة العربية السعودية. مستوحاة من أهازيج "يا مال" التي رددها غواصو اللؤلؤ لتوحيد العزم والصمود، لتحول الدار هذا الإيقاع إلى لغة كوتور معاصرة تعكس القوة والانتماء.</span>
+      </p>
+      <a href="collections.html?cat=yamal" class="campaign-read-more-link">
+        <span class="txt-en">Read more &rarr;</span>
+        <span class="txt-ar">استكشاف فساتين يمال بالكامل (29 فستان) &larr;</span>
+      </a>
+    </div>
+
+    <!-- Yamal Video Preview -->
+    <div class="collection-video-preview-box scroll-reveal">
+      <video autoplay muted loop playsinline>
+        <source src="{video_yamal}" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Yamal Gowns Grid -->
+    <div class="products-grid">
+      {yamal_cards_str}
+    </div>
+  </section>
+
+  <!-- 2. VEIL OF RENEWAL COLLECTION SECTION -->
+  <section class="campaign-collection-block" id="veil-of-renewal" style="background:var(--color-bg-alt); border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);">
+    <div class="campaign-header-box scroll-reveal">
+      <span class="campaign-sub-title">HAUTE COUTURE EDITION</span>
+      <h2 class="campaign-main-title">
+        <span class="txt-en">VEIL OF RENEWAL</span>
+        <span class="txt-ar">حجاب التجدد (Veil of Renewal)</span>
+      </h2>
+      <p class="campaign-desc-text">
+        <span class="txt-en">Veil of Renewal embarks on a journey of becoming, where the fleeting dragonfly and the resilient lotus, rising from murky waters, embody the delicate balance between vulnerability and strength.</span>
+        <span class="txt-ar">تنطلق مجموعة "حجاب التجدد" في رحلة تحول باهرة، حيث تجسد حشرة اليعسوب الرقيقة وزهرة اللوتس الصامدة التوازن الدقيق بين الرقة والصلابة في تصاميم كوتور استثنائية.</span>
+      </p>
+      <a href="collections.html?cat=veil-of-renewal" class="campaign-read-more-link">
+        <span class="txt-en">Read more &rarr;</span>
+        <span class="txt-ar">استكشاف تشكيلة حجاب التجدد (22 فستان) &larr;</span>
+      </a>
+    </div>
+
+    <!-- Veil Video Preview -->
+    <div class="collection-video-preview-box scroll-reveal">
+      <video autoplay muted loop playsinline>
+        <source src="{video_veil}" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Veil Gowns Grid -->
+    <div class="products-grid">
+      {veil_cards_str}
+    </div>
+  </section>
+
+  <!-- 3. ÉLAN VITAL HERO CAMPAIGN BANNER -->
+  <section class="elan-vital-hero" id="elan-vital">
+    <div class="elan-vital-overlay"></div>
+    <div class="elan-vital-content scroll-reveal">
+      <span style="font-size:0.85rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:1rem;">EXCLUSIVE COUTURE CAPSULE</span>
+      <h2 style="font-family:var(--font-couture); font-size:clamp(3rem, 7vw, 5.5rem); font-weight:900; letter-spacing:0.08em; margin-bottom:1.8rem; text-transform:uppercase;">Élan vital</h2>
+      <a href="collections.html?cat=elan-vital" class="btn-primary shimmer-gold-effect" style="padding:1.3rem 3.2rem; font-size:0.92rem; letter-spacing:0.12em;">
+        <span class="txt-en">DISCOVER THE COLLECTION (14 GOWNS) &rarr;</span>
+        <span class="txt-ar">استكشاف فساتين إيلان فيتال (14 فستان) &larr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. BRAND STATEMENT -->
+  <section class="brand-statement-banner">
+    <div class="scroll-reveal">
+      <p class="brand-statement-text">
+        <span class="txt-en">"Waad Aloqaili Couture epitomizes timeless elegance, female empowerment and Saudi luxury."</span>
+        <span class="txt-ar">"تجسد دار وعد العقيلي قمة الأناقة الخالدة، تمكين المرأة، والفخامة السعودية بمعايير عالمية."</span>
+      </p>
+      <a href="#about" class="btn-secondary" onclick="window.app.openBookingModal()" style="background:#FFF; color:var(--color-brand-purple); border-color:var(--color-brand-purple); padding:1.1rem 2.8rem; font-size:0.88rem; letter-spacing:0.12em;">
+        <span class="txt-en">READ MORE &rarr;</span>
+        <span class="txt-ar">عن الدار والحرفية &larr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. UNDER THE SPOTLIGHT: CANNES FILM FESTIVAL -->
+  <section class="cannes-spotlight-section" id="cannes-spotlight">
+    <div class="cannes-container">
+      <div class="scroll-reveal">
+        <img src="https://cdn.shopify.com/s/files/1/0609/7181/1001/files/038A6BF2-CF4C-45F4-8747-76F0DEE93B2D.jpg?width=1800" alt="Cannes Film Festival Red Carpet" class="cannes-img">
+      </div>
+      <div class="scroll-reveal">
+        <span style="font-size:0.82rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:0.8rem;">UNDER THE SPOTLIGHT</span>
+        <h2 style="font-family:var(--font-couture); font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:900; line-height:1.15; margin-bottom:1.5rem;">
+          <span class="txt-en">THE 79TH EDITION OF THE CANNES FILM FESTIVAL</span>
+          <span class="txt-ar">الدورة الـ 79 لمهرجان كان السينمائي الدولي</span>
+        </h2>
+        <p style="font-size:1.05rem; color:#DDD; line-height:1.85; margin-bottom:2rem;">
+          <span class="txt-en">At the 79th Cannes Film Festival, Waad Aloqaili Couture showcased a selection of couture creations that reflected the house’s distinctive vision of contemporary elegance. Worn by renowned international figures on the red carpet, the designs celebrated exceptional craftsmanship, intricate hand embroidery, and the refined artistry that lies at the heart of the house.</span>
+          <span class="txt-ar">في الدورة التاسعة والسبعين لمهرجان كان السينمائي الدولي، تألقت تصاميم دار وعد العقيلي على السجادة الحمراء بإطلالات ساحرة ارتدتها نخبة من الشخصيات العالمية، محتفيةً بالحرفية السعودية اليدوية المتقنة والتطريز الكريستالي الاستثنائي.</span>
+        </p>
+        <blockquote style="border-inline-start:3px solid var(--color-accent-gold); padding-inline-start:1.5rem; font-style:italic; font-size:1.05rem; color:#FFF; margin-bottom:1rem; line-height:1.75;">
+          <span class="txt-en">"The fashion house embraces a philosophy of inclusivity, passion, and embracing transformation. As a result, every garment created by the brand undergoes careful and thoughtful consideration in order to deliver a lavish and immersive experience."</span>
+          <span class="txt-ar">"تتبنى دار الأزياء فلسفة الإبداع والشغف والتحول الملكي. ونتيجة لذلك، يتم ابتكار كل فستان بعناية فائقة وتفكير عميق لتقديم تجربة فخمة لا تنسى."</span>
+        </blockquote>
+        <span style="font-size:0.9rem; font-weight:900; color:var(--color-accent-gold); display:block;">— Harper's Bazaar</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. AS FEATURED IN GLOBAL PRESS -->
+  <section class="press-logos-section">
+    <div style="text-align:center; margin-bottom:1.8rem;">
+      <span class="press-logos-title">
+        <span class="txt-ar">تغطيات وإشادات الصحافة العالمية</span>
+        <span class="txt-en">AS FEATURED IN GLOBAL PRESS</span>
+      </span>
+    </div>
+    
+    <div class="press-logos-grid">
+      
+      <!-- 1. VOGUE ARABIA -->
+      <a href="under-the-spotlight.html" class="press-logo-card" title="VOGUE ARABIA" style="text-decoration:none;">
+        <svg viewBox="0 0 200 48" class="press-svg-logo">
+          <text x="50%" y="30" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="34" letter-spacing="4" fill="currentColor">VOGUE</text>
+          <text x="50%" y="44" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="8.5" letter-spacing="6" fill="currentColor">ARABIA</text>
+        </svg>
+      </a>
+
+      <!-- 2. HARPER'S BAZAAR -->
+      <a href="under-the-spotlight.html" class="press-logo-card" title="HARPER'S BAZAAR" style="text-decoration:none;">
+        <svg viewBox="0 0 260 48" class="press-svg-logo">
+          <text x="50%" y="20" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="800" font-size="18" letter-spacing="6" fill="currentColor">HARPER'S</text>
+          <text x="50%" y="42" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="24" letter-spacing="8" fill="currentColor">BAZAAR</text>
+        </svg>
+      </a>
+
+      <!-- 3. L'OFFICIEL -->
+      <a href="under-the-spotlight.html" class="press-logo-card" title="L'OFFICIEL" style="text-decoration:none;">
+        <svg viewBox="0 0 200 48" class="press-svg-logo">
+          <text x="50%" y="33" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', serif" font-weight="900" font-size="28" letter-spacing="5" fill="currentColor">L'OFFICIEL</text>
+        </svg>
+      </a>
+
+      <!-- 4. HIA MAGAZINE -->
+      <a href="under-the-spotlight.html" class="press-logo-card" title="HIA MAGAZINE" style="text-decoration:none;">
+        <svg viewBox="0 0 180 48" class="press-svg-logo">
+          <text x="50%" y="25" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" letter-spacing="4" fill="currentColor">HIA</text>
+          <text x="50%" y="42" text-anchor="middle" font-family="'Cairo', sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">مجلة هـي</text>
+        </svg>
+      </a>
+
+      <!-- 5. ELLE -->
+      <a href="under-the-spotlight.html" class="press-logo-card" title="ELLE" style="text-decoration:none;">
+        <svg viewBox="0 0 140 48" class="press-svg-logo">
+          <text x="50%" y="35" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="38" letter-spacing="6" fill="currentColor">ELLE</text>
+        </svg>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 7. ATELIERS & BOUTIQUES -->
+  <section class="stores-section" id="stores">
+    <div class="stores-header">
+      <span class="section-label">BOUTIQUES & ATELIERS</span>
+      <h2 class="section-title">
+        <span class="txt-ar">فروع وصالونات وعد العقيلي</span>
+        <span class="txt-en">Boutiques & Ateliers</span>
+      </h2>
+      <p class="section-subtitle">
+        <span class="txt-ar">تفضلي بزيارة الأتيليه الرئيسي لتجربة قياس خاصة واستشارة شخصية مع فريق تصميم وعد العقيلي.</span>
+        <span class="txt-en">Visit our flagship atelier for a private fitting session and bespoke styling consultation.</span>
+      </p>
+    </div>
+
+    <div class="stores-grid">
+      <div class="store-card">
+        <div>
+          <span class="store-city-badge">
+            <span class="txt-ar">الرياض</span>
+            <span class="txt-en">Riyadh</span>
+          </span>
+          <h3 class="store-name">
+            <span class="txt-ar">أتيليه وعد العقيلي الرئيسي للهوت كوتور</span>
+            <span class="txt-en">Riyadh Flagship Haute Couture Atelier</span>
+          </h3>
+          <p class="store-location">
+            <span class="txt-ar">طريق الملك عبدالعزيز، حي الياسمين، الرياض، المملكة العربية السعودية</span>
+            <span class="txt-en">King Abdulaziz Road, Al Yasmin, Riyadh, Saudi Arabia</span>
+          </p>
+          <p class="store-hours">Sat - Thu: 1:00 PM - 10:00 PM (By Private Appointment)</p>
+        </div>
+        <div class="store-actions">
+          <a href="tel:0535554889" class="store-phone">0535554889</a>
+          <a href="javascript:void(0)" onclick="window.app.openBookingModal()" class="store-dir-btn">
+            <span class="txt-ar">حجز موعد قياس &larr;</span>
+            <span class="txt-en">Book Fitting &rarr;</span>
+          </a>
+        </div>
+      </div>
+      <div class="store-card">
+        <div>
+          <span class="store-city-badge">
+            <span class="txt-ar">جدة</span>
+            <span class="txt-en">Jeddah</span>
+          </span>
+          <h3 class="store-name">
+            <span class="txt-ar">صالون وعد العقيلي للعرائس وكبار الشخصيات</span>
+            <span class="txt-en">Jeddah VIP Bridal Salon</span>
+          </h3>
+          <p class="store-location">
+            <span class="txt-ar">طريق الأمير سلطان، حي الروضة، جدة</span>
+            <span class="txt-en">Prince Sultan Road, Al Rawdah, Jeddah</span>
+          </p>
+          <p class="store-hours">Sat - Thu: 2:00 PM - 10:30 PM (Private Bridal Consultations)</p>
+        </div>
+        <div class="store-actions">
+          <a href="tel:96656095439" class="store-phone">+966 56 095 439</a>
+          <a href="javascript:void(0)" onclick="window.app.openBookingModal()" class="store-dir-btn">
+            <span class="txt-ar">حجز موعد قياس &larr;</span>
+            <span class="txt-en">Book Fitting &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {get_footer_html()}
+  {get_drawer_html()}
+  {get_modals_html()}
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {{
+      if (window.feather) feather.replace();
+
+      const cursor = document.getElementById('customCursor');
+      if (cursor && window.innerWidth > 900) {{
+        document.addEventListener('mousemove', (e) => {{
+          cursor.style.transform = `translate3d(${{e.clientX}}px, ${{e.clientY}}px, 0)`;
+        }});
+        document.querySelectorAll('a, button, .product-card').forEach(el => {{
+          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        }});
+      }}
+    }});
+  </script>
+</body>
+</html>
+'''
+
+# =========================================================================
+# BUILD 2: collections.html (Dedicated 105 Gowns Catalog Page with All 9 Collections)
+# =========================================================================
+collections_html = f'''<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waad Aloqaili | جميع فساتين ومجموعات البوتيك</title>
+  <meta name="description" content="استكشفي كافة فساتين الهوت كوتور والزفاف والسهرة والملكة من دار وعد العقيلي بالرياض.">
+  <meta name="theme-color" content="#2C1A48">
+  
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    body[data-lang="ar"] .txt-en {{ display: none !important; }}
+    body[data-lang="ar"] .txt-ar {{ display: inline !important; }}
+    body[data-lang="ar"] span.txt-ar, body[data-lang="ar"] p.txt-ar, body[data-lang="ar"] div.txt-ar, body[data-lang="ar"] h1.txt-ar, body[data-lang="ar"] h2.txt-ar, body[data-lang="ar"] h3.txt-ar, body[data-lang="ar"] h4.txt-ar {{ display: block !important; }}
+
+    body[data-lang="en"] .txt-ar {{ display: none !important; }}
+    body[data-lang="en"] .txt-en {{ display: inline !important; }}
+    body[data-lang="en"] span.txt-en, body[data-lang="en"] p.txt-en, body[data-lang="en"] div.txt-en, body[data-lang="en"] h1.txt-en, body[data-lang="en"] h2.txt-en, body[data-lang="en"] h3.txt-en, body[data-lang="en"] h4.txt-en {{ display: block !important; }}
+
+    .catalog-page-hero {{
+      background: var(--color-brand-purple-deep);
+      color: #FFF;
+      padding: 4.5rem 2rem 3.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--color-border-dark);
+    }}
+    .catalog-page-title {{
+      font-family: var(--font-couture);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }}
+    .catalog-page-subtitle {{
+      font-size: 1.1rem;
+      color: var(--color-accent-gold-light);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }}
+
+    .category-chips-list {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }}
+  </style>
+</head>
+<body data-lang="ar">
+
+  <div class="custom-cursor" id="customCursor"></div>
+
+  {get_header_html("collections")}
+
+  <!-- Dedicated Catalog Hero Banner -->
+  <section class="catalog-page-hero">
+    <span style="font-size:0.82rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:0.6rem;">HAUTE COUTURE CATALOG</span>
+    <h1 class="catalog-page-title" id="catalogHeroMainTitle">
+      <span class="txt-ar">جميع فساتين البوتيك</span>
+      <span class="txt-en">Complete Gowns Boutique</span>
+    </h1>
+    <p class="catalog-page-subtitle" id="catalogHeroSubTitle">
+      <span class="txt-ar">تشكيلة شاملة من أحدث تصاميم الهوت كوتور، فساتين الزفاف الملكية، والسهرة الراقية الحصرية.</span>
+      <span class="txt-en">Explore the full collection of handcrafted haute couture, royal bridal gowns, and exquisite evening wear.</span>
+    </p>
+  </section>
+
+  <!-- Complete 105 Gowns Boutique Catalog Section -->
+  <main class="catalog-section" id="catalog" style="padding-top:3.5rem;">
+    <div class="catalog-header-bar">
+      <div class="catalog-info">
+        <h2 class="catalog-title" id="catalogSectionTitle">
+          <span class="txt-ar">كافة تصاميم البوتيك</span>
+          <span class="txt-en">All Boutique Designs</span>
+        </h2>
+        <span class="catalog-count" id="productCountLabel">
+          <span class="txt-ar">{len(products)} فستان كوتور</span>
+          <span class="txt-en">{len(products)} Masterpieces</span>
+        </span>
+      </div>
+
+      <div class="catalog-controls">
+        <div class="luxury-filter-dropdown-container" id="luxuryFilterDropdownContainer" style="position:relative; display:inline-block;">
+          <button class="luxury-dropdown-btn" id="luxuryDropdownBtn" onclick="window.app.toggleFilterDropdown(event)" style="background:#FFFFFF; border:1.5px solid var(--color-brand-purple); color:var(--color-brand-purple); padding:0.85rem 1.6rem; font-size:0.92rem; font-weight:800; display:flex; align-items:center; gap:0.8rem; cursor:pointer; box-shadow:var(--shadow-card); transition:all 0.2s;">
+            <i data-feather="filter" style="width:16px;height:16px; color:var(--color-accent-gold);"></i>
+            <span id="selectedCategoryLabel">
+              <span class="txt-ar">كافة تصاميم البوتيك (105 فستان)</span>
+              <span class="txt-en">All Boutique Designs (105)</span>
+            </span>
+            <i data-feather="chevron-down" id="dropdownChevronIcon" style="width:16px;height:16px; margin-inline-start:0.5rem; transition:transform 0.2s;"></i>
+          </button>
+
+          <div class="luxury-dropdown-menu" id="luxuryDropdownMenu" style="display:none; position:absolute; top:calc(100% + 8px); right:0; min-width:300px; max-width:340px; background:#FFFFFF; border:1.5px solid var(--color-brand-purple); box-shadow:0 20px 50px rgba(44, 26, 72, 0.22); z-index:1000; max-height:420px; overflow-y:auto; padding:0.5rem 0;">
+            <a href="javascript:void(0)" class="dropdown-collection-item active" onclick="window.app.selectCategoryFromDropdown('all', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">كافة تصاميم البوتيك (105 فستان)</span>
+              <span class="txt-en">All Boutique Designs (105)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('yamal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">مجموعة يمال SS26 (29 فستان)</span>
+              <span class="txt-en">Yamal SS26 Collection (29)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('veil-of-renewal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">حجاب التجدد Veil of Renewal (22)</span>
+              <span class="txt-en">Veil of Renewal Collection (22)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('elan-vital', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">إيلان فيتال Élan vital (14)</span>
+              <span class="txt-en">Élan vital Capsule (14)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('out-of-the-chrysalis', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">مجموعة كريساليث Chrysalis (11)</span>
+              <span class="txt-en">Out of the Chrysalis (11)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('joy', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">مجموعة جوي Joy (10)</span>
+              <span class="txt-en">Joy Collection (10)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('celestia', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">سيليستيا الملكية Celestia (7)</span>
+              <span class="txt-en">Celestia Royal (7)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('into-the-dawn', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">إنتو ذا دون Into the Dawn (6)</span>
+              <span class="txt-en">Into the Dawn (6)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('bridal', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">فساتين الزفاف الملكية (32)</span>
+              <span class="txt-en">Royal Bridal Gowns (32)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('soiree', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">فساتين السهرة والمناسبات (37)</span>
+              <span class="txt-en">Soirée & Evening (37)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('engagement', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700; border-bottom:1px solid var(--color-border);">
+              <span class="txt-ar">فساتين الخطوبة والملكة (38)</span>
+              <span class="txt-en">Engagement & Melka (38)</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-collection-item" onclick="window.app.selectCategoryFromDropdown('couture', this)" style="display:block; padding:0.85rem 1.4rem; color:var(--color-brand-purple); text-decoration:none; font-size:0.88rem; font-weight:700;">
+              <span class="txt-ar">إصدارات الهوت كوتور (105)</span>
+              <span class="txt-en">Haute Couture Editions (105)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 105 Full Boutique Gowns Grid -->
+    <div class="products-grid" id="fullBoutiqueGrid">
+      {all_cards_str}
+    </div>
+  </main>
+
+  {get_footer_html()}
+  {get_drawer_html()}
+  {get_modals_html()}
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {{
+      if (window.feather) feather.replace();
+
+      // Check URL search params for category
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('cat');
+      if (catParam) {{
+        window.app.filterGownsByCat(catParam);
+      }}
+
+      const cursor = document.getElementById('customCursor');
+      if (cursor && window.innerWidth > 900) {{
+        document.addEventListener('mousemove', (e) => {{
+          cursor.style.transform = `translate3d(${{e.clientX}}px, ${{e.clientY}}px, 0)`;
+        }});
+        document.querySelectorAll('a, button, .product-card').forEach(el => {{
+          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        }});
+      }}
+    }});
+  </script>
+</body>
+</html>
+'''
+
+# Write index.html and collections.html
+with open(r'C:\Users\o3v7g\.gemini\antigravity-ide\scratch\1886-riyadh-fashion\index.html', 'w', encoding='utf-8') as f:
+    f.write(index_html)
+
+with open(r'C:\Users\o3v7g\.gemini\antigravity-ide\scratch\1886-riyadh-fashion\collections.html', 'w', encoding='utf-8') as f:
+    f.write(collections_html)
+
+print("Master Clean System generated index.html and collections.html with all 9 collections successfully!")
