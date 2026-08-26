@@ -1159,7 +1159,7 @@
   <!-- DRAWER BACKDROP -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="window.app.closeDrawers()"></div>
 
-      <!-- RIGHT NAVIGATION DRAWER -->
+        <!-- RIGHT NAVIGATION DRAWER -->
   <aside class="slide-drawer drawer-right" id="rightNavDrawer" aria-label="Main Navigation Menu">
     <div class="drawer-header">
       <div style="display:flex; align-items:center; gap:0.8rem;">
@@ -1193,7 +1193,7 @@
         <span class="txt-ar">التنقل الرئيسي</span>
         <span class="txt-en">Primary Navigation</span>
       </div>
-      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
+      <ul class="drawer-nav-list" style="margin-bottom:1.5rem;">
         <li class="drawer-nav-item">
           <a href="index.html" class="drawer-nav-link" onclick="window.app.closeDrawers()">
             <span>
@@ -1240,90 +1240,137 @@
         </li>
       </ul>
 
-      <!-- 2. Couture Collections -->
-      <div class="drawer-section-title">
-        <i data-feather="feather" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">كوتور</span>
-        <span class="txt-en">Couture</span>
-      </div>
-      <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
-        <a href="collections.html?cat=yamal" class="drawer-col-pill">
-          <span><span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span></span>
-          <span class="drawer-col-badge">29</span>
-        </a>
-        <a href="collections.html?cat=veil-of-renewal" class="drawer-col-pill">
-          <span><span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span></span>
-          <span class="drawer-col-badge">22</span>
-        </a>
-        <a href="collections.html?cat=into-the-dawn" class="drawer-col-pill">
-          <span><span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span></span>
-          <span class="drawer-col-badge">6</span>
-        </a>
-        <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-col-pill">
-          <span><span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span></span>
-          <span class="drawer-col-badge">11</span>
-        </a>
-        <a href="collections.html?cat=elan-vital" class="drawer-col-pill">
-          <span><span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span></span>
-          <span class="drawer-col-badge">14</span>
-        </a>
-        <a href="collections.html?cat=celestia" class="drawer-col-pill">
-          <span><span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span></span>
-          <span class="drawer-col-badge">7</span>
-        </a>
-        <a href="collections.html?cat=joy" class="drawer-col-pill">
-          <span><span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span></span>
-          <span class="drawer-col-badge">10</span>
-        </a>
+      <!-- 2. Accordion: Couture Collections -->
+      <div class="drawer-accordion-box">
+        <button class="drawer-accordion-header active" onclick="window.app.toggleDrawerAccordion('accCouture', this)">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <i data-feather="feather" style="width:15px;height:15px; color:var(--color-accent-gold);"></i>
+            <span>
+              <span class="txt-ar">مجموعات الكوتور (Couture)</span>
+              <span class="txt-en">Couture Collections</span>
+            </span>
+          </div>
+          <i data-feather="chevron-down" class="accordion-icon"></i>
+        </button>
+        <div class="drawer-accordion-content active" id="accCouture">
+          <ul class="drawer-sub-list">
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=yamal" class="drawer-sub-link">
+                <span><span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span></span>
+                <span class="drawer-col-badge">29</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=veil-of-renewal" class="drawer-sub-link">
+                <span><span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span></span>
+                <span class="drawer-col-badge">22</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=into-the-dawn" class="drawer-sub-link">
+                <span><span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span></span>
+                <span class="drawer-col-badge">6</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-sub-link">
+                <span><span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span></span>
+                <span class="drawer-col-badge">11</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=elan-vital" class="drawer-sub-link">
+                <span><span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span></span>
+                <span class="drawer-col-badge">14</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=celestia" class="drawer-sub-link">
+                <span><span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span></span>
+                <span class="drawer-col-badge">7</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=joy" class="drawer-sub-link">
+                <span><span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span></span>
+                <span class="drawer-col-badge">10</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <!-- 3. Ready to Wear -->
-      <div class="drawer-section-title">
-        <i data-feather="sparkles" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">جاهز للارتداء</span>
-        <span class="txt-en">Ready to Wear</span>
-      </div>
-      <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
-        <a href="collections.html?cat=soiree" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span></span>
-          <span class="drawer-col-badge">37</span>
-        </a>
-        <a href="collections.html?cat=bridal" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Royal Bridal</span></span>
-          <span class="drawer-col-badge">32</span>
-        </a>
-        <a href="collections.html?cat=engagement" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement</span></span>
-          <span class="drawer-col-badge">38</span>
-        </a>
+      <!-- 3. Accordion: Ready to Wear -->
+      <div class="drawer-accordion-box">
+        <button class="drawer-accordion-header active" onclick="window.app.toggleDrawerAccordion('accRTW', this)">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <i data-feather="sparkles" style="width:15px;height:15px; color:var(--color-accent-gold);"></i>
+            <span>
+              <span class="txt-ar">جاهز للارتداء (Ready to Wear)</span>
+              <span class="txt-en">Ready to Wear</span>
+            </span>
+          </div>
+          <i data-feather="chevron-down" class="accordion-icon"></i>
+        </button>
+        <div class="drawer-accordion-content active" id="accRTW">
+          <ul class="drawer-sub-list">
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=soiree" class="drawer-sub-link">
+                <span><span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span></span>
+                <span class="drawer-col-badge">37</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=bridal" class="drawer-sub-link">
+                <span><span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Royal Bridal</span></span>
+                <span class="drawer-col-badge">32</span>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="collections.html?cat=engagement" class="drawer-sub-link">
+                <span><span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement</span></span>
+                <span class="drawer-col-badge">38</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <!-- 4. Special VIP Services -->
-      <div class="drawer-section-title">
-        <i data-feather="star" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">الخدمات الخاصة وتجربة VIP</span>
-        <span class="txt-en">Special Services & VIP Experience</span>
+      <!-- 4. Accordion: VIP Experience & Services -->
+      <div class="drawer-accordion-box" style="margin-bottom:1.5rem;">
+        <button class="drawer-accordion-header" onclick="window.app.toggleDrawerAccordion('accVIP', this)">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <i data-feather="star" style="width:15px;height:15px; color:var(--color-accent-gold);"></i>
+            <span>
+              <span class="txt-ar">الخدمات الخاصة وتجربة VIP</span>
+              <span class="txt-en">Special Services & VIP</span>
+            </span>
+          </div>
+          <i data-feather="chevron-down" class="accordion-icon"></i>
+        </button>
+        <div class="drawer-accordion-content" id="accVIP">
+          <ul class="drawer-sub-list">
+            <li class="drawer-sub-item">
+              <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openBookingModal();" class="drawer-sub-link">
+                <span>
+                  <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
+                  <span class="txt-en">Book Private Atelier Fitting</span>
+                </span>
+                <i data-feather="calendar" style="width:15px;height:15px; opacity:0.6;"></i>
+              </a>
+            </li>
+            <li class="drawer-sub-item">
+              <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openAiStylistModal();" class="drawer-sub-link">
+                <span>
+                  <span class="txt-ar">مستشارة المظهر بالذكاء الاصطناعي</span>
+                  <span class="txt-en">AI Couture Stylist</span>
+                </span>
+                <i data-feather="cpu" style="width:15px;height:15px; color:var(--color-accent-gold);"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
-        <li class="drawer-nav-item">
-          <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openBookingModal();" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
-              <span class="txt-en">Book Private Atelier Fitting</span>
-            </span>
-            <i data-feather="calendar" style="width:16px;height:16px; opacity:0.6;"></i>
-          </a>
-        </li>
-        <li class="drawer-nav-item">
-          <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openAiStylistModal();" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">مستشارة المظهر بالذكاء الاصطناعي</span>
-              <span class="txt-en">AI Couture Stylist</span>
-            </span>
-            <i data-feather="cpu" style="width:16px;height:16px; color:var(--color-accent-gold);"></i>
-          </a>
-        </li>
-      </ul>
 
       <!-- 5. Language Settings -->
       <div class="drawer-section-title">
@@ -1331,7 +1378,7 @@
         <span class="txt-ar">اختيار اللغة (Language)</span>
         <span class="txt-en">Language Settings</span>
       </div>
-      <div style="display:flex; gap:0.8rem; margin-bottom:1.8rem;">
+      <div style="display:flex; gap:0.8rem; margin-bottom:1.6rem;">
         <button class="btn-primary" onclick="window.app.setLanguage('ar')" style="flex:1; padding:0.85rem; font-size:0.85rem; border-radius:4px;">العربية (RTL)</button>
         <button class="btn-secondary" onclick="window.app.setLanguage('en')" style="flex:1; padding:0.85rem; font-size:0.85rem; background:#FFF; color:#000; border-color:#CCC; border-radius:4px;">English (LTR)</button>
       </div>
@@ -1356,6 +1403,7 @@
       </div>
     </div>
   </aside>
+
 
 
   <!-- CART DRAWER -->

@@ -2347,8 +2347,112 @@ body.theme-velvet-night .drawer-col-pill .drawer-col-badge {
   transition: opacity 0.2s ease;
 }
 
-.drawer-whatsapp-btn:hover {
-  opacity: 0.9;
+/* Drawer Accordion & Sub-items */
+.drawer-accordion-box {
+  margin-bottom: 0.5rem;
+}
+
+.drawer-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.95rem 0.2rem;
+  border: none;
+  background: transparent;
+  color: var(--color-brand-purple);
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+body.theme-velvet-night .drawer-accordion-header {
+  color: #FFFFFF;
+  border-bottom-color: #2C1647;
+}
+
+.drawer-accordion-header:hover {
+  color: var(--color-accent-gold);
+}
+
+.drawer-accordion-header .accordion-icon {
+  transition: transform 0.35s var(--ease-luxury);
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+.drawer-accordion-header.active {
+  color: var(--color-accent-gold);
+  border-bottom-color: transparent;
+}
+
+.drawer-accordion-header.active .accordion-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+  color: var(--color-accent-gold);
+}
+
+.drawer-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-luxury), opacity 0.3s ease;
+  opacity: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+body.theme-velvet-night .drawer-accordion-content {
+  border-bottom-color: #2C1647;
+}
+
+.drawer-accordion-content.active {
+  max-height: 700px;
+  opacity: 1;
+  padding-bottom: 0.8rem;
+}
+
+.drawer-sub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.drawer-sub-item {
+  margin: 0;
+}
+
+.drawer-sub-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.8rem;
+  color: var(--color-text-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.drawer-sub-link:hover {
+  background: var(--color-brand-purple-tint);
+  color: var(--color-brand-purple);
+  padding-inline-start: 1.2rem;
+}
+
+body.theme-velvet-night .drawer-sub-link {
+  color: #C8BFD4;
+}
+
+body.theme-velvet-night .drawer-sub-link:hover {
+  background: #231238;
+  color: var(--color-accent-gold);
 }
 
 /* Dark Mode Velvet Night support for Drawers */

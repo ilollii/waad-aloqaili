@@ -1628,6 +1628,21 @@
       }
       if (window.feather) feather.replace();
     },
+    toggleDrawerAccordion: function (id, headerEl) {
+      const content = document.getElementById(id);
+      if (!content) return;
+      const isOpen = content.classList.contains('active');
+      
+      // Toggle
+      if (isOpen) {
+        content.classList.remove('active');
+        if (headerEl) headerEl.classList.remove('active');
+      } else {
+        content.classList.add('active');
+        if (headerEl) headerEl.classList.add('active');
+      }
+      if (window.feather) feather.replace();
+    },
     handleNewsletter: function (form) {
       const input = form.querySelector('input');
       if (input && input.value) {
