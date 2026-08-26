@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waad Aloqaili | Under The Spotlight (تحت الأضواء)</title>
+  <meta name="description" content="إطلالات السجادة الحمراء وأغلفة المجلات العالمية لدار وعد العقيلي: مهرجان كان، الأوسكار، البندقية، جوائز Joy Awards، مجلة فوغ، وهاربرز بازار.">
+  <meta name="theme-color" content="#2C1A48">
+  
+  <meta property="og:title" content="Waad Aloqaili – Under The Spotlight">
+  <meta property="og:description" content="Red carpet moments and global press features from Cannes to the Oscars.">
+  <meta property="og:image" content="https://waadaloqaili.com/cdn/shop/files/Photo_21-05-2025_10_41_54_AM.jpg?width=1800">
+  
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    body[data-lang="ar"] .txt-en { display: none !important; }
+    body[data-lang="ar"] .txt-ar { display: inline !important; }
+    body[data-lang="ar"] span.txt-ar, body[data-lang="ar"] p.txt-ar, body[data-lang="ar"] div.txt-ar, body[data-lang="ar"] h1.txt-ar, body[data-lang="ar"] h2.txt-ar, body[data-lang="ar"] h3.txt-ar, body[data-lang="ar"] h4.txt-ar { display: block !important; }
+
+    body[data-lang="en"] .txt-ar { display: none !important; }
+    body[data-lang="en"] .txt-en { display: inline !important; }
+    body[data-lang="en"] span.txt-en, body[data-lang="en"] p.txt-en, body[data-lang="en"] div.txt-en, body[data-lang="en"] h1.txt-en, body[data-lang="en"] h2.txt-en, body[data-lang="en"] h3.txt-en, body[data-lang="en"] h4.txt-en { display: block !important; }
+
+    .spotlight-hero-header {
+      background: var(--color-brand-purple-deep);
+      color: #FFFFFF;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border-dark);
+    }
+    .spotlight-hero-title {
+      font-family: var(--font-couture);
+      font-size: clamp(1.8rem, 4.8vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      line-height: 1.25;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .spotlight-hero-subtitle {
+      font-size: clamp(0.92rem, 2vw, 1.18rem);
+      color: var(--color-accent-gold-light);
+      max-width: 850px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .spotlight-feed-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 3.5rem;
+    }
+    @media (max-width: 768px) {
+      .spotlight-hero-header {
+        padding: 3.5rem 1.2rem 3rem;
+      }
+      .spotlight-hero-title {
+        font-size: clamp(1.5rem, 5.5vw, 2.5rem);
+        margin-bottom: 0.8rem;
+      }
+      .spotlight-hero-subtitle {
+        font-size: clamp(0.88rem, 2.4vw, 1.05rem);
+        margin-bottom: 1.5rem;
+      }
+      .spotlight-feed-container {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+        gap: 2rem;
+      }
+      .spotlight-story-content {
+        padding: 1.4rem 1.1rem;
+      }
+      .spotlight-story-title {
+        font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+        line-height: 1.35;
+        margin-bottom: 0.7rem;
+      }
+    }
+
+    .spotlight-story-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s var(--ease-luxury);
+    }
+    .spotlight-story-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-floating);
+      border-color: var(--color-accent-gold);
+    }
+
+    .spotlight-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #140B24;
+    }
+    .spotlight-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-luxury);
+    }
+    .spotlight-story-card:hover .spotlight-main-img {
+      transform: scale(1.04);
+    }
+    .spotlight-date-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(18, 8, 32, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--color-accent-gold);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(223, 186, 115, 0.3);
+    }
+
+    .spotlight-story-content {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .spotlight-category-tag {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-gold);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .spotlight-story-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-weight: 800;
+      color: var(--color-brand-purple);
+      margin-bottom: 1rem;
+      line-height: 1.35;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .spotlight-story-desc {
+      font-size: clamp(0.88rem, 1.6vw, 0.95rem);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+      flex: 1;
+      overflow-wrap: break-word;
+    }
+    .spotlight-story-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--color-border);
+      padding-top: 1.2rem;
+    }
+  </style>
+</head>
+<body data-lang="ar">
+
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-meta">
+      <span style="font-weight:800; color:var(--color-accent-gold);">
+        <span class="txt-ar">المملكة العربية السعودية</span>
+        <span class="txt-en">Saudi Arabia</span>
+      </span>
+      <select class="currency-select" id="currencySelect" aria-label="Select Currency" style="margin-inline-start:1rem;">
+        <option value="SAR" selected>SAR (ر.س)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="AED">AED (د.إ)</option>
+        <option value="KWD">KWD (د.ك)</option>
+        <option value="QAR">QAR (ر.ق)</option>
+      </select>
+    </div>
+
+    <div class="announcement-slider" id="announcementSlider">
+      <span class="announcement-item active">
+        <span class="txt-ar">تحت الأضواء: إطلالات السجادة الحمراء وأغلفة المجلات العالمية لدار وعد العقيلي</span>
+        <span class="txt-en">Under The Spotlight: Global Red Carpet Moments & International Press</span>
+      </span>
+      <span class="announcement-item">
+        <span class="txt-ar">توصيل ملكي فاخر مجاني لجميع مناطق المملكة وكافة دول العالم</span>
+        <span class="txt-en">Complimentary White-Glove Couture Delivery Across Saudi Arabia & Worldwide</span>
+      </span>
+    </div>
+
+    <div class="announcement-meta" style="display:flex; align-items:center; gap:1.2rem;">
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="window.app.toggleVelvetTheme()" aria-label="Toggle Velvet Mode">
+        <i data-feather="moon" id="themeIcon" style="width:14px;height:14px; color:var(--color-accent-gold);"></i>
+        <span id="themeLabel">
+          <span class="txt-ar">الوضع الملكي</span>
+          <span class="txt-en">Velvet Mode</span>
+        </span>
+      </button>
+
+      <button class="lang-btn" id="langToggleBtn" onclick="window.app.toggleLanguage()" aria-label="Switch Language">
+        <i data-feather="globe" style="width:14px;height:14px;"></i>
+        <span id="langLabel">
+          <span class="txt-ar">English</span>
+          <span class="txt-en">العربية</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-left">
+      <button class="menu-toggle-btn" id="rightNavToggleBtn" onclick="window.app.openRightNav()" aria-label="Open Menu">
+        <div class="hamburger-lines" aria-hidden="true">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </div>
+        <span class="menu-btn-label">
+          <span class="txt-ar">القائمة والتصنيفات</span>
+          <span class="txt-en">Menu & Navigation</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Center Brand Logo -->
+    <div class="brand-logo-container">
+      <a href="index.html" class="brand-logo-link">
+        <img src="logo.svg" alt="Waad Aloqaili Emblem" style="height:32px; width:auto; margin-bottom:2px;">
+        <span class="brand-logo-text" id="brandLogo">Waad Aloqaili</span>
+      </a>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-right">
+      <button class="header-icon-btn" id="searchTriggerBtn" onclick="window.app.openSearch()" aria-label="Search" title="Search">
+        <i data-feather="search"></i>
+      </button>
+
+      <button class="header-icon-btn" id="wishlistTriggerBtn" onclick="window.app.openWishlist()" aria-label="Wishlist" title="Wishlist">
+        <i data-feather="heart"></i>
+        <span class="icon-badge" id="wishlistCountBadge">0</span>
+      </button>
+
+      <button class="header-icon-btn" id="cartTriggerBtn" onclick="window.app.openCart()" aria-label="Cart" title="Cart">
+        <i data-feather="shopping-bag"></i>
+        <span class="icon-badge" id="cartCountBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Spotlight Header -->
+  <section class="spotlight-hero-header">
+    <span style="font-size:0.85rem; font-weight:900; letter-spacing:0.25em; color:var(--color-accent-gold); display:block; margin-bottom:0.8rem;">EDITORIAL & CELEBRITY RED CARPET</span>
+    <h1 class="spotlight-hero-title">
+      <span class="txt-en">Under The Spotlight</span>
+      <span class="txt-ar">تحت الأضواء (Under The Spotlight)</span>
+    </h1>
+    <p class="spotlight-hero-subtitle">
+      <span class="txt-en">From the prestigious red carpets of Cannes, Venice, and the Academy Awards to iconic covers of Vogue and Harper’s Bazaar — explore how Waad Aloqaili Couture illuminates the global stage.</span>
+      <span class="txt-ar">من أعرق المحافل والمهرجانات العالمية في كان، البندقية، والأوسكار إلى أغلفة مجلات الموضة الأيقونية مثل فوغ وهاربرز بازار — استكشفي حضور دار وعد العقيلي على السجادة الحمراء العالمية.</span>
+    </p>
+    <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
+      <a href="collections.html" class="btn-primary shimmer-gold-effect" style="padding:1rem 2.4rem;">
+        <span class="txt-ar">تسوقي فساتين السجادة الحمراء &larr;</span>
+        <span class="txt-en">Shop Red Carpet Gowns &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Spotlight Articles & Events Grid (All 20 Official Events) -->
+  <main class="spotlight-feed-container">
+    
+    <!-- 1. Marina Ruy Barbosa -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_21-05-2025_10_41_54_AM.jpg?width=1800" alt="Marina Ruy Barbosa in Waad Aloqaili Couture" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CELEBRITY RED CARPET</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">Marina Ruy Barbosa in Waad Aloqaili Couture</span>
+          <span class="txt-ar">النجمة العالمية مارينا روي باربوسا بفستان وعد العقيلي كوتور</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">International actress and fashion icon Marina Ruy Barbosa captivates on the red carpet in a sculpted haute couture creation hand-embroidered with crystals by Waad Aloqaili.</span>
+          <span class="txt-ar">تألقت النجمة العالمية وأيقونة الموضة مارينا روي باربوسا على السجادة الحمراء بفستان هوت كوتور منحوت بتطريز كريستالي يدوي متقن من دار وعد العقيلي.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. The 79th Cannes -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/038A6BF2-CF4C-45F4-8747-76F0DEE93B2D.jpg?width=1800" alt="THE 79TH EDITION OF THE CANNES FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2026</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CANNES FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">THE 79TH EDITION OF THE CANNES FILM FESTIVAL</span>
+          <span class="txt-ar">الدورة الـ 79 لمهرجان كان السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Waad Aloqaili Couture illuminated the red carpet at the 79th Cannes Film Festival with breathtaking bespoke silhouettes reflecting the essence of modern royal couture.</span>
+          <span class="txt-ar">سحرت إبداعات دار وعد العقيلي الحضور على السجادة الحمراء لمهرجان كان السينمائي الدولي الـ 79 بتصاميم كوتور ملكية تجسد أسمى معايير الحرفية الراقية.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. The 6th Joy Awards -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_17-01-2026_8_08_06_PM.jpg?width=1800" alt="THE 6TH EDITION OF THE JOY AWARDS (2026)" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">January 2026</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">JOY AWARDS</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">THE 6TH EDITION OF THE JOY AWARDS</span>
+          <span class="txt-ar">الدورة السادسة لحفل جوائز صنّاع الترفيه (Joy Awards 2026)</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Celebrated international and regional icons graced the lavender carpet in exquisite bespoke gowns, merging royal drama with shimmering crystal embroidery.</span>
+          <span class="txt-ar">تألقت نجمات الفن والمشاهير بإبداعات دار وعد العقيلي على السجادة اللافندرية لحفل جوائز Joy Awards، في تصاميم كوتور خاصة عكست الفخامة الملكية والتطريز اليدوي الدقيق.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. 5th Red Sea Film Festival -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_11-12-2025_7_57_01_PM_1_1.jpg?width=1800" alt="THE 5TH EDITION OF THE RED SEA FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">December 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">RED SEA FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">THE 5TH EDITION OF THE RED SEA FILM FESTIVAL</span>
+          <span class="txt-ar">الدورة الخامسة لمهرجان البحر الأحمر السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">For the 5th Red Sea Film Festival in historic Jeddah, Waad Aloqaili Couture presented standout creations celebrating maritime heritage, rich silk taffeta, and oceanic elegance.</span>
+          <span class="txt-ar">في قلب جدة التاريخية، قدمت دار وعد العقيلي إطلالات استثنائية على السجادة الحمراء استلهمت سحر البحر الأحمر وعراقة التراث السعودي بأقمشة التافتا والحرير الإيطالي الفاخر.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Third Edition Riyadh Fashion Week -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_19-02-2026_11_56_31_AM_4_1.jpg?width=1800" alt="THE THIRD EDITION OF RIYADH FASHION WEEK" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">October 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">RIYADH FASHION WEEK</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">THE THIRD EDITION OF RIYADH FASHION WEEK</span>
+          <span class="txt-ar">أسبوع الموضة بالرياض – الدورة الثالثة</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">A breathtaking runway showcase by Waad Aloqaili featuring the Spring/Summer 2026 Yamal couture collection, paying homage to Saudi Arabia's pearl diving heritage.</span>
+          <span class="txt-ar">عرض أزياء ساحر خطف أنظار الصحافة العالمية في أسبوع الموضة بالرياض، مستعرضاً مجموعة 'يمال' لربيع وصيف 2026 المستوحاة من تراث الغوص واللؤلؤ السعودي.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. The 78th Annual Cannes -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_21-05-2025_10_41_54_AM.jpg?width=1800" alt="THE 78TH ANNUAL CANNES FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CANNES FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">THE 78TH ANNUAL CANNES FILM FESTIVAL</span>
+          <span class="txt-ar">الدورة الـ 78 لمهرجان كان السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">At the 78th Annual Cannes Film Festival, Waad Aloqaili Couture unveiled exquisite creations reflecting the house's refined mastery on the world's most watched red carpet.</span>
+          <span class="txt-ar">على السجادة الحمراء لقصر المهرجانات في كان، أبهرت تصاميم وعد العقيلي عدسات الإعلام الدولي بحرفيتها الاستثنائية وتطريزها الملكي المتفرد.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. December 2024 Harper's Bazaar -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/harpersbazaararabia.jpg?width=1800" alt="DECEMBER 2024 ISSUE OF HARPER’S BAZAAR ARABIA" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">December 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">GLOBAL EDITORIAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">December 2024 Issue of Harper’s Bazaar Arabia</span>
+          <span class="txt-ar">مجلة هاربرز بازار العربية – غلاف وإصدار ديسمبر 2024</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">A dedicated editorial tribute celebrating the artisanal craftsmanship, empowerment, and visionary haute couture architecture of designer Waad Aloqaili.</span>
+          <span class="txt-ar">جلسة تصوير تحريرية واحتفاء خاص بفلسفة الدار وحرفيتها اليدوية في تمكين المرأة وصياغة لغة جديدة للهوت كوتور السعودي.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. 4th Red Sea Film Festival -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_30-09-2024_1_00_03_PM_1.jpg?width=1800" alt="THE 4TH EDITION OF THE RED SEA FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">December 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">RED SEA FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 4th Edition of the Red Sea Film Festival</span>
+          <span class="txt-ar">الدورة الرابعة لمهرجان البحر الأحمر السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Celebrity spotlights and red-carpet glamor honoring international cinema in tailored bespoke couture gowns by Waad Aloqaili.</span>
+          <span class="txt-ar">إطلالات ساحرة لنجمات السينما العالمية بفساتين كوتور حصرية صُممت لتواكب أرقى محافل الفن والسينما في جدة.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Second Edition Riyadh Fashion Week -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/gettyimages-2179532749-2048x2048.jpg?width=1800" alt="THE SECOND EDITION OF RIYADH FASHION WEEK" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">October 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">RIYADH FASHION WEEK</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The Second Edition of Riyadh Fashion Week</span>
+          <span class="txt-ar">أسبوع الموضة بالرياض – الدورة الثانية</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Debuting the Spring/Summer 'Veil of Renewal' collection with architectural dragonfly and lotus flower motif embroideries on the Riyadh runway.</span>
+          <span class="txt-ar">إطلاق مجموعة 'حجاب التجدد' على منصة عروض الرياض بتطريزات مستوحاة من زهور اللوتس وحركات اليعسوب الرشيقة.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. September 2024 Vogue Arabia -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_30-09-2024_1_00_03_PM_1.jpg?width=1800" alt="SEPTEMBER 2024 ISSUE OF VOGUE ARABIA" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">September 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">VOGUE COVER & EDITORIAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">September 2024 Issue of Vogue Arabia</span>
+          <span class="txt-ar">مجلة فوغ العربية – غلاف وإصدار سبتمبر 2024</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Supermodel and ocean advocate Candice Swanepoel draped in a bespoke Waad Aloqaili oceanic couture gown celebrating the enchanting depths of the Red Sea.</span>
+          <span class="txt-ar">عارضة الأزياء العالمية كانديس سوانبويل تتألق بفستان كوتور خاص من تصميم وعد العقيلي مستوحى من أعماق البحر الأحمر في جلسة تصوير عالمية لفوغ.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11. Billboard Arabia -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_30-09-2024_1_00_03_PM_2.jpg?width=1800" alt="BILLBOARD ARABIA RED CARPET" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">November 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">MUSIC AWARDS & RED CARPET</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">Billboard Arabia Red Carpet</span>
+          <span class="txt-ar">السجادة الحمراء لحفل بيلبورد عربية (Billboard Arabia)</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Ruba Tursun captivated the Billboard Arabia red carpet in Waad Aloqaili Couture SS25 'Veil of Renewal', showcasing sculptural silhouettes and delicate hand embroidery.</span>
+          <span class="txt-ar">إطلالة أيقونية لـ ربا طرسون على سجادة بيلبورد عربية بفستان كوتور استثنائي من مجموعة 'حجاب التجدد' عكس رشاقة القوام ودقة التطريز الكريستالي.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12. The 77th Cannes -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/41E697EA-3F9F-4576-9580-4109ABAEB621.jpg?width=1800" alt="THE 77TH ANNUAL CANNES FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CANNES FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 77th Annual Cannes Film Festival</span>
+          <span class="txt-ar">الدورة الـ 77 لمهرجان كان السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">International stars illuminated the French Riviera in bespoke creations crafted exclusively in the Riyadh ateliers of Waad Aloqaili.</span>
+          <span class="txt-ar">إطلالات ملكية زينت الريفييرا الفرنسية بتصاميم صُممت ونُفذت بالكامل بأيدي الحرفيين في أتيليه وعد العقيلي الرئيسي بالرياض.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 13. June 2025 Hia Magazine -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_30-09-2024_1_00_03_PM_2.jpg?width=1800" alt="JUNE 2025 ISSUE OF HIA MAGAZINE" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">June 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">MAGAZINE COVER</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">June 2025 Issue of Hia Magazine</span>
+          <span class="txt-ar">مجلة هي – عدد يونيو 2025 مع الفنانة كارمن سليمان</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Carmen Soliman graces the June cover of Hia Magazine celebrating Music Month in the breathtaking 'Symphony Gown' by Waad Aloqaili.</span>
+          <span class="txt-ar">الفنانة كارمن سليمان تتألق على غلاف مجلة هي بفستان 'السيمفونية' الساحر من دار وعد العقيلي احتفاءً بشهر الموسيقى والفن.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 14. The 96th Academy Awards (Oscars) -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/IMG_5506.jpg?width=1800" alt="THE 96TH ACADEMY AWARDS" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">March 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">THE OSCARS</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 96th Academy Awards</span>
+          <span class="txt-ar">حفل توزيع جوائز الأوسكار الـ 96 (The 96th Academy Awards)</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">On the prestigious red carpet of the 96th Academy Awards in Hollywood, international celebrity Ashley was draped in an exquisite bespoke gown by Waad Aloqaili.</span>
+          <span class="txt-ar">حضور سعودي مبهر في هوليوود على السجادة الحمراء لحفل الأوسكار الـ 96 بإطلالة كوتور فاخرة صنعت خصيصاً للحدث العالمي.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 15. The 6th Edition of the Saudi Cup -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/gettyimages-2188402057-2048x2048_060184e7-fc7c-4db8-8700-0ba6adbcd502.jpg?width=1800" alt="THE 6TH EDITION OF THE SAUDI CUP" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">February 2025</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">SAUDI CUP</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 6th Edition of the Saudi Cup</span>
+          <span class="txt-ar">الدورة السادسة لكأس السعودية العالمي للخيل</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Celebrating Saudi Arabia's Year of Handicrafts, an iconic ensemble mirroring cultural heritage, fine bisht embroidery, and timeless royal majesty.</span>
+          <span class="txt-ar">احتفاءً بعام الحرف اليدوية، تألقت إطلالات كأس السعودية بأزياء جسدت تطريز القصب والزري التراثي برؤية كوتور معاصرة.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 16. Joy Awards -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/Photo_17-01-2026_8_08_06_PM.jpg?width=1800" alt="JOY AWARDS" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">January 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">JOY AWARDS</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">Joy Awards</span>
+          <span class="txt-ar">حفل جوائز Joy Awards (صنّاع الترفيه)</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Prominent stars and artists illuminated the Joy Awards red carpet wearing handcrafted couture gowns by designer Waad Aloqaili.</span>
+          <span class="txt-ar">إطلالات كوتور مميزة لنجمات الشاشة العربية على سجادة Joy Awards في الرياض بتصاميم جمعت بين الفخامة والعصرية.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 17. The 80th Venice Film Festival -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/MS401475.jpg?width=1800" alt="THE 80TH VENICE FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">September 2023</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">VENICE FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 80th Venice Film Festival</span>
+          <span class="txt-ar">الدورة الـ 80 لمهرجان البندقية السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">The Venice red carpet bore witness to the mesmerizing enchantment of Waad Aloqaili Couture, celebrated for timeless elegance and Italian silk artistry.</span>
+          <span class="txt-ar">حضور ساحر على السجادة الحمراء لجزيرة الليدو بالبندقية في تصاميم هوت كوتور نالت إشادة واسعة من نقاد الموضة العالميين.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 18. The 76th Cannes -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/photo_06-05-2024_8_39_03_pm.jpg?width=1800" alt="THE 76TH EDITION OF THE CANNES FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2023</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CANNES FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 76th Edition of the Cannes Film Festival</span>
+          <span class="txt-ar">الدورة الـ 76 لمهرجان كان السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Spectacular red-carpet moments featuring hand-beaded crystalline capes and architectural draping by designer Waad Aloqaili.</span>
+          <span class="txt-ar">لحظات لا تُنسى في مهرجان كان السينمائي بتصاميم الكاب الكريستالي والدرابيه الهندسي المتقن.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 19. The 5th Edition of the Saudi Cup -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/gettyimages-2188402057-2048x2048_060184e7-fc7c-4db8-8700-0ba6adbcd502.jpg?width=1800" alt="THE 5TH EDITION OF THE SAUDI CUP" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">February 2024</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">SAUDI CUP</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 5th Edition of the Saudi Cup</span>
+          <span class="txt-ar">الدورة الخامسة لكأس السعودية للخيل</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">A celebration of authentic Saudi elegance and equestrian heritage with lavish bisht-inspired drapery and intricate artisanal beadwork.</span>
+          <span class="txt-ar">إطلالات كوتور احتفت بالتراث السعودي الأصيل ورياضة الفروسية بتصاميم مستوحاة من فخامة البشت والزخارف التراثية.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 20. The 75th Cannes -->
+    <article class="spotlight-story-card scroll-reveal">
+      <div class="spotlight-img-wrap">
+        <img src="https://waadaloqaili.com/cdn/shop/files/D78F1FE0-8B3E-4A54-9325-F6FBA5694E70_4.jpg?width=1800" alt="THE 75TH EDITION OF THE CANNES FILM FESTIVAL" class="spotlight-main-img" loading="lazy">
+        <span class="spotlight-date-badge">May 2022</span>
+      </div>
+      <div class="spotlight-story-content">
+        <span class="spotlight-category-tag">CANNES FILM FESTIVAL</span>
+        <h3 class="spotlight-story-title">
+          <span class="txt-en">The 75th Edition of the Cannes Film Festival</span>
+          <span class="txt-ar">الدورة الـ 75 لمهرجان كان السينمائي الدولي</span>
+        </h3>
+        <p class="spotlight-story-desc">
+          <span class="txt-en">Waad Aloqaili Couture House made a stunning impact at the star-studded 75th Annual Cannes Film Festival, marking a milestone for Saudi high fashion.</span>
+          <span class="txt-ar">البداية التاريخية لتألق الدار على السجادة الحمراء لمهرجان كان الـ 75 كواحدة من أوائل دور الأزياء السعودية الراقية المشاركة عالمياً.</span>
+        </p>
+        <div class="spotlight-story-footer">
+          <span style="font-size:0.8rem; font-weight:800; color:var(--color-brand-purple); letter-spacing:0.1em;">WAAD ALOQAILI COUTURE</span>
+          <a href="collections.html" class="campaign-read-more-link" style="font-size:0.8rem;">
+            <span class="txt-en">Explore Gowns &rarr;</span>
+            <span class="txt-ar">استكشاف الفساتين &larr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- High Fashion Press Publication Logos Section -->
+  <section class="press-logos-section">
+    <span class="press-logos-title">
+      <span class="txt-ar">تغطيات وإشادات الصحافة العالمية</span>
+      <span class="txt-en">AS FEATURED IN GLOBAL PUBLICATIONS</span>
+    </span>
+    
+    <div class="press-logos-grid">
+      
+      <!-- 1. VOGUE ARABIA -->
+      <div class="press-logo-card" title="VOGUE ARABIA">
+        <svg viewBox="0 0 200 48" class="press-svg-logo">
+          <text x="50%" y="30" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="34" letter-spacing="4" fill="currentColor">VOGUE</text>
+          <text x="50%" y="44" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="8.5" letter-spacing="6" fill="currentColor">ARABIA</text>
+        </svg>
+      </div>
+
+      <!-- 2. HARPER'S BAZAAR -->
+      <div class="press-logo-card" title="HARPER'S BAZAAR">
+        <svg viewBox="0 0 260 48" class="press-svg-logo">
+          <text x="50%" y="20" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="800" font-size="18" letter-spacing="6" fill="currentColor">HARPER'S</text>
+          <text x="50%" y="42" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="24" letter-spacing="8" fill="currentColor">BAZAAR</text>
+        </svg>
+      </div>
+
+      <!-- 3. L'OFFICIEL -->
+      <div class="press-logo-card" title="L'OFFICIEL">
+        <svg viewBox="0 0 200 48" class="press-svg-logo">
+          <text x="50%" y="33" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', serif" font-weight="900" font-size="28" letter-spacing="5" fill="currentColor">L'OFFICIEL</text>
+        </svg>
+      </div>
+
+      <!-- 4. HIA MAGAZINE -->
+      <div class="press-logo-card" title="HIA MAGAZINE">
+        <svg viewBox="0 0 180 48" class="press-svg-logo">
+          <text x="50%" y="25" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" letter-spacing="4" fill="currentColor">HIA</text>
+          <text x="50%" y="42" text-anchor="middle" font-family="'Cairo', sans-serif" font-weight="800" font-size="11" letter-spacing="2" fill="currentColor">مجلة هـي</text>
+        </svg>
+      </div>
+
+      <!-- 5. ELLE -->
+      <div class="press-logo-card" title="ELLE">
+        <svg viewBox="0 0 140 48" class="press-svg-logo">
+          <text x="50%" y="35" text-anchor="middle" font-family="'Bodoni Moda', 'Playfair Display', serif" font-weight="900" font-size="38" letter-spacing="6" fill="currentColor">ELLE</text>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer, Drawers, and Modals -->
+  <footer class="site-footer" id="footerSection">
+    <div class="footer-top" style="display:flex; justify-content:center; text-align:center;">
+      <!-- 1. Brand Info & Contact & Socials -->
+      <div class="footer-brand-info" style="max-width:680px; margin:0 auto; text-align:center;">
+        <div class="footer-brand-header" style="justify-content:center;">
+          <img src="logo.svg" alt="Waad Aloqaili Logo" style="height:36px; width:auto; filter:brightness(0) invert(1);">
+          <div>
+            <span class="footer-brand-title">WAAD ALOQAILI</span>
+            <span class="footer-brand-subtitle">HAUTE COUTURE ❘ RIYADH</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          <span class="txt-ar">دار أزياء سعودية رائدة في ابتكار أرقى تصاميم الهوت كوتور وفساتين السهرة الملكية المصنوعة يدوياً بأعلى معايير الفخامة والتميز العالمي.</span>
+          <span class="txt-en">A premier Saudi luxury fashion house crafting bespoke Haute Couture and royal red-carpet gowns with timeless master craftsmanship.</span>
+        </p>
+        <div class="footer-contact-info" style="justify-content:center;">
+          <a href="tel:0535554889" class="footer-contact-item">
+            <i data-feather="phone" style="width:15px;height:15px;"></i>
+            <span>0535554889</span>
+          </a>
+          <a href="https://wa.me/966115001585" target="_blank" rel="noopener" class="footer-contact-item">
+            <i data-feather="message-circle" style="width:15px;height:15px;"></i>
+            <span>+966 11 500 1585 (VIP Concierge)</span>
+          </a>
+          <span class="footer-contact-item">
+            <i data-feather="map-pin" style="width:15px;height:15px;"></i>
+            <span class="txt-ar">الرياض - طريق الملك عبدالعزيز، حي الياسمين</span>
+            <span class="txt-en">King Abdulaziz Rd, Al Yasmin, Riyadh</span>
+          </span>
+        </div>
+        <div class="footer-social-links" style="justify-content:center;">
+          <a href="https://instagram.com/waadaloqaili" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram" title="Instagram">
+            <i data-feather="instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@waadaloqaili" target="_blank" rel="noopener" class="social-icon-btn" aria-label="TikTok" title="TikTok">
+            <svg style="width:18px; height:18px; fill:currentColor;" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-3.04-1.52z"/></svg>
+          </a>
+          <a href="https://sa.linkedin.com/company/waadaloqaili" target="_blank" rel="noopener" class="social-icon-btn" aria-label="LinkedIn" title="LinkedIn">
+            <i data-feather="linkedin"></i>
+          </a>
+          <a href="https://wa.me/966115001585" target="_blank" rel="noopener" class="social-icon-btn" aria-label="WhatsApp" title="WhatsApp">
+            <i data-feather="message-circle"></i>
+          </a>
+          <a href="mailto:info@waadaloqaili.com" class="social-icon-btn" aria-label="Email" title="Email">
+            <i data-feather="mail"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial Registry & Saudi Business Center Official Verification Bar -->
+    <div class="footer-cr-verification-bar">
+      <div class="footer-cr-info">
+        <span class="cr-badge">✓ موثق رسمياً</span>
+        <span class="cr-text">
+          <span class="txt-ar">سجل تجاري: <strong>7006113000</strong> ❘ توثيق المركز السعودي للأعمال: <strong>0000007788</strong> (ساري حتى 16/09/2026)</span>
+          <span class="txt-en">Commercial Registry: <strong>7006113000</strong> ❘ Saudi Business Center Cert: <strong>0000007788</strong> (Valid until 16/09/2026)</span>
+        </span>
+      </div>
+      <button class="footer-cr-btn" onclick="window.app.openVerificationModal()">
+        <span class="txt-ar">عرض شهادة التوثيق المعتمدة &rarr;</span>
+        <span class="txt-en">View Official Certification &rarr;</span>
+      </button>
+    </div>
+
+    <!-- Minimal & Elegant Luxury Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p class="footer-copyright-main">© 2026 WAAD ALOQAILI HAUTE COUTURE. ALL RIGHTS RESERVED.</p>
+        <p class="footer-copyright-sub">
+          <span class="txt-ar">الرياض، المملكة العربية السعودية ❘ علامة تجارية مسجلة وموثقة رسمياً</span>
+          <span class="txt-en">Riyadh, Kingdom of Saudi Arabia ❘ Registered & Authenticated Trademark</span>
+        </p>
+      </div>
+      <div class="payment-badges-row">
+        <span class="pay-badge">MADA</span>
+        <span class="pay-badge">APPLE PAY</span>
+        <span class="pay-badge">TABBY</span>
+        <span class="pay-badge">TAMARA</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">MASTERCARD</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DRAWER BACKDROP -->
+  <div class="drawer-backdrop" id="drawerBackdrop" onclick="window.app.closeDrawers()"></div>
+
+  <!-- RIGHT NAVIGATION DRAWER -->
+  <aside class="slide-drawer drawer-right" id="rightNavDrawer" aria-label="Main Navigation Menu">
+    <div class="drawer-header">
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <img src="logo.svg" alt="Waad Aloqaili Logo" style="height:32px; width:auto;">
+        <div>
+          <h3 class="drawer-title" style="font-family:'Cormorant Garamond', serif; font-size:1.3rem; margin:0; line-height:1.2;">WAAD ALOQAILI</h3>
+          <span style="font-size:0.7rem; color:var(--color-accent-gold); letter-spacing:0.12em; text-transform:uppercase; display:block;">Haute Couture</span>
+        </div>
+      </div>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()" aria-label="Close Menu">&times;</button>
+    </div>
+
+    <div class="drawer-content">
+      <!-- Quick User Actions: Cart & Wishlist -->
+      <div class="drawer-quick-bar">
+        <a href="javascript:void(0)" onclick="window.app.openCart();" class="drawer-quick-btn">
+          <i data-feather="shopping-bag" style="width:16px;height:16px;"></i>
+          <span><span class="txt-ar">حقيبة التسوق</span><span class="txt-en">Cart</span></span>
+          <span class="quick-badge" id="menuCartBadge">0</span>
+        </a>
+        <a href="javascript:void(0)" onclick="window.app.openWishlist();" class="drawer-quick-btn">
+          <i data-feather="heart" style="width:16px;height:16px;"></i>
+          <span><span class="txt-ar">المفضلة</span><span class="txt-en">Wishlist</span></span>
+          <span class="quick-badge" id="menuWishlistBadge">0</span>
+        </a>
+      </div>
+
+      <!-- Primary Core Navigation -->
+      <div class="drawer-section-title">
+        <i data-feather="compass" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">التنقل الرئيسي</span>
+        <span class="txt-en">Primary Navigation</span>
+      </div>
+      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
+        <li class="drawer-nav-item">
+          <a href="index.html" class="drawer-nav-link" onclick="window.app.closeDrawers()">
+            <span>
+              <span class="txt-ar">الرئيسية</span>
+              <span class="txt-en">Home</span>
+            </span>
+            <i data-feather="home" style="width:16px;height:16px; opacity:0.6;"></i>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="collections.html" class="drawer-nav-link" onclick="window.app.navigateCollection('all')">
+            <span>
+              <span class="txt-ar">جميع فساتين البوتيك (105 فستان)</span>
+              <span class="txt-en">All Boutique Gowns (105)</span>
+            </span>
+            <span class="drawer-nav-badge">105</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Ready-to-Wear Category -->
+      <div class="drawer-section-title">
+        <i data-feather="sparkles" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">✨ جاهز للارتداء (READY-TO-WEAR)</span>
+        <span class="txt-en">✨ READY-TO-WEAR</span>
+      </div>
+      <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
+        <a href="collections.html?cat=soiree" class="drawer-col-pill" onclick="window.app.navigateCollection('soiree')">
+          <span><span class="txt-ar">فساتين السهرة</span><span class="txt-en">Soirée</span></span>
+        </a>
+        <a href="collections.html?cat=bridal" class="drawer-col-pill" onclick="window.app.navigateCollection('bridal')">
+          <span><span class="txt-ar">فساتين الزفاف</span><span class="txt-en">Bridal</span></span>
+        </a>
+        <a href="collections.html?cat=engagement" class="drawer-col-pill" onclick="window.app.navigateCollection('engagement')">
+          <span><span class="txt-ar">فساتين الخطوبة</span><span class="txt-en">Engagement</span></span>
+        </a>
+      </div>
+
+      <!-- Language Settings -->
+      <div class="drawer-section-title">
+        <i data-feather="globe" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">اختيار اللغة (Language)</span>
+        <span class="txt-en">Language Settings</span>
+      </div>
+      <div style="display:flex; gap:0.8rem; margin-bottom:1.8rem;">
+        <button class="btn-primary" onclick="window.app.setLanguage('ar')" style="flex:1; padding:0.85rem; font-size:0.85rem; border-radius:4px;">العربية (RTL)</button>
+        <button class="btn-secondary" onclick="window.app.setLanguage('en')" style="flex:1; padding:0.85rem; font-size:0.85rem; background:#FFF; color:#000; border-color:#CCC; border-radius:4px;">English (LTR)</button>
+      </div>
+
+      <!-- VIP Concierge Contact -->
+      <div class="drawer-section-title">
+        <i data-feather="phone" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">الأتيليه وخدمة العملاء</span>
+        <span class="txt-en">Atelier & VIP Concierge</span>
+      </div>
+      <div class="drawer-concierge-card">
+        <p style="font-size:0.82rem; font-weight:800; color:var(--color-accent-gold); margin-bottom:0.2rem;">VIP Atelier Concierge:</p>
+        <p style="font-size:0.8rem; color:#777; margin-bottom:0.6rem;">الرياض - طريق الملك عبدالعزيز، حي الياسمين</p>
+        <a href="tel:0535554889" class="drawer-concierge-btn">
+          <i data-feather="phone-call" style="width:15px;height:15px;"></i>
+          <span>اتصال مباشر: 0535554889</span>
+        </a>
+        <a href="https://wa.me/966535554889" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
+          <i data-feather="message-circle" style="width:15px;height:15px;"></i>
+          <span>محادثة واتساب VIP</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CART DRAWER -->
+  <aside class="slide-drawer drawer-left" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <span class="txt-ar">حقيبة التسوق</span>
+        <span class="txt-en">Shopping Bag</span>
+        (<span id="cartDrawerCount">0</span>)
+      </h3>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div class="free-shipping-progress-box">
+        <p class="shipping-progress-text" id="shippingProgressText">
+          <span class="txt-ar">تم تفعيل التوصيل الملكي المجاني لطلبك</span>
+          <span class="txt-en">Complimentary White-Glove Delivery Activated</span>
+        </p>
+        <div class="shipping-progress-bar">
+          <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div class="cart-items-list" id="cartItemsList"></div>
+    </div>
+    <div class="drawer-footer" id="cartDrawerFooter">
+      <div class="cart-summary-line">
+        <span>
+          <span class="txt-ar">المجموع الفرعي</span>
+          <span class="txt-en">Subtotal</span>
+        </span>
+        <span id="cartSubtotalVal">0 SR</span>
+      </div>
+      <div class="cart-summary-line cart-summary-total">
+        <span>
+          <span class="txt-ar">الإجمالي</span>
+          <span class="txt-en">Total</span>
+        </span>
+        <span id="cartTotalVal">0 SR</span>
+      </div>
+      <button class="drawer-checkout-btn" onclick="window.app.openCheckout()">
+        <span class="txt-ar">إتمام الطلب والدفع الآمن &rarr;</span>
+        <span class="txt-en">Proceed to Secure Checkout &rarr;</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- WISHLIST DRAWER -->
+  <aside class="slide-drawer drawer-left" id="wishlistDrawer" aria-label="Saved Items">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <span class="txt-ar">الفساتين المحفوظة</span>
+        <span class="txt-en">Saved Gowns</span>
+        (<span id="wishlistDrawerCount">0</span>)
+      </h3>
+      <button class="drawer-close-btn" onclick="window.app.closeDrawers()">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div class="cart-items-list" id="wishlistItemsList"></div>
+    </div>
+  </aside>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-bar-header">
+      <span style="font-size:0.95rem; font-weight:900; color:var(--color-brand-purple);">Search Waad Aloqaili Collections</span>
+      <button class="drawer-close-btn" onclick="document.getElementById('searchModal').classList.remove('active'); document.getElementById('drawerBackdrop').classList.remove('active');">&times;</button>
+    </div>
+    <div class="search-input-box">
+      <i data-feather="search" style="width:26px; height:26px; color:var(--color-brand-purple);"></i>
+      <input type="text" class="search-input-field" id="searchInputField" placeholder="Search gown title, fabric, or collection...">
+    </div>
+    <div class="search-popular-tags">
+      <span>Popular: </span>
+      <a href="collections.html?cat=yamal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Yamal SS26</a> |
+      <a href="collections.html?cat=veil-of-renewal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Veil of Renewal</a> |
+      <a href="collections.html?cat=bridal" style="margin:0 0.5rem; text-decoration:underline; color:var(--color-brand-purple); font-weight:700;">Royal Bridal</a>
+    </div>
+    <div class="search-results-grid" id="searchResultsGrid"></div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Floating Concierge WhatsApp -->
+  <a href="https://wa.me/966115001585" target="_blank" class="floating-vip-concierge" aria-label="Book Fitting">
+    <i data-feather="message-circle" style="width:18px;height:18px;"></i>
+    <span>
+      <span class="txt-ar">حجز قياس VIP</span>
+      <span class="txt-en">VIP Atelier Booking</span>
+    </span>
+  </a>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.feather) feather.replace();
+    });
+  </script>
+</body>
+</html>
