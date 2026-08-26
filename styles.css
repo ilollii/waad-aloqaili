@@ -2285,10 +2285,19 @@ html[dir="ltr"] .footer-link:hover {
   background: var(--color-brand-purple-tint);
 }
 
-.drawer-col-pill .col-badge {
-  font-size: 0.7rem;
-  color: #888;
-  font-weight: 600;
+.drawer-col-pill .col-badge,
+.drawer-col-pill .drawer-col-badge {
+  font-size: 0.72rem;
+  color: var(--color-brand-purple);
+  background: rgba(44, 26, 72, 0.08);
+  padding: 0.1rem 0.45rem;
+  border-radius: 50px;
+  font-weight: 800;
+}
+
+body.theme-velvet-night .drawer-col-pill .drawer-col-badge {
+  color: var(--color-accent-gold);
+  background: rgba(223, 186, 115, 0.15);
 }
 
 /* Concierge Card */

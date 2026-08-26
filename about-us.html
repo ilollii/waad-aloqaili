@@ -819,7 +819,7 @@
   <!-- DRAWER BACKDROP -->
   <div class="drawer-backdrop" id="drawerBackdrop" onclick="window.app.closeDrawers()"></div>
 
-    <!-- RIGHT NAVIGATION DRAWER -->
+      <!-- RIGHT NAVIGATION DRAWER -->
   <aside class="slide-drawer drawer-right" id="rightNavDrawer" aria-label="Main Navigation Menu">
     <div class="drawer-header">
       <div style="display:flex; align-items:center; gap:0.8rem;">
@@ -847,7 +847,7 @@
         </a>
       </div>
 
-      <!-- Primary Core Navigation -->
+      <!-- 1. Primary Core Navigation -->
       <div class="drawer-section-title">
         <i data-feather="compass" style="width:14px;height:14px;"></i>
         <span class="txt-ar">التنقل الرئيسي</span>
@@ -864,7 +864,7 @@
           </a>
         </li>
         <li class="drawer-nav-item">
-          <a href="collections.html?cat=all" class="drawer-nav-link">
+          <a href="collections.html" class="drawer-nav-link">
             <span>
               <span class="txt-ar">جميع فساتين البوتيك (105 فستان)</span>
               <span class="txt-en">All Boutique Gowns (105)</span>
@@ -873,72 +873,119 @@
           </a>
         </li>
         <li class="drawer-nav-item">
-          <a href="collections.html?cat=yamal" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">مجموعة يمال SS26 (جديد)</span>
-              <span class="txt-en">Yamal SS26 Collection</span>
-            </span>
-            <span class="drawer-nav-badge" style="background:var(--color-accent-gold); color:#120820;">NEW</span>
-          </a>
-        </li>
-        <li class="drawer-nav-item">
-          <a href="collections.html?cat=veil-of-renewal" class="drawer-nav-link">
-            <span>
-              <span class="txt-ar">حجاب التجدد SS25</span>
-              <span class="txt-en">Veil of Renewal SS25</span>
-            </span>
-            <span class="drawer-nav-badge">COUTURE</span>
-          </a>
-        </li>
-        <li class="drawer-nav-item">
           <a href="under-the-spotlight.html" class="drawer-nav-link" style="color:var(--color-brand-purple); font-weight:900;">
             <span>
-              <span class="txt-ar">تحت الأضواء - السجادة الحمراء</span>
-              <span class="txt-en">Under The Spotlight (Red Carpet)</span>
+              <span class="txt-ar">تحت الأضواء - سجادة كان (Spotlight)</span>
+              <span class="txt-en">Under The Spotlight - Cannes</span>
             </span>
             <span class="drawer-nav-badge" style="background:#2C1A48; color:#FFF;">PRESS</span>
           </a>
         </li>
         <li class="drawer-nav-item">
-          <a href="about-us.html" class="drawer-nav-link">
+          <a href="index.html#heroCinema" class="drawer-nav-link" onclick="window.app.closeDrawers()">
             <span>
-              <span class="txt-ar">عن الدار والحرفية الملكية</span>
-              <span class="txt-en">About The House & Craft</span>
+              <span class="txt-ar">سينما أفلام الكوتور الرسمية</span>
+              <span class="txt-en">Official Couture Cinema</span>
             </span>
+            <span class="drawer-nav-badge" style="background:var(--color-accent-gold); color:#120820;">4K HD</span>
           </a>
         </li>
         <li class="drawer-nav-item">
-          <a href="checkout.html" class="drawer-nav-link">
+          <a href="about-us.html" class="drawer-nav-link">
             <span>
-              <span class="txt-ar">إتمام الطلب الملكي</span>
-              <span class="txt-en">Secure Checkout</span>
+              <span class="txt-ar">عن الدار والحرفية (The House & Heritage)</span>
+              <span class="txt-en">The House & Heritage</span>
             </span>
           </a>
         </li>
       </ul>
 
-      <!-- Ready-to-Wear Category -->
+      <!-- 2. Couture Collections -->
       <div class="drawer-section-title">
-        <i data-feather="sparkles" style="width:14px;height:14px;"></i>
-        <span class="txt-ar">✨ تصنيفات الأزياء الملكية</span>
-        <span class="txt-en">✨ Royal Couture Categories</span>
+        <i data-feather="feather" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">كوتور</span>
+        <span class="txt-en">Couture</span>
       </div>
       <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
-        <a href="collections.html?cat=soiree" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين السهرة</span><span class="txt-en">Evening Gowns</span></span>
+        <a href="collections.html?cat=yamal" class="drawer-col-pill">
+          <span><span class="txt-ar">يَمال ربيع وصيف</span><span class="txt-en">Yamal SS</span></span>
+          <span class="drawer-col-badge">29</span>
         </a>
-        <a href="collections.html?cat=bridal" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الزفاف</span><span class="txt-en">Bridal</span></span>
+        <a href="collections.html?cat=veil-of-renewal" class="drawer-col-pill">
+          <span><span class="txt-ar">VEIL OF RENEWAL ربيع وصيف</span><span class="txt-en">Veil of Renewal SS</span></span>
+          <span class="drawer-col-badge">22</span>
         </a>
-        <a href="collections.html?cat=engagement" class="drawer-col-pill">
-          <span><span class="txt-ar">فساتين الخطوبة</span><span class="txt-en">Engagement</span></span>
+        <a href="collections.html?cat=into-the-dawn" class="drawer-col-pill">
+          <span><span class="txt-ar">الى الشروق خريف</span><span class="txt-en">Into the Dawn Fall</span></span>
+          <span class="drawer-col-badge">6</span>
+        </a>
+        <a href="collections.html?cat=out-of-the-chrysalis" class="drawer-col-pill">
+          <span><span class="txt-ar">خارِج الشرنقة ربيع وصيف</span><span class="txt-en">Chrysalis SS</span></span>
+          <span class="drawer-col-badge">11</span>
         </a>
         <a href="collections.html?cat=elan-vital" class="drawer-col-pill">
-          <span><span class="txt-ar">إيلان فيتال</span><span class="txt-en">Élan Vital</span></span>
+          <span><span class="txt-ar">إيلان فيتال قبل خريف</span><span class="txt-en">Élan Vital Pre-Fall</span></span>
+          <span class="drawer-col-badge">14</span>
+        </a>
+        <a href="collections.html?cat=celestia" class="drawer-col-pill">
+          <span><span class="txt-ar">سيليستيا ربيع وصيف</span><span class="txt-en">Celestia SS</span></span>
+          <span class="drawer-col-badge">7</span>
+        </a>
+        <a href="collections.html?cat=joy" class="drawer-col-pill">
+          <span><span class="txt-ar">مجموعة جوي</span><span class="txt-en">Joy Collection</span></span>
+          <span class="drawer-col-badge">10</span>
         </a>
       </div>
 
-      <!-- Language Settings -->
+      <!-- 3. Ready to Wear -->
+      <div class="drawer-section-title">
+        <i data-feather="sparkles" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">جاهز للارتداء</span>
+        <span class="txt-en">Ready to Wear</span>
+      </div>
+      <div class="drawer-collections-grid" style="margin-bottom:1.8rem;">
+        <a href="collections.html?cat=soiree" class="drawer-col-pill">
+          <span><span class="txt-ar">فساتين السهرة والمناسبات</span><span class="txt-en">Soirée & Evening</span></span>
+          <span class="drawer-col-badge">37</span>
+        </a>
+        <a href="collections.html?cat=bridal" class="drawer-col-pill">
+          <span><span class="txt-ar">فساتين الزفاف الملكية</span><span class="txt-en">Royal Bridal</span></span>
+          <span class="drawer-col-badge">32</span>
+        </a>
+        <a href="collections.html?cat=engagement" class="drawer-col-pill">
+          <span><span class="txt-ar">فساتين الخطوبة والملكة</span><span class="txt-en">Engagement</span></span>
+          <span class="drawer-col-badge">38</span>
+        </a>
+      </div>
+
+      <!-- 4. Special VIP Services -->
+      <div class="drawer-section-title">
+        <i data-feather="star" style="width:14px;height:14px;"></i>
+        <span class="txt-ar">الخدمات الخاصة وتجربة VIP</span>
+        <span class="txt-en">Special Services & VIP Experience</span>
+      </div>
+      <ul class="drawer-nav-list" style="margin-bottom:1.8rem;">
+        <li class="drawer-nav-item">
+          <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openBookingModal();" class="drawer-nav-link">
+            <span>
+              <span class="txt-ar">حجز موعد قياس في الأتيليه</span>
+              <span class="txt-en">Book Private Atelier Fitting</span>
+            </span>
+            <i data-feather="calendar" style="width:16px;height:16px; opacity:0.6;"></i>
+          </a>
+        </li>
+        <li class="drawer-nav-item">
+          <a href="javascript:void(0)" onclick="window.app.closeDrawers(); window.app.openAiStylistModal();" class="drawer-nav-link">
+            <span>
+              <span class="txt-ar">مستشارة المظهر بالذكاء الاصطناعي</span>
+              <span class="txt-en">AI Couture Stylist</span>
+            </span>
+            <i data-feather="cpu" style="width:16px;height:16px; color:var(--color-accent-gold);"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- 5. Language Settings -->
       <div class="drawer-section-title">
         <i data-feather="globe" style="width:14px;height:14px;"></i>
         <span class="txt-ar">اختيار اللغة (Language)</span>
@@ -949,7 +996,7 @@
         <button class="btn-secondary" onclick="window.app.setLanguage('en')" style="flex:1; padding:0.85rem; font-size:0.85rem; background:#FFF; color:#000; border-color:#CCC; border-radius:4px;">English (LTR)</button>
       </div>
 
-      <!-- VIP Concierge Contact -->
+      <!-- 6. VIP Concierge Contact -->
       <div class="drawer-section-title">
         <i data-feather="phone" style="width:14px;height:14px;"></i>
         <span class="txt-ar">الأتيليه وخدمة العملاء</span>
@@ -962,13 +1009,14 @@
           <i data-feather="phone-call" style="width:15px;height:15px;"></i>
           <span>اتصال مباشر: 0535554889</span>
         </a>
-        <a href="https://wa.me/966115001585" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
+        <a href="https://wa.me/966535554889" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
           <i data-feather="message-circle" style="width:15px;height:15px;"></i>
           <span>محادثة واتساب VIP</span>
         </a>
       </div>
     </div>
   </aside>
+
 
   <!-- CART DRAWER -->
   <aside class="slide-drawer drawer-left" id="cartDrawer" aria-label="Shopping Cart">
