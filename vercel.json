@@ -1,58 +1,20 @@
 {
-  "version": 2,
-  "name": "waad-aloqaili-haute-couture",
-  "headers": [
+  "cleanUrls": true,
+  "rewrites": [
     {
-      "source": "/(.*).html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "dest": "api/index.py"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/collections",
-      "dest": "/collections.html"
-    },
-    {
-      "src": "/under-the-spotlight",
-      "dest": "/under-the-spotlight.html"
-    },
-    {
-      "src": "/about-us",
-      "dest": "/about-us.html"
-    },
-    {
-      "src": "/checkout",
-      "dest": "/checkout.html"
-    },
-    {
-      "src": "/admin",
-      "dest": "/admin.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }

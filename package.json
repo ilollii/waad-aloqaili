@@ -4,6 +4,7 @@
   "description": "دار وعد العقيلي للأزياء الراقية والهوت كوتور - المتجر الإلكتروني الرسمي",
   "main": "index.html",
   "scripts": {
+    "build": "echo 'Build OK'",
     "start": "python backend_server.py",
     "dev": "python backend_server.py"
   },
