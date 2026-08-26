@@ -1591,6 +1591,43 @@
       }
       if (window.feather) feather.replace();
     },
+    switchHeroVideo: function (videoUrl, titleEn, titleAr, btnEl) {
+      const video = document.getElementById('mainHeroVideo');
+      const title = document.getElementById('heroCinemaTitle');
+      if (video) {
+        video.src = videoUrl;
+        video.load();
+        video.play().catch(e => console.log('Autoplay handled:', e));
+      }
+      if (title) {
+        const isAr = state.lang === 'ar';
+        title.innerHTML = isAr ? titleAr : titleEn;
+      }
+      if (btnEl) {
+        document.querySelectorAll('.video-pill-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+      }
+    },
+    toggleHeroVideoSound: function () {
+      const video = document.getElementById('mainHeroVideo');
+      const label = document.getElementById('soundLabel');
+      const icon = document.getElementById('soundIcon');
+      if (!video) return;
+      video.muted = !video.muted;
+      if (!video.muted) {
+        video.volume = 0.8;
+        if (label) {
+          label.innerHTML = '<span class="txt-ar">كتم الصوت</span><span class="txt-en">Mute Video</span>';
+        }
+        if (icon) icon.setAttribute('data-feather', 'volume-2');
+      } else {
+        if (label) {
+          label.innerHTML = '<span class="txt-ar">تشغيل الصوت</span><span class="txt-en">Unmute Video</span>';
+        }
+        if (icon) icon.setAttribute('data-feather', 'volume-x');
+      }
+      if (window.feather) feather.replace();
+    },
     handleNewsletter: function (form) {
       const input = form.querySelector('input');
       if (input && input.value) {
@@ -1636,6 +1673,13 @@
     initEvents();
     initScrollReveal();
     updateBadges();
+
+    // Auto-play all background videos seamlessly
+    document.querySelectorAll('video').forEach(v => {
+      v.muted = true;
+      v.play().catch(() => {});
+    });
   });
 
 })();
+
