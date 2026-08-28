@@ -389,16 +389,16 @@ img {
 }
 
 /* ==========================================================================
-   UNIFIED MASTER STICKY HEADER SYSTEM (ZERO OVERLAP & SOLID LUXURY LAYER)
+   MASTER NATURAL-FLOW HEADER SYSTEM (SCROLLS NATURALLY WITH PAGE)
    ========================================================================== */
 .header-master-wrapper {
-  position: sticky !important;
-  top: 0 !important;
-  left: 0 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
   width: 100% !important;
-  z-index: 10000 !important;
+  z-index: 100 !important;
   background-color: #FFFFFF !important;
-  box-shadow: 0 4px 20px rgba(44, 26, 72, 0.08) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
   display: flex !important;
   flex-direction: column !important;
   margin: 0 !important;
@@ -407,7 +407,7 @@ img {
 
 body.theme-velvet-night .header-master-wrapper {
   background-color: #120820 !important;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .site-header {
@@ -1028,9 +1028,9 @@ body.theme-velvet-night .header-master-wrapper {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: var(--header-height);
-  z-index: 80;
+  position: relative;
+  top: auto;
+  z-index: 10;
 }
 
 .category-chips-list {
