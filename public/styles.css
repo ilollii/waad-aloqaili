@@ -3759,13 +3759,42 @@ body.theme-velvet-night .policy-section-item {
     max-width: 100%;
   }
   
+  /* Header Master Wrapper & Navigation (Normal Flow, No Mobile Sticky/Overlap) */
+  .header-master-wrapper,
+  #headerMasterWrapper {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    z-index: 100 !important;
+  }
+
+  body.theme-velvet-night .header-master-wrapper,
+  body.theme-velvet-night #headerMasterWrapper {
+    background-color: #120820 !important;
+  }
+
   /* Site Header: 100% Perfectly Centered Logo & Zero Overlap Layout */
-  .site-header {
+  .site-header,
+  #siteHeader {
     height: 64px !important;
     min-height: 64px !important;
     padding: 0 0.8rem !important;
     position: relative !important;
     top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
     display: grid !important;
     grid-template-columns: auto 1fr auto !important;
     align-items: center !important;
@@ -3776,6 +3805,27 @@ body.theme-velvet-night .policy-section-item {
     box-sizing: border-box !important;
     background-color: #FFFFFF !important;
     box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .luxury-nav-bar,
+  #mainLuxuryNav {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.5rem 0.5rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    transform: none !important;
+    z-index: 1 !important;
   }
 
   .header-left {
