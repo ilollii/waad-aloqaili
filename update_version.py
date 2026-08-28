@@ -6,7 +6,7 @@ for fname in files:
     if os.path.exists(fname):
         with open(fname, 'r', encoding='utf-8') as f:
             content = f.read()
-        content = re.sub(r'href="styles\.css(\?v=[^"]*)?"', 'href="styles.css?v=5.0"', content)
+        content = re.sub(r'href="styles\.css(\?v=[^"]*)?"', 'href="styles.css?v=6.0"', content)
         with open(fname, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f'Updated css link to v5.0 in {fname}')
+        print(f'Updated css link to v6.0 in {fname}')

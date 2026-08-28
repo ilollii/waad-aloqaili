@@ -6,47 +6,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,900&family=Inter:wght@200;300;400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Bodoni+Moda:ital,wght@0,400;0,600;0,800;1,400&display=swap');
 
 :root {
-  /* Official Royal Purple & Gold Palette */
-  --color-brand-purple: #2C1A48;
-  --color-brand-purple-dark: #1A0D2E;
-  --color-brand-purple-deep: #120820;
-  --color-brand-purple-light: #4A2F75;
-  --color-brand-purple-tint: #F7F3FB;
-  --color-brand-purple-subtle: #ECE4F7;
-  --color-brand-purple-border: #DCD0EE;
+  /* ==========================================================================
+     MONOCHROMATIC HIGH-FASHION PALETTE & SEASONAL ACCENTS
+     ========================================================================== */
+  /* Black: Primary for backgrounds, text, high-emphasis branding & emblems */
+  --color-black: #000000;
+  --color-black-rich: #0A0A0A;
+  --color-black-surface: #141414;
+  --color-black-elevated: #1E1E1E;
   
-  --color-bg: #FFFFFF;
-  --color-bg-alt: #F8F5FC;
-  --color-bg-ivory: #F3EDF9;
-  --color-bg-dark: #140B24;
-  --color-surface-dark: #1B0F30;
-  --color-surface-card: #23143D;
+  /* White: Pure crisp backgrounds, high-contrast text & clean dividers */
+  --color-white: #FFFFFF;
+  --color-white-pure: #FFFFFF;
+  --color-white-soft: #FAFAFA;
+  --color-white-muted: #F3F4F6;
   
-  --color-text-primary: #1A0D2E;
-  --color-text-secondary: #58496E;
-  --color-text-muted: #8E7D9F;
-  --color-border: #E8E0F2;
-  --color-border-dark: #321E52;
+  /* Neutral Grays: Borders, cards, subtle containers & secondary elements */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
   
+  /* Seasonal & Editorial Accents (Shadow Red, Caramel, Sapphire Blue, Champagne) */
+  --color-accent-red: #D90429;
+  --color-accent-red-deep: #B70322;
+  --color-accent-caramel: #C58F58;
+  --color-accent-caramel-deep: #A26B38;
+  --color-accent-blue: #1E3A8A;
+  --color-accent-blue-royal: #2563EB;
   --color-accent-gold: #C5A880;
   --color-accent-gold-light: #EADBC8;
   --color-accent-gold-gradient: linear-gradient(135deg, #DFBA73 0%, #C5A880 50%, #9E7D4E 100%);
-  --color-accent-purple-gradient: linear-gradient(135deg, #2C1A48 0%, #432468 100%);
-  --color-accent-red: #D90429;
+  --color-accent-red-gradient: linear-gradient(135deg, #D90429 0%, #8A0019 100%);
+  --color-accent-caramel-gradient: linear-gradient(135deg, #D8A470 0%, #A26B38 100%);
   --color-accent-green: #0F9D58;
+
+  /* Semantic Theme Mappings */
+  --color-brand-purple: #111111;
+  --color-brand-purple-dark: #000000;
+  --color-brand-purple-deep: #0A0A0A;
+  --color-brand-purple-light: #262626;
+  --color-brand-purple-tint: #F4F4F6;
+  --color-brand-purple-subtle: #EAEAEF;
+  --color-brand-purple-border: #E0E0E6;
+  
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F9FAFB;
+  --color-bg-ivory: #F4F4F6;
+  --color-bg-dark: #0A0A0A;
+  --color-surface-dark: #141414;
+  --color-surface-card: #1E1E1E;
+  
+  --color-text-primary: #111111;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #8E8E93;
+  --color-border: #E5E7EB;
+  --color-border-dark: #262626;
 
   --font-ar: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-en: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: 'Playfair Display', 'Cinzel', serif;
   --font-couture: 'Cinzel', 'Playfair Display', serif;
 
-  --header-height: 80px;
+  --header-height: 78px;
   --announcement-height: 42px;
 
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --shadow-card: 0 15px 45px rgba(44, 26, 72, 0.08);
-  --shadow-floating: 0 30px 80px rgba(44, 26, 72, 0.22);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-floating: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 /* Bilingual Language Display Rules */
@@ -58,21 +92,23 @@ body[data-lang="en"] .txt-ar { display: none !important; }
 body[data-lang="en"] .txt-en { display: inline !important; }
 body[data-lang="en"] span.txt-en, body[data-lang="en"] p.txt-en, body[data-lang="en"] div.txt-en, body[data-lang="en"] h1.txt-en, body[data-lang="en"] h2.txt-en, body[data-lang="en"] h3.txt-en, body[data-lang="en"] h4.txt-en { display: block !important; }
 
-/* Velvet Night Mode Theme Variables */
+/* Velvet Night Mode Theme Variables (Pure Editorial Black & Charcoal) */
 body.theme-velvet-night {
-  --color-bg: #120820;
-  --color-bg-alt: #1A0D2E;
-  --color-bg-ivory: #160A28;
+  --color-bg: #0A0A0A;
+  --color-bg-alt: #141414;
+  --color-bg-ivory: #1A1A1A;
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #D4C6E5;
-  --color-text-muted: #9E8DB3;
-  --color-border: #2C1A48;
-  --shadow-card: 0 15px 45px rgba(0, 0, 0, 0.4);
+  --color-text-secondary: #D1D5DB;
+  --color-text-muted: #9CA3AF;
+  --color-border: #262626;
+  --color-brand-purple-tint: #1E1E1E;
+  --color-brand-purple-border: #333333;
+  --shadow-card: 0 15px 45px rgba(0, 0, 0, 0.6);
 }
 
 body.theme-velvet-night .site-header {
-  background: #120820 !important;
-  border-bottom-color: #2C1A48 !important;
+  background: #0A0A0A !important;
+  border-bottom-color: #262626 !important;
 }
 
 body.theme-velvet-night .menu-toggle-btn {
